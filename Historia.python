@@ -1,0 +1,1861 @@
+from random import randint
+import time
+import sys
+computador = randint(0,10)
+vida = 0
+exp = 0
+level = 0
+gold = 5
+print("vamos começar sua aventura!")
+nome = str(input("Coloque o nome do seu personagem aqui:"))
+def rotina(exp,vida,level,gold):
+    time.sleep(1)
+    if exp == 100:
+        vida += 300
+        print("Parabens você upou de nivel!")
+        exp = 0
+        level += 1
+        gold += 50
+        time.sleep(2)
+        print("{} esta no nivel \033[4;34m{}\033[m agora".format(nome, level))
+        time.sleep(1)
+        print("{} esta com {} Gold".format(nome, gold))
+print("Vamos começar")
+print("""escolha sua classe,
+[1]- Guerreiro 
+[2]-lutador
+[3]-mago""")
+classe = int(input("Digite aqui sua classe :"))
+if classe == 1:
+    print("{} escolheu a classe Guerreiro".format(nome))
+    vida += 1000
+elif classe == 2:
+   print("{} escolheu a classe lutador".format(nome))
+   vida += 1500
+elif classe == 3:
+   print("{} escolheu a classe mago".format(nome))
+   vida += 500
+else:
+   print("Classe inválida")
+vida += 300
+print("Vamos começar sua aventura {}".format(nome))
+time.sleep(1.5)
+print("{} aparece em uma floresta...".format(nome))
+time.sleep(1.5)
+print("Então por não saber onde está, decidi explorar o local")
+time.sleep(1.5)
+print("...")
+time.sleep(1.5)
+print("Enquanto explorava {} viu um lobo comendo um servo".format(nome))
+Lobo = 150
+time.sleep(2)
+print(f"{nome} decide se afastar,mas pisa em um galha, chamando a atenção do lobo que avança em sua direção")
+time.sleep(3)
+print("Atenção, você está entrando em uma cena de batalha")
+time.sleep(1.5)
+print("A chance de acerto ou de falha seram decididas pelos dados!")
+time.sleep(1.5)
+rodada = 0
+lobo_venci = 0
+while True:
+    print("==="*15)
+    time.sleep(1)
+    print("Rodada {}".format(rodada))
+    time.sleep(2)
+    Jogador_ação = randint(0, 10)
+    computador = randint(0, 10)
+    time.sleep(1)
+    rodada += 1
+    print("jogador tirou {}, o seu adversario tirou {}".format(Jogador_ação, computador))
+    if Jogador_ação == computador:
+        print("Ambos atacaram mais, nenhum se  acertou")
+    elif Jogador_ação > computador:
+        Lobo -= 100
+        print(f"{nome} atacou o lobo tirando 100 de vida dele ")
+    elif computador > Jogador_ação:
+        vida -= 100
+        print(f"{nome} foi atacado pelo lobo e \033[31mperdeu\033[m \033[31m100\033[m de vida")
+    if computador > 7:
+        print(f"lobo mordeu o braço do {nome},causando \033[31msangramento\033[m")
+        vida -= 50
+    elif Lobo == 50:
+        print("\033[30m o lobo ficou furioso e vai em sua direção,pulando em cima de você...\033[m")
+        time.sleep(2)
+        vida -= 70
+        Lobo += 40
+        print("O lobo te arranha tirando 70 pontos da sua vida")
+        time.sleep(1.5)
+        print("O lobo recuperou 40 pontos de vida")
+    elif vida < 100:
+        print("{} esta em um estado critico, por isso de agora em diante você devera controlar ele!".format(nome))
+        time.sleep(3)
+        Escolha = int(input("""O que você fara agora?
+        [1]-Ir pra cima do lobo para tentar matalo
+        [2]-Recuar um pouco
+        [3]-So jogar os dados"""))
+        if Escolha == 1:
+            print("{} decidiu ir para cima do lobo!".format(nome))
+            time.sleep(1.5)
+            print("...")
+            time.sleep(1.5)
+            Jogador_ação = randint(0, 11)
+            computador = randint(0, 10)
+            if Jogador_ação == computador:
+                print("Ambos atacaram mais, nenhum se  acertou")
+            elif Jogador_ação > computador:
+                Lobo -= 100
+                print(f"{nome} atacou o lobo tirando 100 de vida dele ")
+            elif computador > Jogador_ação:
+                vida -= 100
+                print(f"{nome} foi atacado pelo lobo e \033[31mperdeu\033[m \033[31m100\033[m de vida")
+            if computador > 7:
+                print(f"lobo mordeu o braço do {nome},causando \033[31msangramento\033[m")
+                vida -= 50
+            elif Lobo == 50:
+                print("\033[30m o lobo ficou furioso e vai em sua direção,pulando em cima de você...\033[m")
+                time.sleep(2)
+                vida -= 70
+                Lobo += 40
+    if Lobo < 0:
+        exp += 20
+        lobo_venci += 1
+        gold += 50
+        break
+    if vida < 0:
+        sys.exit()
+        break
+rodada = 0
+print("Após a batalha... Tivemos um \033[32msobrevivente\033[m")
+time.sleep(2)
+if vida > Lobo:
+    print(f"{nome} conseguiu sobreviver matando o lobo")
+elif vida < 0:
+    print(f" O lobo matou {nome}")
+    time.sleep(2)
+    print("\033[31mGame over\033[m")
+print("Ao matar o lobo {} ganha 20 de exp!".format(nome))
+time.sleep(2)
+print("...")
+time.sleep(1)
+print("{} esta com \033[32m{} de vida\033[m".format(nome, vida))
+rotina(exp, vida, level,gold)
+print("""Apos a luta inesperada com o lobo, {} observar se não tem outros lobos em volta,"
+ou outra criatura que o poderia atacar""".format(nome))
+time.sleep(4)
+print("O que {} fara agora?".format(nome))
+Escolha_1 = int(input("""
+    [1]-Caçar mais lobos
+    [2]-Descançar
+    [3]-..."""))
+if Escolha_1 == 1:
+    print("""{} vai a caça de outros lobos, por achar eles uma presa facil,
+    alem de darem uma contidade consideravel de exp""".format(nome))
+elif Escolha_1 == 2:
+    time.sleep(1)
+    print(f"{nome} deita em uma arvore,para descansar,enquanto observar o ambiente ao seu redor")
+    vida += 150
+    time.sleep(2)
+elif Escolha_1 == 3:
+    print("...")
+    time.sleep(2)
+    print("...")
+    time.sleep(2)
+print("30MINUTOS DEPOIS...")
+time.sleep(2)
+print("...")
+time.sleep(2)
+print("{} de longe observar uma caverna e decide entrar nela".format(nome))
+time.sleep(1.5)
+print("{} so não esperava que nessa caverna encontraria varios lobos nela...".format(nome))
+time.sleep(3)
+print("...-[Pausa tramatica]")
+time.sleep(1)
+critico = 0
+Lobo = 150
+Lobo_2 = 300
+Lobo_morto = 0
+computador_off = 0
+while True:
+    print("===" * 15)
+    time.sleep(1)
+    print("Rodada {}".format(rodada))
+    time.sleep(2)
+    Jogador_ação = randint(0, 10)
+    if lobo >= 10:
+        computador = randint(0, 10)
+    if lobo_2 >= 10:
+        computador_2 = randint(0, 12)
+    time.sleep(1)
+    rodada += 1
+    Evasão = 0
+    print("jogador tirou {},o lobo 1-tirou {} o lobo 2-tirou {}".format(Jogador_ação, computador,computador_2))
+    if Jogador_ação >= 9:
+        critico += 1
+        Evasão += 1
+    if critico > 3:
+        vida += 300
+        print("{} alçansou o \033[34mestado critico\033[m, agora ele dara \033[31m250\033[m de dano".format(nome))
+        if Jogador_ação == computador:
+            print("{} deu 250 de dano  por estar no \033[34mestado critico\033[m, no 1 e o 2 lobo".format(nome))
+            Lobo -= 250
+            Lobo_2 -= 250
+    elif Evasão > 3:
+        print("~~~~~~"*2)
+        print("Jogador ativou a habilidade evasão,podendo desviar dos proximos golpes")
+        vida += 300
+        time.sleep(1.5)
+        print("~~~~~~"*2)
+    elif Jogador_ação == computador:
+        print("Ambos atacaram mais, nenhum se  acertou")
+        time.sleep(1.5)
+    if Jogador_ação > computador:
+        Lobo -= 100
+        print(f"{nome} atacou o 1 lobo tirando 100 de vida dele")
+        time.sleep(1.5)
+    if Jogador_ação > computador_2:
+        Lobo_2 -= 100
+        print(f"{nome} atacou o 2 lobo tirando 100 de vida dele")
+        time.sleep(1.5)
+    elif computador > Jogador_ação:
+        vida -= 100
+        print(f"{nome} foi atacado pelo 1 lobo e \033[31mperdeu\033[m \033[31m100\033[m de vida")
+        time.sleep(1.5)
+    if computador_2 > Jogador_ação:
+        vida -= 150
+        print(f"{nome} foi atacado pelo 2 lobo  \033[31mperdeu\033[m \033[31m150\033[m de vida")
+        time.sleep(1.5)
+    if computador > 7:
+        print(f"lobo mordeu o braço do {nome},causando \033[31msangramento\033[m")
+        time.sleep(1.5)
+        vida -= 50
+    if computador_2 > 10:
+        time.sleep(1.5)
+        print(f"""O 2 lobo tirou dados acima de 9, o lobo 2 entrou em estado de possessão,
+    atacando 3 vezes seguidas""")
+        time.sleep(1.5)
+        vida -= 60
+        print("Jogador vida {}".format(vida))
+        time.sleep(1.5)
+        vida -= 60
+        print("Jogador vida {}".format(vida))
+        time.sleep(1.5)
+        vida -= 60
+        print("Jogador vida {}".format(vida))
+        time.sleep(1.5)
+    elif Lobo == 50:
+        print("\033[30m o lobo ficou furioso e vai em sua direção,pulando em cima de você...\033[m")
+        time.sleep(2)
+        vida -= 70
+        Lobo += 20
+        print("O lobo te arranha tirando 70 pontos da sua vida")
+        time.sleep(1.5)
+        print("O lobo recuperou 20 pontos de vida")
+    elif vida < 100:
+        print("{} esta em um estado critico, por isso de agora em diante você devera controlar ele!".format(nome))
+        time.sleep(3)
+        Escolha = int(input("""O que você fara agora?
+        [1]-Ir pra cima do lobo para tentar matalo
+        [2]-Recuar um pouco
+        [3]-So jogar os dados"""))
+        if Escolha == 1:
+            print("{} decidiu ir para cima do lobo!".format(nome))
+            time.sleep(1.5)
+            print("...")
+            time.sleep(1.5)
+            Jogador_ação = randint(0, 10)
+            computador = randint(0, 10)
+            Lobo -= 50
+            Lobo_2 -= 50
+            if Jogador_ação == computador:
+                print("Ambos atacaram mais, nenhum se  acertou")
+                time.sleep(1.5)
+            elif Jogador_ação > computador:
+                Lobo -= 100
+                print(f"{nome} atacou o lobo (1) tirando 100 de vida dele ")
+                time.sleep(1.5)
+            elif Jogador_ação > computador_2:
+                Lobo_2 -= 100
+                print(f"{nome} atacou o lobo (2) tirando 100 de vida dele ")
+                time.sleep(1.5)
+            elif computador > Jogador_ação:
+                vida -= 100
+                print(f"{nome} foi atacado pelo lobo (1) e \033[31mperdeu\033[m \033[31m100\033[m de vida")
+            if computador > 7:
+                print(f"lobo mordeu o braço do {nome},causando \033[31msangramento\033[m")
+                vida -= 50
+            elif Lobo == 50:
+                print("\033[30m o lobo ficou furioso e vai em sua direção,pulando em cima de você...\033[m")
+                time.sleep(2)
+                vida -= 70
+                Lobo += 20
+    if Lobo < 0:
+        exp += 20
+        print("Matamos o 1 lobo")
+        Lobo = Lobo_morto
+        lobo_venci += 1
+        computador = False
+    if Lobo_2 < 0:
+        exp += 60
+        print("{} conseguiu matar o 2 lobo".format(nome))
+        lobo_venci += 1
+        gold += 100
+        break
+    if vida < 0:
+        print("\033[4;31mGame over\033[m")
+        time.sleep(1.5)
+        print("O lobo 1 estava com {} de vida, O 2 lobo estava com {}vida\033[31m".format(Lobo, Lobo_2))
+        rodada = 0
+        sys.exit()
+        break
+if vida < 0:
+    print("\033[4;31mGame over\033[m")
+    sys.exit()
+time.sleep(2)
+print("...")
+time.sleep(1)
+print("{} esta com \033[32m{} de vida\033[m".format(nome, vida))
+rotina(exp, vida, level,gold)
+print("""Apos a luta inesperada com o lobo, {} observar se não tem outros lobos em volta,
+ou outra criatura que o poderia atacar""".format(nome))
+time.sleep(4)
+print("O que {} fara agora?".format(nome))
+Escolha_1 = int(input("""
+    [1]-Caçar mais lobos
+    [2]-Descançar
+    [3]-..."""))
+if Escolha_1 == 1:
+    print("""{} vai a caça de outros lobos, por achar eles uma presa facil,alem de darem uma contidade,
+consideravel de exp""".format(nome))
+    Lobo = 150
+    Lobo_2 = 300
+    while True:
+        print("===" * 15)
+        time.sleep(1)
+        print("Rodada {}".format(rodada))
+        time.sleep(2)
+        Jogador_ação = randint(0, 10)
+        if lobo >= 10:
+            computador = randint(0, 10)
+        if lobo_2 >= 10:
+            computador_2 = randint(0, 12)
+        time.sleep(1)
+        rodada += 1
+        Evasão = 0
+        print("jogador tirou {},o lobo 1-tirou {} o lobo 2-tirou {}".format(Jogador_ação, computador, computador_2))
+        if Jogador_ação >= 9:
+            critico += 1
+            Evasão += 1
+        if critico > 3:
+            vida += 300
+            print("{} alçansou o \033[34mestado critico\033[m, agora ele dara \033[31m250\033[m de dano".format(nome))
+            if Jogador_ação == computador:
+                print("{} deu 250 de dano  por estar no \033[34mestado critico\033[m, no 1 e o 2 lobo".format(nome))
+                Lobo -= 250
+                Lobo_2 -= 250
+        elif Evasão > 3:
+            print("~~~~~~" * 2)
+            print("Jogador ativou a habilidade evasão,podendo desviar dos proximos golpes")
+            vida += 300
+            time.sleep(1.5)
+            print("~~~~~~" * 2)
+        elif Jogador_ação == computador:
+            print("Ambos atacaram mais, nenhum se  acertou")
+            time.sleep(1.5)
+        if Jogador_ação > computador:
+            Lobo -= 100
+            print(f"{nome} atacou o 1 lobo tirando 100 de vida dele")
+            time.sleep(1.5)
+        if Jogador_ação > computador_2:
+            Lobo_2 -= 100
+            print(f"{nome} atacou o 2 lobo tirando 100 de vida dele")
+            time.sleep(1.5)
+        elif computador > Jogador_ação:
+            vida -= 100
+            print(f"{nome} foi atacado pelo 1 lobo e \033[31mperdeu\033[m \033[31m100\033[m de vida")
+            time.sleep(1.5)
+        if computador_2 > Jogador_ação:
+            vida -= 150
+            print(f"{nome} foi atacado pelo 2 lobo  \033[31mperdeu\033[m \033[31m150\033[m de vida")
+            time.sleep(1.5)
+        if computador > 7:
+            print(f"lobo mordeu o braço do {nome},causando \033[31msangramento\033[m")
+            time.sleep(1.5)
+            vida -= 50
+        if computador_2 > 10:
+            time.sleep(1.5)
+            print(f"""O 2 lobo tirou dados acima de 9, o lobo 2 entrou em estado de possessão,
+            atacando 3 vezes seguidas""")
+            time.sleep(1.5)
+            vida -= 60
+            print("Jogador vida {}".format(vida))
+            time.sleep(1.5)
+            vida -= 60
+            print("Jogador vida {}".format(vida))
+            time.sleep(1.5)
+            vida -= 60
+            print("Jogador vida {}".format(vida))
+            time.sleep(1.5)
+        elif Lobo == 50:
+            print("\033[30m o lobo ficou furioso e vai em sua direção,pulando em cima de você...\033[m")
+            time.sleep(2)
+            vida -= 70
+            Lobo += 20
+            print("O lobo te arranha tirando 70 pontos da sua vida")
+            time.sleep(1.5)
+            print("O lobo recuperou 20 pontos de vida")
+        elif vida < 100:
+            print("{} esta em um estado critico, por isso de agora em diante você devera controlar ele!".format(nome))
+            time.sleep(3)
+            Escolha = int(input("""O que você fara agora?
+            [1]-Ir pra cima do lobo para tentar matalo
+            [2]-Recuar um pouco
+            [3]-So jogar os dados"""))
+            if Escolha == 1:
+                print("{} decidiu ir para cima do lobo!".format(nome))
+                time.sleep(1.5)
+                print("...")
+                time.sleep(1.5)
+                Jogador_ação = randint(0, 10)
+                computador = randint(0, 10)
+                Lobo -= 50
+                Lobo_2 -= 50
+                if Jogador_ação == computador:
+                    print("Ambos atacaram mais, nenhum se  acertou")
+                    time.sleep(1.5)
+                elif Jogador_ação > computador:
+                    Lobo -= 100
+                    print(f"{nome} atacou o lobo (1) tirando 100 de vida dele ")
+                    time.sleep(1.5)
+                elif Jogador_ação > computador_2:
+                    Lobo_2 -= 100
+                    print(f"{nome} atacou o lobo (2) tirando 100 de vida dele ")
+                    time.sleep(1.5)
+                elif computador > Jogador_ação:
+                    vida -= 100
+                    print(f"{nome} foi atacado pelo lobo (1) e \033[31mperdeu\033[m \033[31m100\033[m de vida")
+                if computador > 7:
+                    print(f"lobo mordeu o braço do {nome},causando \033[31msangramento\033[m")
+                    vida -= 50
+                elif Lobo == 50:
+                    print("\033[30m o lobo ficou furioso e vai em sua direção,pulando em cima de você...\033[m")
+                    time.sleep(2)
+                    vida -= 70
+                    Lobo += 20
+        if Lobo < 0:
+            exp += 20
+            print("Matamos o 1 lobo")
+            Lobo = Lobo_morto
+            lobo_venci += 1
+            computador = computador_off
+        if Lobo_2 < 0:
+            exp += 60
+            lobo_venci += 1
+            gold += 100
+            print("{} conseguiu matar o 2 lobo")
+            break
+        if vida < 0:
+            print("\033[4;31mGame over\033[m")
+            time.sleep(2)
+            print("O lobo 1 estava com {} de vida".format(Lobo))
+            time.sleep(1.5)
+            print("O lobo 2 estava com {} de vida\033[31m".format(Lobo_2))
+            sys.exit()
+            break
+if vida < 0:
+    print("\033[4;31mGame over\033[m")
+    time.sleep(2)
+    print("O lobo 1 estava com {} de vida".format(Lobo))
+    time.sleep(1.5)
+    print("O lobo 2 estava com {} de vida\033[31m".format(Lobo_2))
+    rodada = 0
+    sys.exit()
+elif Escolha_1 == 2:
+    time.sleep(1)
+    print(f"{nome} deita em uma arvore,para descansar,enquanto observar o ambiente ao seu redor")
+    time.sleep(2)
+elif Escolha_1 == 3:
+    print("...")
+    time.sleep(2)
+    print("...")
+    time.sleep(2)
+print("Gostaria de ver sua vida?")
+time.sleep(1.5)
+ver_vida = str(input("\033[36m[S/N]\033[m").strip().upper())
+if ver_vida == "S":
+    print("{} está com {} de vida".format(nome, vida))
+elif ver_vida == "N":
+    print("Ok...")
+    time.sleep(1.5)
+if lobo_venci == 3:
+    print("Por matar o lobo 3 vezes seguidas,{} conseguiu um novo item.".format(nome))
+    time.sleep(2)
+    print("Você conseguiu \033[33m(Pele de lobo\033[m, agora você pode se camuflar em locais escuros")
+    time.sleep(2)
+    print("\033[33mNovo item\033[m")
+    print("""
+    1-Pele de lobo + 2(Furtividade)""")
+    Pele_de_lobo = 2
+time.sleep(2.5)
+print("Continuando sua aventura {} sai da caverna muito ferido pela sua luta inesperado".format(nome))
+time.sleep(1.5)
+print("Com 2 lobos, sendo um deles muito mais forte que o outro ".format(nome))
+time.sleep(1.5)
+print("...")
+time.sleep(2)
+print("...")
+time.sleep(1.5)
+print("{} cai no chão pelo cansasso, e desmaia".format(nome))
+time.sleep(1.5)
+print("Ao acordar {} percebeu que ainda estava na entrada da caverna, e levanta".format(nome))
+time.sleep(1.5)
+print("Enquanto {} levantava, ele observava que já estava de noite".format(nome))
+time.sleep(1.5)
+print("Então decide achar um abrigo")
+print("Enquanto procurava um abrigo {} vê de longe um local iluminado e vai até ele".format(nome))
+time.sleep(3)
+print("Indo até o local, {} persebe que era uma vila, e lá tinha várias pessoas, e vários estabelecimento".format(nome))
+time.sleep(3)
+print("Ao chegar lá, a primeira coisa que ele faz e ir a uma pousa, e tenta ficar lá")
+time.sleep(2)
+print(f"Quando {nome} estava entrando em uma pousada, ele observar duas pessoas lutando dentro dela")
+time.sleep(3)
+print(f"{nome} observa aquilo, mas vai até a recepção e aluga um quarto")
+time.sleep(1.5)
+print("{} recuperou todo sua vida".format(nome))
+time.sleep(1.5)
+if classe == 1:
+  vida += 1000
+if classe == 2:
+   vida += 1500
+if classe == 3:
+   vida += 500
+print("{} pontos de vida".format(vida))
+time.sleep(1)
+print("=========="*10)
+time.sleep(1.5)
+print("Cap-1-finalizado!")
+time.sleep(1.5)
+print("=========="*10)
+time.sleep(1)
+print("""Após {} acordar, por te dormindo no quarto da pousada,ele percebeu que tinha recuperado suas forças,
+e decidi explorar a cidade onde ele estava""".format(nome))
+time.sleep(3.5)
+print("Gostaria de explorar a cidade?")
+time.sleep(1)
+escolha_2 = str(input("\033[36m[S/N]\033[m")).strip().upper()
+if escolha_2 == "S":
+    print(f"{nome} sai da pousada e observar a cidadã onde estava")
+    time.sleep(1)
+elif escolha_2 == "N":
+    print("primeiramente {} não quiz sair da pousada,mas junta coragem e vai explorar a cidade".format(nome))
+    time.sleep(1.5)
+print("""Ao sair da pousada {} explora a cidade e lá, encontra em grupo de aventureiros,
+que acabaram de voltar de uma aventura""".format(nome))
+time.sleep(2)
+print("...")
+time.sleep(1.5)
+print("Observando melhor {} vê que não tem só quelé grupo na cidade, e que também tem aventureiros solo lá".format(nome))
+time.sleep(3)
+print("Gostaria de tentar interagir com algum aventureiro?")
+aliados = 0
+Interação = str(input("\033[36m[S/N]\033[m")).strip().upper()
+if Interação == "S":
+    time.sleep(1)
+    print(f"{nome} vai até onde um aventureiroestava e começar a conversar com ele")
+    time.sleep(1.5)
+    print("Com o passar da conversa,{} descobre que ele também caçava as criaturas que estavam na floresta".format(nome))
+    time.sleep(2)
+    print("Gostaria de propor uma aliança com ele?")
+    aliança = str(input("\033[36m[S/N]\033[m")).strip().upper()
+    if aliança == "S":
+        gold -= 100
+        time.sleep(1)
+        print("\033[4;34mVocê tem um novo aliado\033[m")
+        aliados += 1
+        print("Qual o nome do seu novo aliado?")
+        time.sleep(1.5)
+        aliado_nome1 = str(input("Nome aliado:"))
+        time.sleep(1)
+        print("O nome do seu novo aliado é \033[1;34m{}\033[m".format(aliado_nome1))
+        time.sleep(1)
+        print("Qual a classe do seu novo aliado?")
+        print("""
+        [1]-Guerreira
+        [2]-Mago
+        [3]-Cavalheiro
+        :""")
+        while True:
+            aliado_classe1 = int(input("Qual sua escolha?:"))
+            if aliado_classe1 == 1:
+                print("{} escolheu a classe Guerreiro".format(nome))
+                vida_aliado1 = 1000
+                break
+            elif aliado_classe1 == 2:
+                print("{} escolheu a classe mago".format(nome))
+                vida_aliado1 = 500
+                break
+            elif aliado_classe1 == 3:
+                print("{} escolheu a classe Cavalheiro".format(nome))
+                vida_aliado1 = 2000
+                break
+            else:
+                print("Classe inválida")
+                time.sleep(1)
+                print("Tente novamente ")
+        time.sleep(1)
+    if aliança == "N":
+        time.sleep(1)
+    print("{} ignora a ideia de se aliar com ele e sai dali".format(nome))
+elif Interação == "N":
+    print("{} decidi ignorar essa ideia".format(nome))
+time.sleep(1)
+print("...")
+time.sleep(1)
+print("{} decide sair da cidade onde estava e vai a floresta caçar mais lobos!".format(nome))
+time.sleep(1.5)
+print("Entrando na floresta {} avistou algo se movendo atras das arvores, e vai observar, pensando que e um lobo".format(nome))
+time.sleep(2)
+print("Ao cegar perto {} percebeu que não era um lob mais um \033[32mGoblin\033[m arrastando um servo morto".format(nome))
+time.sleep(1.5)
+print("Enquanto {} estava observando o \033[32mgoblin\033[m, o que ele tinha visto se junta com mais 1".format(nome))
+time.sleep(1.5)
+print("Quando {} menos espera o \033[32mGoblin\033[m solta o servo e começa a gritar vindo na sua direção!".format(nome))
+time.sleep(1.5)
+print("AVISO!!!")
+time.sleep(1)
+print("Você esta entrando em uma cena de batalha, suas ações seram decididas pelos numeros dos dados")
+time.sleep(1.5)
+Goblin1 = 500
+Goblin2 = 500
+Goblin_morot1 = 0
+Goblin_iadeath = 0
+goblin_vencidos = 0
+rodada = 0
+while True:
+    print("===" * 15)
+    time.sleep(1)
+    print("Rodada {}".format(rodada))
+    time.sleep(2)
+    Jogador_ação = randint(0, 12)
+    if aliados == 1:
+        Aliado_1 = randint(0, 10)
+    if Goblin1 >= 10:
+        Goblin_ia1 = randint(0, 11)
+    if Goblin2 >= 10:
+        Goblin_ia2 = randint(0, 12)
+    time.sleep(1)
+    rodada += 1
+    Evasão = 0
+    if aliados == 1:
+        print("jogador tirou {} o \033[1;34m{}\033[m tirou {},o \033[32mGoblin 1\033[m-tirou {} o \033[32mGoblin 2\033[m-tirou {}".format(Jogador_ação, aliado_nome1,
+    Aliado_1, Goblin_ia1,Goblin_ia2))
+    if aliados == 0:
+        print("jogador tirou {},o \033[32mGoblin 1\033[m-tirou {} o \033[32mGoblin 2\033[m-tirou {}".format(Jogador_ação,Goblin_ia1, Goblin_ia2))
+    if Jogador_ação >= 9:
+        critico += 1
+        Evasão += 1
+    if critico > 3:
+        vida += 300
+        print("{} alçansou o \033[34mestado critico\033[m, agora ele dara \033[31m250\033[m de dano".format(nome))
+        if Jogador_ação == Goblin_ia1:
+            print("{} deu 250 de dano  por estar no \033[34mestado critico\033[m, no 1 e o 2 Goblin".format(nome))
+            Goblin1 -= 250
+            Goblin2 -= 250
+    elif Evasão > 3:
+        print("~~~~~~"*2)
+        print("Jogador ativou a habilidade evasão,podendo desviar dos proximos golpes")
+        vida += 300
+        time.sleep(1.5)
+        print("~~~~~~"*2)
+    elif Jogador_ação == Goblin_ia1:
+        print("Ambos atacaram mais, nenhum se  acertou")
+        time.sleep(1.5)
+        if aliados == 1:
+            if Aliado_1 == Goblin_ia1:
+                print("Ambos atacaram mais, nenhum se  acertou")
+    time.sleep(1.5)
+    if Jogador_ação > Goblin_ia1:
+        Goblin1 -= 175
+        print(f"{nome} atacou o \033[32m1 Goblin\033[m tirando 175 de vida dele")
+        time.sleep(1.5)
+    if aliados == 1:
+        if Aliado_1 > Goblin_ia1:
+            Goblin1 -= 175
+            print(f"\033[1;34m{aliado_nome1}\033[m atacou o \033[32m1 Goblin\033[m tirando 175 de vida dele")
+            time.sleep(1.5)
+    if Jogador_ação > Goblin_ia2:
+        Goblin2 -= 175
+        print(f"{nome} atacou o \033[32m2 Goblin\033[m tirando 175 de vida dele")
+    time.sleep(1.5)
+    if aliados == 1:
+        if Aliado_1 > Goblin_ia2:
+            Goblin2 -= 175
+            print(f"\033[1;34m{aliado_nome1}\033[m atacou o \033[32m2 Goblin\033[m tirando 175 de vida dele")
+            time.sleep(1.5)
+    elif Goblin_ia1 > Jogador_ação:
+        vida -= 200
+        print(f"{nome} foi atacado pelo \033[32m1 Goblin\033[m e \033[31mperdeu\033[m \033[31m200\033[m de vida")
+        time.sleep(1.5)
+    if Goblin_ia2 > Jogador_ação:
+        vida -= 215
+        print(f"{nome} foi atacado pelo \033[32m2 Goblin\033[m  \033[31mperdeu\033[m \033[31m215\033[m de vida")
+        time.sleep(1.5)
+    if Goblin_ia1 > 8:
+        print(f"O \033[32mGobrin_1\033[m usa suas grandes unhas,e corta seu braço do {nome},causando \033[31msangramento\033[m")
+        vida -= 100
+        if aliados == 1:
+            vida_aliado1 -= 75
+        time.sleep(1.5)
+    if Goblin_ia2 > 10:
+        time.sleep(1.5)
+        print(f"""O \033[32m2 Goblin\033[m tirou dados acima de 9,assim avançando pra cima do {nome},acertando com soco
+              2 vezes seguidos""")
+        time.sleep(1.5)
+        vida -= 80
+        if aliados == 1:
+            vida_aliado1 -= 80
+        print("Jogador vida {}".format(vida))
+        if aliados == 1:
+            print(f"\033[1;34m{aliado_nome1}\033[m vida {vida_aliado1}")
+        time.sleep(1.5)
+        vida -= 80
+        if aliados == 1:
+            vida_aliado1 -= 80
+        print("Jogador vida {}".format(vida))
+        if aliados == 1:
+            print(f"\033[1;34m{aliado_nome1}\033[m vida {vida_aliado1}")
+        time.sleep(1.5)
+        vida -= 80
+        if aliados == 1:
+            vida_aliado1 -= 80
+        print("Jogador vida {}".format(vida))
+        if aliados == 1:
+            print(f"\033[1;34m{aliado_nome1}\033[m vida {vida_aliado1}")
+        time.sleep(1.5)
+    elif vida < 100:
+        print("{} esta em um estado critico, por isso de agora em diante você devera controlar ele!".format(nome))
+        time.sleep(3)
+        Escolha = int(input("""O que você fara agora?
+        [1]-Ir pra cima para tentar matalo
+        [2]-Recuar um pouco
+        [3]-So jogar os dados"""))
+        if Escolha == 1:
+            print("{} decidiu ir para cima do \033[32mGoblins\033[m!".format(nome))
+            time.sleep(1.5)
+            print("...")
+            time.sleep(1.5)
+            Jogador_ação = randint(0, 12)
+            if aliados == 1:
+                Aliado_1 = randint(0, 10)
+            Goblin_ia1 = randint(0, 11)
+            Goblin_ia2 = randint(0, 12)
+            if Jogador_ação == Goblin_ia1:
+                print("Ambos atacaram mais, nenhum se  acertou")
+                time.sleep(1.5)
+            if aliados == 1:
+                if Aliado_1 == Goblin_ia1:
+                    print("Ambos atacaram mais, nenhum se  acertou")
+                    time.sleep(1.5)
+            elif Jogador_ação > Goblin_ia1:
+                Goblin1 -= 100
+                print(f"{nome} atacou o \033[32mGoblin\033[m (1) tirando 100 de vida dele ")
+                time.sleep(1.5)
+            if aliados == 1:
+                if Aliado_1 > Goblin_ia1:
+                    Goblin1 -= 100
+                    print(f"\033[1;34m{aliado_nome1}\033[m atacou o \033[32mGoblin\033[m (1) tirando 100 de vida dele ")
+                    time.sleep(1.5)
+            elif Jogador_ação > Goblin_ia2:
+                Goblin2 -= 100
+                print(f"{nome} atacou o \033[32mGoblin\033[m (2) tirando 100 de vida dele ")
+                time.sleep(1.5)
+            if aliados == 1:
+                if Aliado_1 > Goblin_ia2:
+                    Goblin2 -= 100
+                    print(f"\033[1;34m{aliado_nome1}\033[m atacou o \033[32mGoblin\033[m (2) tirando 100 de vida dele ")
+                    time.sleep(1.5)
+            elif Goblin_ia2 > Jogador_ação:
+                vida -= 100
+                print(f"{nome} foi atacado pelo \033[32mGoblin\033[m(2) e \033[31mperdeu\033[m \033[31m100\033[m de vida")
+            if aliados == 1:
+                if Goblin_ia2 > Aliado_1:
+                    vida_aliado1 -= 100
+                    print(f"""\033[1;34m{aliado_nome1}\033[m foi atacado pelo \033[32mGoblin\033[m (2) e \033[31mperdeu\033[m
+                    \033[31m100\033[m de vida""")
+            if Goblin_ia1 > 7:
+                print(f"""O \033[32mGobrin_1\033[m usa suas grandes unhas,e corta seu braço do {nome},causando 
+                \033[31msangramento\033[m""")
+                vida -= 100
+                if aliados == 1:
+                    vida_aliado1 -= 75
+                    time.sleep(1.5)
+    if Goblin1 < 0:
+        exp += 60
+        print("Matamos o 1 \033[32mGoblin\033[m")
+        Goblin_ia1 = Goblin_morot1
+        goblin_vencidos += 1
+    if Goblin2 < 0:
+        exp += 120
+        print("{} conseguiu matar o 2 \033[32mGoblin\033[m".format(nome))
+        goblin_vencidos += 1
+        Goblin_ia2 = Goblin_iadeath
+        gold += 300
+        break
+    if aliados == 1:
+        if vida_aliado1 < 0:
+            print("{} esta nocauteado".format(aliado_nome1))
+            time.sleep(1)
+    if vida < 0:
+        print("\033[4;31mGame over\033[m")
+        time.sleep(1.5)
+        print("O \033[32mGoblin\033[m 1 estava com {} de vida,O 2 \033[32mGoblin\033[m estava com \033[31m{} vida\033[m".format(Goblin1, Goblin2))
+        sys.exit()
+        break
+if vida < 0:
+    print("\033[4;31mGame over\033[m")
+    time.sleep(1.5)
+    print("O \033[32mGoblin\033[m 1 estava com {} de vida,O 2 \033[32mGoblin\033[m estava com \033[31m{} vida\033[m".format(Goblin1, Goblin2))
+    sys.exit()
+print("{} Vida {}".format(nome,vida))
+time.sleep(1)
+rotina(exp, vida, level,gold)
+if aliados == 1:
+    print("{} Vida {}, \033[1;34m{}\033[m vida {}".format(nome, vida, aliado_nome1, vida_aliado1))
+time.sleep(1)
+print("...")
+rotina(exp, vida, level, gold)
+time.sleep(1.5)
+if aliados == 1:
+    print("""Com essa luta intensão com os goblins, {} e seu alaido \033[1;34m{}\033[m, decidem treinar mais,"
+    e comprarem equipamentos adequados""".format(nome,aliado_nome1))
+elif aliados == 0:
+    print("""Com essa luta intensão com os goblins,decide treinar mais para poder não passafr mais dificuldades,
+    então {} decide ir comprarem equipamentos adequados""".format(nome, nome))
+time.sleep(1.5)
+print("Voltando pra vila onde estava {} proucura por uma loja, para poder comprar equipamentos melhores".format(nome))
+time.sleep(1.5)
+print("Prourando por um tempo, {} acha uma loja de equipamentos e uma loja de forja uma do lado da outra".format(nome))
+time.sleep(2)
+print("Então {} decidi entrar na loja de equipamentos".format(nome))
+time.sleep(1.5)
+print("~~~~~~~~~~")
+print("{} entro na loja!".format(nome))
+time.sleep(1)
+print("~~~~~~~~~~")
+print("Ao entrar um atendente veio mostrar os equipamentos da loja ao {}...".format(nome))
+time.sleep(1.5)
+print("Apos observar os produtos {} ve o que ele pode comprar".format(nome))
+time.sleep(1.5)
+Equipamento = ('[1]-Armadura leve(colete de couro e uma calça reforçada).....', 270,
+'[2]-Armadura passiva(Colete de ferro,braceletes,capaçete)....', 350 ,
+'[3]-Armadura pesada(Equipamento pro corpo inteiro)\033[35m(+A)\033[m.......', 990,
+'[4]-Armadura adaptavel(Ela e boa em todas as situações)......', 300)
+print("---"*10)
+print("Lista de Equipamentos")
+print("---"*10)
+for pos in range(0,len(Equipamento)):
+    if pos % 2 ==0:
+        print(f"{Equipamento[pos]:.<20}", end='')
+    else:
+        print(f"R$ {Equipamento[pos]:>7.2f}")
+print("---"*10)
+while True:
+    equipamentos = int(input("Qual a sua escolha?:"))
+    time.sleep(1.5)
+    if equipamentos == 1:
+        if gold >= 270:
+            print("Você escolheu a armadura leve!")
+            time.sleep(1)
+            print("...")
+            time.sleep(1.2)
+            print("Agora você esta usando a armadura leve")
+            vida += 300
+            gold -= 270
+            break
+        else:
+            print("Você não tem dineiro o suficiante")
+    if equipamentos == 2:
+        if gold >= 350:
+            print("Você escolheu a armadura passiva!")
+            time.sleep(1)
+            print("...")
+            time.sleep(1.2)
+            print("Agora você esta usando a armadura passiva")
+            vida += 375
+            gold -= 350
+            break
+        else:
+            print("Você não tem dineiro o suficiante")
+    if equipamentos == 3:
+        if gold >= 990:
+            print("Você escolheu a armadura (Pesada)!")
+            time.sleep(1)
+            print("...")
+            time.sleep(1.2)
+            print("Agora você esta usando a armadura (Pesada)")
+            vida += 1000
+            gold -= 990
+            break
+        else:
+            print("Você não tem dineiro o suficiante")
+    if equipamentos == 4:
+        if gold >= 300:
+            print("Você escolheu a armadura Adptavel!")
+            time.sleep(1)
+            print("...")
+            time.sleep(1.2)
+            print("Agora você esta usando a armadura Adptavel")
+            vida += 300
+            gold -= 300
+            break
+        else:
+            print("Você não tem dineiro o suficiante")
+            time.sleep(1)
+time.sleep(1.5)
+print("Apos sair da loja com seu novo equipamento, {} vai em busca de testar sua nova armadura".format(nome))
+time.sleep(1)
+print("Você ainda tem {} Gold".format(gold))
+time.sleep(1.5)
+print("Gostaria de ir descançar na pousada antes?")
+time.sleep(1)
+Descançar_pou = str(input("\033[36m[S/N]\033[m")).strip().upper()
+if Descançar_pou == "S":
+    print("{} estava muito cansado e decidi ir na pousada para se recuperar para sua proxima caçada".format(nome))
+    time.sleep(1.5)
+    if classe == 1:
+        vida += 1000
+    if classe == 2:
+        vida += 1500
+    if classe == 3:
+        vida += 500
+if Descançar_pou == "N":
+    print("{} decidi ir caçar logo, pois não esta cansado".format(nome))
+    time.sleep(1)
+print("...")
+time.sleep(1.5)
+print("...")
+time.sleep(1)
+print("=========="*10)
+time.sleep(1.5)
+print("Cap-2-finalizado!")
+time.sleep(1.5)
+print("=========="*10)
+print("Criador:Esta gostando ate aqui?")
+time.sleep(1.5)
+gostando = str(input("[S/Yes/CLARO/...]")).strip().upper()
+if gostando == "S":
+    print("Obrigasdo,vamos continuar então")
+elif gostando =="Claro":
+    print("Isso ae, vamos continuar!")
+if gostando == "Yes":
+    print("Thanks,lets continuon your adventure")
+if gostando == "...":
+    print("Se você escolheu essa opção estava esperando um [não] como opção entaõ")
+    time.sleep(1.5)
+    gostando_2 = str(input("Esta gostando [S/N]?")).strip().upper()
+    if gostando_2 == "S":
+        print("Agora sim")
+    if gostando_2 == "N":
+        print("Então podemos parar aqui certo?")
+        time.sleep(1)
+        print("Fechando o programa...")
+        sys.exit()
+time.sleep(1.5)
+print("=========="*10)
+print("30MINUTOS DEPOIS....")
+time.sleep(1)
+print("...")
+time.sleep(1.5)
+print(f"{nome} volta a floresta com o objetivo de caçar os goblin dessa vez")
+time.sleep(1)
+print('')
+
+print("""Após ter conseguido um equipamento e ter derrotado mais goblins {} decidi fazer um treinamento nas montanhas, 
+porque mesmo ganhando dos goblins {}, ainda se achava muito fraco para continuar""".format(nome, nome))
+time.sleep(1.5)
+print("===="*10)
+print("Cap 3-finalizado")
+time.sleep(1.5)
+print("===="*10)
+time.sleep(1)
+print("Com a decisão de {}, começamos a viagem até a manha".format(nome))
+time.sleep(1)
+print("...")
+time.sleep(1.5)
+print("...")
+print("Após um longo caminho, {} chega n o topo de uma montanha, no qual seu treinamento vai começar".format(nome))
+time.sleep(1)
+começar_trei =str(input("Está pronto para o treinamento?[S/N]").strip().upper())
+if começar_trei == "S":
+    time.sleep(1)
+    print("vamos começar!")
+elif começar_trei == "N":
+    time.sleep(1)
+    print("MESMO ASSIM, VOCÊ VAI TREINAR")
+time.sleep(1)
+print("""O seu treinamento será:
+Derrubar 3 árvores
+Escrever 15 comandos 
+Derrotar um aventureiro""")
+time.sleep(1.5)
+print("Cada árvore tem 600 de hp, para derrubar ela você tem que ganhar dele 2 vezes")
+time.sleep(1.5)
+pontos_jogador = 0
+pontos_arvore = 0
+arvores_destruidas = 0
+while True:
+    itens = ("PEDRA", "PAPEL", "TESOURA")
+    arvore = randint(0, 2)
+    print("Suas opções:"
+          "[0]-PEDRA"
+          "[1]-PAPEL"
+          "[2]-TESOURA")
+    Jogador = int(input("Qual a sua escolher?"))
+    time.sleep(1)
+    print("...")
+    time.sleep(1)
+    print("A arvore escolheu usar {}".format(itens[arvore]))
+    if arvore == 0:
+        if Jogador == 0:
+            print(f"{nome} usou \033[0;37;40m(Pedra)\033[m")
+            time.sleep(1)
+            print("Embate")
+            time.sleep(1)
+        elif Jogador == 1:
+            print(f"{nome} usou \033[1;24;47m(papel)\033[m")
+            time.sleep(1)
+            print(f"{nome} ganhou")
+            time.sleep(1)
+            pontos_jogador += 1
+        elif Jogador == 2:
+            print(f"{nome} usou \033[4;36;40m(tesoura)\033[m")
+            print("A arvore Ganhou")
+            pontos_arvore += 1
+            time.sleep(1)
+        else:
+            print("\033[0;31;40mação invalida\033[m")
+    elif arvore == 1:
+        if Jogador == 0:
+            print(f"{nome} usou \033[0;37;40m(Pedra)\033[m")
+            time.sleep(1)
+            print("...")
+            time.sleep(1)
+            print("A arvore ganhou")
+            pontos_arvore += 1
+            time.sleep(1)
+        elif Jogador == 1:
+            print(f"{nome} usou \033[1;24;47m(papel)\033[m")
+            time.sleep(1)
+            print("...")
+            time.sleep(1)
+            print("A arvore resistiu")
+            time.sleep(1)
+        elif Jogador == 2:
+            print(f"{nome} usou \033[4;36;40m(tesoura)\033[m ")
+            time.sleep(1)
+            print("...")
+            time.sleep(1)
+            print(f"{nome} ganhou")
+            pontos_jogador += 1
+            time.sleep(1)
+        else:
+            print("\033[0;31;40mação invalida\033[m")
+
+    elif arvore == 2: #Tesoura
+        if Jogador == 0:
+            print(f"{nome} usou \033[0;37;40m(Pedra)\033[m")
+            time.sleep(1)
+            print("...")
+            time.sleep(1)
+            print(f"{nome} ganhou")
+            pontos_jogador += 1
+            time.sleep(1)
+        elif Jogador == 1:
+            print(f"{nome} usou \033[1;24;47m(papel)\033[m")
+            time.sleep(1)
+            print("...")
+            time.sleep(1)
+            print("Arvore ganhou")
+            pontos_arvore += 1
+            time.sleep(1)
+        elif Jogador == 2:
+            print(f"{nome} usou \033[4;36;40m(tesoura)\033[m ")
+            time.sleep(1)
+            print("...")
+            time.sleep(1)
+            print("A arvore resistiu")
+            time.sleep(1)
+        else:
+            print("\033[0;31;40mação invalida\033[m")
+    if pontos_jogador == 2:
+        arvores_destruidas += 1
+        print("\033[4;31m {} Conseguiu destruir {} arvore!\033[m".format(nome, arvores_destruidas))
+        pontos_jogador = 0
+    if arvores_destruidas == 3:
+        print("\033[4;31m{} Concluiu seu objetivo\033[m".format(nome))
+        time.sleep(1.5)
+        print("""Treinamento:
+        Derrubar 3 árvores\033[34m(Concluido)\033[m
+        Escrever 15 comandos
+        Derrotar um aventureiro""")
+        time.sleep(1.5)
+        break
+time.sleep(1)
+print("...")
+time.sleep(1.5)
+print("{} Tentou {} , ate alçançar seu objetivo".format(nome,pontos_arvore))
+time.sleep(1)
+print("...")
+vida_aventureiro = 100
+if vida <= 700:
+    vida_aventureiro += 700
+elif vida == 1000:
+    vida_aventureiro += 1000
+if vida == 1300:
+    vida_aventureiro += 1300
+else:
+    vida_aventureiro += 300
+while True:
+    print("==="*15)
+    time.sleep(1)
+    print("Rodada \033[1;35m{}\033[m".format(rodada))
+    time.sleep(2)
+    Jogador_ação = randint(0, 14)
+    aventureiro = randint(0, 14)
+    time.sleep(1)
+    rodada += 1
+    print("{} tirou {}, o aventureiro tirou {}".format(nome,Jogador_ação, aventureiro))
+    if Jogador_ação == aventureiro:
+        print("Ambos atacaram mais, nenhum se  acertou")
+        time.sleep(1)
+    if Jogador_ação >= 9:
+        critico += 1
+        Evasão += 1
+    if critico == 3:
+        vida += 300
+        critico -= 3
+    elif Jogador_ação > aventureiro:
+        vida_aventureiro -= 200
+        print(f"{nome} atacou o aventureiro tirando 200 de vida dele ")
+        time.sleep(1)
+    elif Evasão >= 3:
+        print("~~~~~~"*2)
+        print("Jogador ativou a habilidade evasão,podendo desviar dos proximos golpes")
+        vida += 300
+        Evasão -= 3
+        time.sleep(1.5)
+        print("~~~~~~"*2)
+    elif aventureiro > Jogador_ação:
+        vida_aventureiro -= 200
+        print(f"O aventureiro cortou {nome} fazendo o \033[31mperdeu\033[m \033[31m200\033[m de vida")
+        time.sleep(1)
+    if aventureiro > 12:
+        print(f"""aventureiro atacou rápido e apareceu atrás de {nome}, atravessando sua espada na barriga dele causando
+\033[31msangramento\033[m""")
+        vida -= 300
+        time.sleep(1)
+    elif aventureiro == 50:
+        print("usou uma poção de cura, que recupera 200 de vida!")
+        time.sleep(2)
+        aventureiro += 200
+    elif vida < 100:
+        print("{} esta em um estado critico, por isso de agora em diante você devera controlar ele!".format(nome))
+        time.sleep(3)
+        Escolha = int(input("""O que você fara agora?
+        [1]-Ir pra cima, para tentar derrota-lo 
+        [2]-Recuar um pouco
+        [3]-So jogar os dados"""))
+        if Escolha == 1:
+            print("{} decidiu ir para cima do aventureiro!".format(nome))
+            time.sleep(1.5)
+            print("...")
+            time.sleep(1.5)
+            Jogador_ação = randint(0, 14)
+            aventureiro = randint(0, 14)
+            if Jogador_ação == aventureiro:
+                print("Ambos atacaram mais, nenhum se  acertou")
+            elif Jogador_ação > aventureiro:
+                vida_aventureiro -= 200
+                print(f"{nome} atacou o aventureiro tirando 200 de vida dele ")
+                if aventureiro > 12:
+                    print(f"""aventureiro atacou rápido e apareceu atrás de {nome}, atravessando sua espada na barriga dele 
+                    causando \033[31msangramento\003[m""")
+                if aventureiro > Jogador_ação:
+                    vida -= 200
+                    print(f"{nome} foi atacado pelo aventureiro e \033[31mperdeu\033[m \033[31m100\033[m de vida")
+                    vida -= 300
+                    time.sleep(1)
+    if vida_aventureiro < 0:
+        exp += 200
+        print("\033[1;36mO aventureiro foi nocauteado!\033[m")
+        time.sleep(1)
+        print("\033[4;31m{} Concluiu seu objetivo\033[m".format(nome))
+        time.sleep(1.5)
+        print("""Treinamento:
+                Derrubar 3 árvores\033[34m(Concluido)\033[m
+                Escrever 15 comandos
+                Derrotar um aventureiro\033[34m(Concluido)\033[m""")
+        time.sleep(1.5)
+        break
+    if vida < 0:
+        print("{} morreu".format(nome))
+        time.sleep(1)
+        print("O aventureiro tinha \033[1;36m{}\033[m de vida".format(vida_aventureiro))
+        break
+rodada = 0
+time.sleep(1.5)
+rotina(exp, vida, level,gold)
+time.sleep(1.5)
+print("======"*10)
+print("Parte final treinamento!")
+print("======"*10)
+if exp >= 100:
+    vida += 300
+    print("Parabens você upou de nivel!")
+    exp -= 100
+    level += 1
+    gold += 50
+    time.sleep(2)
+    print("{} esta no nivel {} agora".format(nome, level))
+    time.sleep(1)
+    print("{} esta com {} Gold".format(nome,gold))
+time.sleep(1)
+print("Agora a parte final do seu treinamento!")
+time.sleep(1)
+print("{} deve fazer 15 flexões!".format(nome))
+time.sleep(1)
+print("Você deve saber qual a resposta se você acertar, você consegue fazer uma flexões")
+time.sleep(1.5)
+flexao_certas = 0
+while True:
+    valor1 = randint(0, 18)
+    valor2 = randint(0, 12)
+    junção = valor1*valor2
+    time.sleep(1)
+    flexões = int(input("Qual o resultado da multiplicação?  {} X {} :".format(valor1, valor2)))
+    if flexões == junção:
+        print(f"{nome} acerto e conseguiu fazer uma flexão!")
+        time.sleep(1)
+        flexao_certas += 1
+        print(f"\033[1;34m{nome} fez mais 1 flexão\033[m")
+        time.sleep(1)
+    if flexao_certas == 15:
+        print("-------________-----"*5)
+        print("{} conseguiu completar as 15 flexões".format(nome))
+        time.sleep(1.5)
+        print("-------________-----" * 5)
+        time.sleep(1)
+        print("""Treinamento:
+        Derrubar 3 árvores\033[34m(Concluido)\033[m
+        Escrever 15 comandos \033[34m(Concluido)\033[m
+        Derrotar um aventureiro\033[34m(Concluido)\033[m""")
+        time.sleep(1)
+        break
+    print("{} fez \033[32m{}\033[m flexões".format(nome,flexao_certas))
+time.sleep(1)
+print("""Por {} concluir o seu treinamento,{} ganhou  mais \033[4;31m200\033[m de experiência e subiu\033[4;31m2\033[m 
+níveis""".format(nome,nome))
+exp += 200
+gold = 100
+level += 2
+time.sleep(1)
+rotina(exp, vida, level,gold)
+time.sleep(1)
+print("{} Ganhou um bônus extra! Agora você pode ter um aliado".format(nome))
+if aliados == 1:
+    print("{} já possue um aliado".format)
+if aliados == 0:
+    print("\033[4;34mVocê tem um novo aliado\033[m")
+    aliados_2 = 0
+    aliados_2 += 1
+    print("Qual vai ser o nome do seu aliado?")
+    time.sleep(1.5)
+    aliado_nome2 = str(input("Nome aliado:"))
+    time.sleep(1)
+    print("O nome do seu novo aliado é {}".format(aliado_nome2))
+    time.sleep(1)
+    print("Qual a classe do seu novo aliado?")
+    print("""[1]-Guerreiro
+[2]-Mago
+[3]-Cavalheiro:""")
+    while True:
+        aliado_classe2 = int(input("Qual sera a classe?"))
+        if aliado_classe2 == 1:
+            print("{} escolheu a classe Guerreiro".format(nome))
+            vida_aliado2 = 1000
+            break
+        elif aliado_classe2 == 2:
+            print("{} escolheu a classe mago".format(nome))
+            vida_aliado2 = 500
+            break
+        elif aliado_classe2 == 3:
+            print("{} escolheu a classe Cavalheiro".format(nome))
+            vida_aliado2 = 2000
+            break
+        else:
+            print("Classe inválida")
+if level == 7:
+    print("{} aprendeu a habilidade (Subjulgar) (vida += 700, evasão += 3, crítico+= 4)")
+    time.sleep(1.5)
+    vida += 700
+    Evasão += 3
+    critico += 4
+time.sleep(1)
+print("...")
+time.sleep(1.5)
+print("2 HORAS DEPOIS...")
+time.sleep(2)
+print("Acabando seu treinamento {} decidi ir derrotar os goblins".format(nome))
+time.sleep(1.5)
+print("""Enquanto {} vai a floresta, ele passa pela cidade e resolve comprar alimentos, caso a vida dele fique muito 
+baixa, na hora da batalha""".format(nome))
+time.sleep(2)
+print("...")
+time.sleep(2)
+print("Após uma caminhada {} consegue chegar no covil onde estavam os goblins".format(nome))
+time.sleep(1.5)
+print("Está preparado,para lutar?")
+entrar_covil = str(input("\033[36m[S/N]\033[m").strip().upper())
+if entrar_covil == "S":
+    print("{} entrou no covil...".format(nome))
+elif entrar_covil == "N":
+    print("ok")
+    time.sleep(1.5)
+    print("...")
+    time.sleep(2)
+    entrar_covil2 = str(input(" Agora vamos entrar ?\033[36m[S/N]\033[m").strip().upper())
+    if entrar_covil2 == "S":
+        print("Vamos lá {}".format(nome))
+        time.sleep(1)
+    elif entrar_covil2 == "N":
+        print("Você não tem desculpa dessa vez, vamos!")
+time.sleep(1)
+print("Enquanto {} entra no covil \033[32m3 goblin\033[m vieram em sua direção o atacante....".format(nome))
+time.sleep(1.5)
+print("______________"*4)
+print("{} irá lutar contra \033[32m3 goblins\033[m!".format(nome))
+time.sleep(1)
+print("______________"*4)
+Goblin_Strong1 = 1200
+Goblin_Strong2 = 1300
+while True:
+    print("===" * 15)
+    time.sleep(1)
+    print("Rodada {}".format(rodada))
+    time.sleep(2)
+    Jogador_ação = randint(0, 12)
+    if aliados == 1:
+        Aliado_1 = randint(0, 10)
+    if aliados_2 == 1:
+        Aliado_2 = randint(0, 10)
+    if Goblin_Strong1 >= 10:
+        Goblin_ia1 = randint(0, 11)
+    if Goblin_Strong2 >= 10:
+        Goblin_ia2 = randint(0, 12)
+    time.sleep(1)
+    rodada += 1
+    Evasão = 0
+    if aliados == 1:
+        print("jogador tirou {} o \033[1;34m{}\033[m tirou {},o \033[32mGoblin_Strong1\033[m-tirou {} o \033[32mGoblin_Strong2\033[m-tirou {}".format(Jogador_ação, aliado_nome1,
+    Aliado_1, Goblin_ia1,Goblin_ia2))
+    if aliados_2 == 1:
+        print("jogador tirou {} o \033[1;34m{}\033[m tirou {},o \033[32mGoblin_Strong1\033[m-tirou {} o \033[32mGoblin_Strong2\033[m-tirou {}".format(Jogador_ação, aliado_nome2,
+    Aliado_2, Goblin_ia1, Goblin_ia2))
+    if Jogador_ação >= 9:
+        critico += 1
+        Evasão += 1
+    if critico > 3:
+        vida += 300
+        print("{} alçansou o \033[34mestado critico\033[m, agora ele dara \033[31m250\033[m de dano".format(nome))
+        if Jogador_ação == Goblin_ia1:
+            print("{} deu 250 de dano  por estar no \033[34mestado critico\033[m, no 1 e o 2 Goblin".format(nome))
+            Goblin_Strong1 -= 250
+            Goblin_Strong2 -= 250
+    elif Evasão > 3:
+        print("~~~~~~"*2)
+        print("Jogador ativou a habilidade evasão,podendo desviar dos proximos golpes")
+        vida += 300
+        time.sleep(1.5)
+        print("~~~~~~"*2)
+    elif Jogador_ação == Goblin_ia1:
+        print("Ambos atacaram mais, nenhum se  acertou")
+        time.sleep(1.5)
+        if aliados == 1:
+            if Aliado_1 == Goblin_ia1:
+                print("Ambos atacaram mais, nenhum se  acertou")
+        if aliados_2 == 1:
+            if Aliado_2 == Goblin_ia1:
+                print("Ambos atacaram mais, nenhum se  acertou")
+    time.sleep(1.5)
+    if Jogador_ação > Goblin_ia1:
+        Goblin_Strong1 -= 200
+        print(f"{nome} atacou o \033[32mGoblin_Strong1\033[m tirando 200 de vida dele")
+        time.sleep(1.5)
+    if aliados == 1:
+        if Aliado_1 > Goblin_ia1:
+            Goblin_Strong1 -= 175
+            print(f"\033[1;34m{aliado_nome1}\033[m atacou o \033[32mGoblin_Strong1\033[m tirando 175 de vida dele")
+            time.sleep(1.5)
+    if aliados_2 == 1:
+        if Aliado_2 > Goblin_ia1:
+            Goblin_Strong1 -= 175
+            print(f"\033[1;34m{aliado_nome2}\033[m atacou o \033[32mGoblin_Strong1\033[m tirando 175 de vida dele")
+            time.sleep(1.5)
+    if Jogador_ação > Goblin_ia2:
+        Goblin_Strong2 -= 200
+        print(f"{nome} atacou o \033[32mGoblin_Strong2\033[m tirando 200 de vida dele")
+    time.sleep(1.5)
+    if aliados == 1:
+        if Aliado_1 > Goblin_ia2:
+            Goblin_Strong2 -= 175
+            print(f"\033[1;34m{aliado_nome1}\033[m atacou o \033[32m2 Goblin\033[m tirando 175 de vida dele")
+            time.sleep(1.5)
+    if aliados_2 == 1:
+        if Aliado_2 > Goblin_ia2:
+            Goblin_Strong2 -= 175
+            print(f"\033[1;34m{aliado_nome2}\033[m atacou o \033[32mGoblin_Strong2\033[m tirando 175 de vida dele")
+            time.sleep(1.5)
+    elif Goblin_ia1 > Jogador_ação:
+        vida -= 215
+        print(f"{nome} foi atacado pelo \033[32mGoblin_Strong1\033[m e \033[31mperdeu\033[m \033[31m215\033[m de vida")
+        time.sleep(1.5)
+    if Goblin_ia2 > Jogador_ação:
+        vida -= 250
+        print(f"{nome} foi atacado pelo \033[32m2 Goblin\033[m  \033[31mperdeu\033[m \033[31m230\033[m de vida")
+        time.sleep(1.5)
+    if Goblin_ia1 > 8:
+        print(f"O \033[32mGoblin_Strong1\033[m usa suas grandes unhas,e corta seu braço do {nome},causando \033[31msangramento\033[m")
+        vida -= 100
+        if aliados == 1:
+            vida_aliado1 -= 75
+        time.sleep(1.5)
+        if aliados_2 == 1:
+            vida_aliado2 -= 75
+        time.sleep(1.5)
+    if Goblin_ia2 > 10:
+        time.sleep(1.5)
+        print(f"""O \033[32mGoblin_Strong2\033[m tirou dados acima de 9,assim avançando pra cima do {nome},acertando com soco
+    2 vezes seguidos""")
+        time.sleep(1.5)
+        vida -= 80
+        if aliados == 1:
+            vida_aliado1 -= 80
+        if aliados_2 == 1:
+            vida_aliado2 -= 80
+        print("Jogador vida {}".format(vida))
+        if aliados == 1:
+            print(f"\033[1;34m{aliado_nome1}\033[m vida {vida_aliado1}")
+        time.sleep(1.5)
+        if aliados_2 == 1:
+            vida_aliado2 -= 80
+            print(f"\033[1;34m{aliado_nome2}\033[m vida {vida_aliado2}")
+        vida -= 80
+        if aliados == 1:
+            vida_aliado1 -= 80
+        if aliados == 2:
+            vida_aliado2 -= 80
+        print("Jogador vida {}".format(vida))
+        if aliados == 1:
+            print(f"\033[1;34m{aliado_nome1}\033[m vida {vida_aliado1}")
+        time.sleep(1.5)
+        vida -= 80
+        if aliados == 1:
+            vida_aliado1 -= 80
+        if aliados_2 == 1:
+            vida_aliado2 -= 80
+            print(f"\033[1;34m{aliado_nome2}\033[m vida {vida_aliado2}")
+        print("Jogador vida {}".format(vida))
+        if aliados == 1:
+            vida_aliado1 -= 80
+            print(f"\033[1;34m{aliado_nome1}\033[m vida {vida_aliado1}")
+        time.sleep(1.5)
+        if aliados_2 == 1:
+            vida_aliado2 -= 80
+            print(f"\033[1;34m{aliado_nome2}\033[m vida {vida_aliado2}")
+        time.sleep(1.5)
+    elif vida < 100:
+        print("{} esta em um estado critico, por isso de agora em diante você devera controlar ele!".format(nome))
+        time.sleep(3)
+        Escolha = int(input("""O que você fara agora?
+        [1]-Ir pra cima para tentar matalo
+        [2]-Recuar um pouco
+        [3]-So jogar os dados"""))
+        if Escolha == 1:
+            print("{} decidiu ir para cima do \033[32mGoblins\033[m!".format(nome))
+            time.sleep(1.5)
+            print("...")
+            time.sleep(1.5)
+            Goblin_Strong2 -= 100
+            Goblin_Strong1 -= 100
+            Jogador_ação = randint(0, 12)
+            if aliados == 1:
+                Aliado_1 = randint(0, 10)
+            if aliados_2 == 1:
+                Aliado_2 = randint(0, 10)
+            Goblin_ia1 = randint(0, 11)
+            Goblin_ia2 = randint(0, 12)
+            if Jogador_ação == Goblin_ia1:
+                print("Ambos atacaram mais, nenhum se  acertou")
+                time.sleep(1.5)
+            if aliados == 1:
+                if Aliado_1 == Goblin_ia1:
+                    print("Ambos atacaram mais, nenhum se  acertou")
+                    time.sleep(1.5)
+            if aliados_2 == 1:
+                if Aliado_2 == Goblin_ia1:
+                    print("Ambos atacaram mais, nenhum se  acertou")
+                    time.sleep(1.5)
+            elif Jogador_ação > Goblin_ia1:
+                Goblin_Strong1 -= 100
+                print(f"{nome} atacou o \033[32mGoblin_Strong1\033[m tirando 100 de vida dele ")
+                time.sleep(1.5)
+            if aliados == 1:
+                if Aliado_1 > Goblin_ia1:
+                    Goblin_Strong1 -= 100
+                    print(f"\033[1;34m{aliado_nome1}\033[m atacou o \033[32mGoblin_Strong1\033[m tirando 100 de vida dele ")
+                    time.sleep(1.5)
+            if aliados_2 == 1:
+                if Aliado_2 > Goblin_ia2:
+                    Goblin_Strong1 -= 100
+                    print(f"\033[1;34m{aliado_nome2}\033[m atacou o \033[32mGoblin_Strong2\033[m tirando 100 de vida dele ")
+                    time.sleep(1.5)
+            elif Jogador_ação > Goblin_ia2:
+                Goblin_Strong2 -= 100
+                print(f"{nome} atacou o \033[32mGoblin_Strong2\033[m tirando 100 de vida dele ")
+                time.sleep(1.5)
+            if aliados == 1:
+                if Aliado_1 > Goblin_ia2:
+                    Goblin_Strong2 -= 100
+                    print(f"\033[1;34m{aliado_nome1}\033[m atacou o \033[32mGoblin_Strong2\033[m tirando 100 de vida dele ")
+                    time.sleep(1.5)
+            if aliados_2 == 1:
+                if Aliado_2 > Goblin_ia2:
+                    Goblin_Strong2 -= 100
+                    print(f"\033[1;34m{aliado_nome2}\033[m atacou o \033[32mGoblin_Strong2\033[m tirando 100 de vida dele ")
+                    time.sleep(1.5)
+            elif Goblin_ia2 > Jogador_ação:
+                vida -= 100
+                print(f"{nome} foi atacado pelo \033[32mGoblin_Strong2\033[m e \033[31mperdeu\033[m \033[31m100\033[m de vida")
+            if aliados == 1:
+                if Goblin_ia2 > Aliado_1:
+                    vida_aliado1 -= 100
+                    print(f"""\033[1;34m{aliado_nome1}\033[m foi atacado pelo \033[32mGoblin_Strong2\033[m e \033[31mperdeu\033[m
+\033[31m100\033[m de vida""")
+            if aliados_2 == 1:
+                if Goblin_ia2 > Aliado_2:
+                    vida_aliado2 -= 100
+                    print(f"""\033[1;34m{aliado_nome2}\033[m foi atacado pelo \033[32mGoblin_Strong2\033[m e \033[31mperdeu\033[m
+\033[31m100\033[m de vida""")
+            if Goblin_ia1 > 7:
+                print(f"""O \033[32mGoblin_Strong1\033[m usa suas grandes unhas,e corta seu braço do {nome},causando 
+\033[31msangramento\033[m""")
+                vida -= 100
+                if aliados == 1:
+                    vida_aliado1 -= 75
+                    time.sleep(1.5)
+                if aliados_2 == 1:
+                    vida_aliado2 -= 75
+                    time.sleep(1.5)
+    if Goblin_Strong1 <= 0:
+        exp += 60
+        print("Matamos o 1 \033[32mGoblin_Strong1\033[m")
+        Goblin_ia1 = Goblin_morot1
+        goblin_vencidos += 1
+    if Goblin_Strong2 <= 0:
+        exp += 120
+        print("{} conseguiu matar o 2 \033[32mGoblin_Strong2\033[m".format(nome))
+        goblin_vencidos += 1
+        Goblin_ia2 = Goblin_iadeath
+        gold += 300
+        break
+    if aliados == 1:
+        if vida_aliado1 <= 0:
+            print("{} esta nocauteado".format(aliado_nome1))
+            time.sleep(1)
+    if aliados_2 == 1:
+        if vida_aliado2 <= 0:
+            print("{} esta nocauteado".format(aliado_nome2))
+            time.sleep(1)
+    if vida <= 0:
+        print("\033[4;31mGame over\033[m")
+        time.sleep(1.5)
+        print("O \033[32mGoblin\033[m 1 estava com {} de vida,O 2 \033[32mGoblin\033[m estava com \033[31m{} vida\033[m".format(Goblin_Strong1, Goblin_Strong2))
+        sys.exit()
+        break
+if vida < 0:
+    print("\033[4;31mGame over\033[m")
+    time.sleep(1.5)
+    print("O \033[32mGoblin\033[m 1 estava com {} de vida,O 2 \033[32mGoblin\033[m estava com \033[31m{} vida\033[m".format(Goblin1, Goblin2))
+    sys.exit()
+print("{} Vida {}".format(nome,vida))
+time.sleep(1)
+if aliados == 1:
+    print("{} Vida {}, \033[1;34m{}\033[m vida {}".format(nome, vida, aliado_nome1, vida_aliado1))
+if aliados_2 == 1:
+    print("{} Vida {}, \033[1;34m{}\033[m vida {}".format(nome, vida, aliado_nome2, vida_aliado2))
+time.sleep(1)
+print("...")
+time.sleep(5)
+print(f"Apos derrotar 2 goblin {nome} achava que tinha ganhado ate a chegada repentina de um goblin gigante,o acertando... ")
+vida -= 300
+time.sleep(2.5)
+print("...")
+time.sleep(2)
+if vida <= 0:
+    print(f"{nome} foi acertado com tanta força que ficou inconsiente,agora seu aliado deve protejelo!")
+if vida >= 10:
+    print("Apos {} ser acertado ele voa pra longe, mas ainda permanece conciente, para batalha".format(nome))
+Goblin_iaBoss_vida = 2500
+rodada = 0
+while True:
+    print("-=-=-=-=-=-=-=-=-=-!" * 15)
+    time.sleep(1)
+    print("Rodada {}".format(rodada))
+    time.sleep(2)
+    if vida >= 10:
+        Jogador_ação = randint(0, 18)
+    elif vida <= 0:
+        Jogador_ação = 0
+    if aliados == 1:
+        Aliado_1 = randint(5, 13)
+    if aliados_2 == 1:
+        Aliado_2 = randint(5, 15)
+    Goblin_iaBoss = randint(0, 22)
+    time.sleep(1)
+    rodada += 1
+    Evasão = 0
+    if aliados == 1:
+        print("jogador tirou {} o \033[1;34m{}\033[m tirou {}, o 1Goblin(Mais forte) CONSEGUIU {}".format(Jogador_ação, aliado_nome1,
+    Aliado_1, Goblin_iaBoss))
+    if aliados_2 == 1:
+        print("jogador tirou {} o \033[1;34m{}\033[m tirou {}, o 1Goblin(Mais forte) CONSEGUIU {}".format(Jogador_ação,aliado_nome2,
+    Aliado_2,Goblin_iaBoss))
+    if Jogador_ação >= 12:
+        critico += 1
+        Evasão += 1
+    if critico > 5:
+        vida += 300
+        print("{} alçansou o \033[34mestado critico\033[m, agora ele dara \033[31m250\033[m de dano".format(nome))
+        if Jogador_ação == Goblin_iaBoss:
+            print("{} deu 350 de dano  por estar no \033[34mestado critico\033[m,1Goblin(Mais forte)".format(nome))
+            Goblin_iaBoss_vida -= 350
+    elif Evasão > 5:
+        print("~~~~~~"*2)
+        print("Jogador ativou a habilidade evasão,podendo desviar dos proximos golpes")
+        vida += 300
+        time.sleep(1.5)
+        print("~~~~~~"*2)
+    if vida >= 10:
+        if Jogador_ação == Goblin_iaBoss:
+            print("Ambos atacaram mais,1Goblin(Mais forte) era mais forte e ganha de {}".format(nome))
+            time.sleep(1.5)
+    if aliados == 1:
+        if Aliado_1 == Goblin_iaBoss:
+            print("Ambos atacaram mais,1Goblin(Mais forte) era mais forte e ganha de {}".format(aliado_nome1))
+            vida_aliado1 =- 100
+            time.sleep(1)
+        if Aliado_1 > Goblin_iaBoss:
+            Goblin_Strong1 -= 175
+            print(f"\033[1;34m{aliado_nome1}\033[m atacou o \033[32m1Goblin(Mais forte)\033[m tirando 175 de vida dele")
+            time.sleep(1.5)
+        if Goblin_iaBoss > Aliado_1:
+            vida_aliado1 -= 300
+            print(f"\033[32m1Goblin(Mais forte)\033[m atacou \033[1;34m{aliado_nome1}\033[m  tirando 300 de vida dele")
+            time.sleep(1.5)
+        if vida_aliado1 == 350:
+            print("{} Ativou o estado de perseverança".format(aliado_nome1))
+            vida_aliado1 += 50
+            if vida_aliado1 <= 100:
+                print("{} não consegue mais usar o estado de perseverança".format(aliado_nome1))
+        if vida_aliado1 <= 0:
+            print("\033[1;34m{}\033[m esta \033[31mMORTO\033[m!".format(aliado_nome1))
+            time.sleep(1)
+            print(f"{vida_aliado1}")
+            if Goblin_iaBoss_vida >= 700:
+                print("Ainda faltava muito pra você derrota-lo")
+            elif Goblin_iaBoss_vida < 700:
+                print("O Goblin(Mais forte estava com {} de vida".format(Goblin_iaBoss_vida))
+            sys.exit()
+    if aliados_2 == 1:
+        if Aliado_2 == Goblin_iaBoss:
+            print("Ambos atacaram mais,1Goblin(Mais forte) era mais forte e ganha de {}".format(aliado_nome2))
+            time.sleep(1.5)
+        if Aliado_2 > Goblin_iaBoss:
+            Goblin_Strong1 -= 175
+            print(f"\033[1;34m{aliado_nome2}\033[m atacou o \033[32m1Goblin(Mais forte)\033[m tirando 175 de vida dele")
+            time.sleep(1.5)
+        if Goblin_iaBoss > Aliado_2:
+            vida_aliado2 -= 300
+            print(f"\033[32m1Goblin(Mais forte)\033[m atacou \033[1;34m{aliado_nome2}\033[m  tirando 175 de vida dele")
+            time.sleep(1.5)
+        if vida_aliado2 <= 350:
+            print("{} Ativou o estado de perseverança".format(aliado_nome2))
+            vida_aliado2 += 50
+            if vida_aliado2 <= 100:
+                print("{} não consegue mais usar o estado de perseverança".format(aliado_nome2))
+        if vida_aliado2 <= 0:
+            print("\033[1;34m{}\033[m esta \033[31mMORTO\033[m".format(aliado_nome2))
+            time.sleep(1)
+            print(f"{vida_aliado2}")
+            print("Vida goblin(Mais Forte) {}".format(Goblin_iaBoss_vida))
+            if Goblin_iaBoss_vida >= 700:
+                print("Ainda faltava muito pra você derrota-lo")
+            elif Goblin_iaBoss_vida < 700:
+                print("O Goblin(Mais forte estava com {} de vida".format(Goblin_iaBoss_vida))
+            sys.exit()
+    if vida >= 10:
+        if Jogador_ação > Goblin_iaBoss:
+            Goblin_iaBoss_vida -= 200
+            print(f"{nome} atacou o \033[32m 1Goblin(Mais forte)\033[m tirando 200 de vida dele")
+        if Goblin_iaBoss > Jogador_ação:
+            vida -= 315
+            print(f"{nome} foi atacado pelo \033[32m1Goblin(Mais forte)\033[m e \033[31mperdeu\033[m \033[31m315\033[m de vida")
+            time.sleep(1.5)
+    if Goblin_iaBoss > 19:
+        time.sleep(1.5)
+        print(f"""O \033[32mO Goblin\033[m tirou dados acima de 19...""")
+        time.sleep(1.5)
+        print("O goblin pisou no chão causando terremotos!")
+        if vida >= 10:
+            vida -= 80
+        if aliados == 1:
+            vida_aliado1 -= 80
+        if aliados_2 == 1:
+            vida_aliado2 -= 80
+        print("Jogador vida {}".format(vida))
+        if aliados == 1:
+            print(f"\033[1;34m{aliado_nome1}\033[m vida {vida_aliado1}")
+        time.sleep(1.5)
+        if aliados_2 == 1:
+            vida_aliado2 -= 80
+            print(f"\033[1;34m{aliado_nome2}\033[m vida {vida_aliado2}")
+        if vida >= 10:
+            vida -= 80
+        if aliados == 1:
+            vida_aliado1 -= 80
+        if aliados == 2:
+            vida_aliado2 -= 80
+        print("Jogador vida {}".format(vida))
+        if aliados == 1:
+            print(f"\033[1;34m{aliado_nome1}\033[m vida {vida_aliado1}")
+        time.sleep(1.5)
+        if vida >= 10:
+            vida -= 80
+        if aliados == 1:
+            vida_aliado1 -= 80
+        if aliados_2 == 1:
+            vida_aliado2 -= 80
+            print(f"\033[1;34m{aliado_nome2}\033[m vida {vida_aliado2}")
+        print("Jogador vida {}".format(vida))
+        if aliados == 1:
+            vida_aliado1 -= 80
+            print(f"\033[1;34m{aliado_nome1}\033[m vida {vida_aliado1}")
+        time.sleep(1.5)
+        if aliados_2 == 1:
+            vida_aliado2 -= 80
+            print(f"\033[1;34m{aliado_nome2}\033[m vida {vida_aliado2}")
+        time.sleep(1.5)
+    if vida_aliado1 <= 300:
+        print("{} esta em um estado critico!".format(nome))
+        time.sleep(1.5)
+        print("O que voce vai fazer?")
+        time.sleep(1)
+        aliado_açõa = int(input(f"""Suas opções:
+        [1]-Ir na direção do {nome}, para usar os suprimentos dele para ajudar na batalha,
+        [2]-Tentar usar o ambiente como um fator de vantagem
+        [3]-Correr para se recuperar"""))
+        if aliado_açõa == 1:
+            print("\033[1;34m{}\033[m decide sair correndo na direção de {}, e encontra os suprimento, e usa-os".format(aliado_nome1,nome))
+            time.sleep(1.5)
+            print("...-Passos...")
+            time.sleep(1.5)
+            print("\033[1;34m{}\033[m consegue usar os recursos, nele e no {} e consegue trazer o {} devolta pra batalha".format(aliado_nome1, nome, nome))
+            vida_aliado1 += 500
+            vida += 500
+            time.sleep(1.5)
+            print(f"Agora {nome} esta devolta na batalha!")
+        if aliado_açõa == 2:
+            print("""\033[1;34m{}\033[m olha a sua volta e percebe, que estava em desvantegem dentro daquela caverna, 
+            e decidi sair correr de lá, para poder equilibra o jogo!""".format(aliado_nome1))
+            vida_aliado1 += 100
+        if aliado_açõa == 3:
+            print("""\033[1;34m{}\033[m olha a sua volta e percebe, que estava em desvantegem dentro daquela caverna, 
+            e decidi sair correr de lá, para poder equilibra o jogo!""".format(aliado_nome1))
+            vida_aliado1 += 100
+    if vida_aliado2 <= 300:
+        print("{} esta em um estado critico!".format(nome))
+        time.sleep(1.5)
+        print("O que voce vai fazer?")
+        time.sleep(1)
+        aliado_açõa = int(input(f"""Suas opções:
+        [1]-Ir na direção do {nome}, para usar os suprimentos dele para ajudar na batalha,
+        [2]-Tentar usar o ambiente como um fator de vantagem
+        [3]-Correr para se recuperar"""))
+        if aliado_açõa == 1:
+            print("\033[1;34m{}\033[m decide sair correndo na direção de {}, e encontra os suprimento, e usa-os".format(aliado_nome2,nome))
+            time.sleep(1.5)
+            print("...-Passos...")
+            time.sleep(1.5)
+            print("\033[1;34m{}\033[m consegue usar os recursos, nele e no {} e consegue trazer o {} devolta pra batalha".format(aliado_nome2, nome, nome))
+            vida_aliado2 += 500
+            vida += 500
+            time.sleep(1.5)
+            print(f"Agora {nome} esta devolta na batalha!")
+        if aliado_açõa == 2:
+            print("""\033[1;34m{}\033[m olha a sua volta e percebe, que estava em desvantegem dentro daquela caverna, 
+            e decidi sair correr de lá, para poder equilibra o jogo!""".format(aliado_nome2))
+            vida_aliado2 += 100
+        if aliado_açõa == 3:
+            print("""\033[1;34m{}\033[m olha a sua volta e percebe, que estava em desvantegem dentro daquela caverna, 
+            e decidi sair correr de lá, para poder equilibra o jogo!""".format(aliado_nome2))
+            vida_aliado2 += 100
+    if vida <= 0:
+        print("{} esta inconsiente".format(nome))
+        time.sleep(1)
+        print("...")
+    if Goblin_iaBoss_vida <= 0:
+        break
+    if Goblin_iaBoss > 20:
+        if Goblin_iaBoss % 2:
+            print("Conseguiu achar uma brecha, no seu atack")
+            time.sleep(1)
+            print("...")
+            if aliados == 1:
+                if Aliado_1 % 2:
+                    print("O goblin ia atacar mas {} consegue desviar do seu atack!".format(aliado_nome1))
+                    time.sleep(1)
+                    vida_aliado1 -= 300
+            if aliados_2 == 1:
+                if Aliado_2 % 2:
+                    print("O goblin ia atacar mas {} consegue desviar do seu atack!".format(aliado_nome2))
+                    time.sleep(1)
+            else:
+                print("O Goblin(Mais forte) com um movimento veloz acerta-o tirando 300 de vida dele!")
+                if aliados == 1:
+                    vida_aliado1 -= 300
+                    print("{} \033[31mperdeu {} de vida\033[m".format(aliado_nome1, vida_aliado1))
+                if aliados_2 == 1:
+                    vida_aliado2 -= 300
+                    print("{} \033[31mperdeu {} de vida\033[m".format(aliado_nome2, vida_aliado2))
+                time.sleep(1)
+        else:
+            print("...")
+            time.sleep(1)
+rotina(exp, vida, level,gold)
+print("------")
+time.sleep(1.5)
+print("Depois de uma dificil luta, conseguem derrotar o Goblin(Mais forte),assim sobrevivendo...")
+time.sleep(1.5)
+print("~~~~~~~~~~~~~~"*6)
+print("Criador:Se você chegou ate aqui, parabens, pois eu fiz esse projeto com objetivo de poucos conseguirem completar")
+time.sleep(2)
+print("Criador:Mais uma vez parabens por ter conseguido completar!")
+time.sleep(1)
+print("Assim chegamos ao final do Projeto(History). . .")
+time.sleep(0.5)
+print(".",end="")
+time.sleep(0.5)
+print(".",end="")
+time.sleep(0.5)
+print(".",end="")
+print("\033[7;37mFIM\033[m")
