@@ -1,0 +1,2581 @@
+from random import randint
+import time
+import sys
+
+computador = randint(0, 10)
+tempo_inicial = time.time()
+vida = 3000
+exp = 0
+level = 0
+crítico = 1
+gold = 500
+inventario = []
+pontos_arvore = 0
+Evasão = 0
+adptação = 0
+vida_aliado = 0
+aliado_nome1 = "Roberto"
+vida_aliado1 = 0
+aliados = 0
+# itens
+Pele_lobo = 0
+Dentes_lobo = 0
+Ossos_goblin = 0
+Manto_lobo = 0
+Goblin_Strong1 = 0
+Goblin_Strong2 = 0
+vida_aliado1 = 0
+vida_aliado2 = 0
+aliados_2 = 0
+Goblin_morot1 = 0
+goblin_vencidos = 0
+Goblin_iadeath = 0
+Ossos_goblins = 0
+quarto_novo = False
+figuras_encapuzadas_morot1 = 0
+figuras_encapuzadas_iadeath = 0
+figuras_encapuzadas_vencidos = 0
+pontos_aliado = 0
+jogador_vencido = 0
+aliado_vencido = 0
+# aliado_nome1 = str(input("Nome aliado:"))]
+jogador_sucumbiu= 0
+def rotina(exp, vida, level, gold):
+    time.sleep(1)
+    while True:
+        if exp >= 100:
+            vida += 300
+            print("\033[1;36mParabéns você upou de nível!\033[m")
+            exp = 0
+            time.sleep(2)
+            print("{} esta no nível \033[4;34m{}\033[m agora".format(nome, level))
+            time.sleep(1)
+            print("{} esta com \033[33m{}\033[m Gold".format(nome, gold))
+            time.sleep(3)
+            print("====" * 10)
+            print("Inventario-(Aberto)")
+            print("====" * 10)
+            acerto = False
+            # opção1 = str(input("Gostaria de ver seus itens?\033[36m[S/N]\033[m").strip().upper())
+            opção1 = leiaStr("Gostaria de ver seus itens?\033[36m[S/N]\033[m;").strip().upper()
+            if opção1 == "S" or 's':
+                print(inventario)
+            if opção1 == "N" or 'n':
+                print('...')
+                break
+def leiaStr(msg):
+    ok = False
+    valor = ""
+    while True:
+        opção1 = str(input(msg))
+        if opção1.isalpha():
+            valor = str(opção1)
+            ok = True
+        else:
+            print("\033[4;31mErro! Digite o valor novamente\033[m")
+        if ok:
+            break
+    return valor
+
+def pausa_dramatica():
+    time.sleep(1.5)
+    print(".", end="")
+    time.sleep(0.5)
+    print(".", end="")
+    time.sleep(0.5)
+    print(".")
+    time.sleep(1.5)
+def leiaInt(msg):
+    ok = False
+    valor = 0
+    while True:
+        classe = str(input(msg))
+        if classe.isnumeric():
+            valor = int(classe)
+            ok = True
+        else:
+            print("\033[4;31mErro! Digite o valor novamente\033[m")
+        if ok:
+            break
+    return valor
+
+
+def Gostaria_vida(vida, nome):
+    print("Gostaria de ver sua vida?")
+    time.sleep(1.5)
+    ver_vida = str(input("\033[36m[S/N]\033[m").strip().upper())
+    if ver_vida == "S":
+        print(f"\033[1;49;36m{nome}\033[m está com {vida} de vida")
+    elif ver_vida == "N":
+        print("Ok...")
+        time.sleep(1.5)
+def Recompensa_lobo(nome, Pele_lobo, Dentes_lobo):
+    if lobo_venci == 3:
+        print(f"Por matar o lobo 3 vezes seguidas,\033[1;49;36m{nome}\033[m conseguiu um novo item.")
+        time.sleep(2)
+        print("Você conseguiu \033[33m(Pele de lobo\033[m, agora você pode se camuflar em locais escuros")
+        time.sleep(2)
+        print("\033[33mNovo item\033[m")
+        print("3-Pele de lobo")
+        time.sleep(1)
+        print("2-Dentes_lobo")
+        Pele_lobo += 3
+        Dentes_lobo += 2
+        inventario.append('Pele_de_lobo = 3')
+        inventario.append('Dentes_lobo = 2')
+        Pele_de_lobo = 2
+    if lobo_venci == 5:
+        print(f"Por matar mais de lobo 5 vezes,\033[1;49;36m{nome}\033[m conseguiu novos itens!.")
+        time.sleep(2)
+        print("Você conseguiu \033[33m(Pele de lobo\033[m, agora você pode se camuflar em locais escuros")
+        time.sleep(1)
+        inventario.append('Pele_de_lobo = 3 ')
+        print("Você tambem conseguiu (Pressas de lobo)")
+        Pressas_de_lobo = 3
+        inventario.append('Pressas_de_lobo = 3')
+
+
+print("\033[4;49;90mVamos começar sua aventura!\033[m")
+print("=-=-=-=-=-=-=" * 15)
+time.sleep(1)
+time.sleep(1.5)
+print("Ao acordar ao som dos pássaros, o personagem percebe que está deitado em um canteiro de folhas no meio de uma floresta")
+pausa_dramatica()
+print("Ele tenta relembrar suas memórias, mas falha miseravelmente")
+pausa_dramatica()
+time.sleep(0.5)
+print("A única coisa que ele lembra é seu nome")
+time.sleep(1.5)
+nome = str(input("Insira o nome aqui:"))
+time.sleep(1.8)
+print(f"\033[1;49;36m{nome}\033[m se levanta e observa os arredores")
+time.sleep(1.5)
+print("A floresta parece densa e misteriosa, mas ele precisa sair de lá para descobrir a que lugar pertence.")
+pausa_dramatica()
+print(".")
+print("Mas,COMO?!")
+pausa_dramatica()
+time.sleep(1.8)
+print("Após trinta minutos imerso naquela atmosfera hostil, deparou-se com uma clareira abandonada.")
+time.sleep(1.5)
+print("Movido pela curiosidade, decidiu explorá-la.")
+pausa_dramatica()
+print("No centro,havia uma pequena caixa onde estava cercada por diversos insetos.")
+time.sleep(1.5)
+print("Determinado,afastou os insetos e abriu o recipiente")
+pausa_dramatica()
+print("\033[1;49;33mSurpreendentemente\033[m, revelou-se uma muda de roupa desgastada, como se tivesse testemunhado os dias de uma guerra passada")
+pausa_dramatica()
+print("Ao lado, uma pequena \033[2;49;97mbússola de prata\033[m, coberta por uma fina camada de poeira, estava lá, escondida.")
+time.sleep(1.5)
+print("Essa descoberta,deu uma breve ideia do que aconteceu no local onde se encontrava")
+print("---"*10)
+pausa_dramatica()
+print(f"Enquanto \033[1;49;36m{nome}\033[m explorava os arredores, seus olhos se fixaram em um lobo voraz devorando o que parecia ser um servo abandonado.")
+time.sleep(2)
+print(f"Com cautela,optou por se afastar, mas o traiçoeiro ruído de um galho sob seu pé rompeu o silêncio, capturando a atenção aguçada do lobo.")
+time.sleep(3)
+print(f"O animal, alertado pelo som, virou-se para \033[1;49;36m{nome}\033[m e avançou com presas expostas e olhos fixos nele. ")
+time.sleep(1.5)
+time.sleep(0.5)
+pausa_dramatica()
+print(f"Nesse momento onde suas veias explodiam adrenalina \033[1;49;36m{nome}\033[m decidi avançar, vendo que não teria outra escolha")
+print("\033[2;49;91mAlerta de risco de vida!\033[m")
+print("Você está prestes a entrar em uma cena crucial. Suas escolhas determinarão o desfecho desta disputa!")
+print("Vamos decidir o destino com um lançamento de dados!")
+time.sleep(1.5)
+Lobo = 150
+rodada = 0
+lobo_venci = 0
+def batalha(vida, rodada, Lobo, lobo_venci, exp, gold):
+    time.sleep(0.5)
+    print(f"\033[1;49;36m{nome}\033[m,instintivamente, agarrou um galho caído, pronto para enfrentar o lobo que se aproximava com olhos famintos")
+    time.sleep(2.5)
+    print("O lobo, musculoso e ágil, rosnava enquanto se preparava para o ataque")
+    while True:
+        print("===" * 15)
+        time.sleep(1)
+        print(f"Rodada {rodada}")
+        time.sleep(2)
+        Jogador_ação = randint(0, 10)
+        computador = randint(0, 10)
+        time.sleep(1)
+        rodada += 1
+        time.sleep(2.5)
+        print(f"\033[1;49;36m{nome}\033[m tirou \033[2;49;97m{Jogador_ação}\033[m, o seu adversário tirou \033[2;49;97m{computador}\033[m")
+        if Jogador_ação == computador:
+            print("\033[1;49;39mAmbos os combatentes estão cansados, mas a batalha ainda não acabou\033[m")
+        elif Jogador_ação > computador:
+            Lobo -= 100
+            print(f"\033[1;49;36m{nome}\033[m, decidido, avança com um golpe lateral rápido, usando o galho como extensão de sua vontade,para acertar o Lobo")
+        elif Jogador_ação == 2 or 4 or 6 or 8:
+            time.sleep(1.5)
+            Lobo -= 150
+            print(f"\033[1;49;36m{nome}\033[m, concentrando-se, usa o galho para distrair o lobo, criando uma abertura")
+            time.sleep(2.5)
+        elif computador > Jogador_ação:
+            vida -= 100
+            print(
+                f"O \033[2;49;90mlobo\033[m, inteligente, circula ao redor, procurando uma abertura,onde foi encontrada e executado com sucesso")
+            time.sleep(1.5)
+            print(f"\033[1;49;36m{nome}\033[m se \033[4;49;91mferio\033[m com essa investida.")
+            time.sleep(1)
+            print("\033[1;49;91mDano recebido pelo jogador\033[m")
+        if computador > 7:
+            print(f"O \033[2;49;90mlobo\033[m mordeu o braço do \033[1;49;36m{nome}\033[m,causando \033[4;31msangramento\033[m")
+            vida -= 50
+            print("\033[1;49;91mDano recebido pelo jogador\033[m")
+        elif Lobo <= 50:
+            print("O \033[2;49;90mlobo\033[m, ferido, recua momentaneamente")
+            time.sleep(2)
+            Lobo += 80
+            print("Em um avanço de furia,o \033[2;49;90mlobo\033[m usa suas  mandíbulas afiadas.")
+            time.sleep(1.5)
+            print(
+                f"O \033[2;49;90mlobo\033[m, agora dominante, mantém \033[1;49;36m{nome}\033[m no chão com uma mordida certeira no braço")
+            vida -= 175
+        elif vida <= 100:
+            print(f"\033[1;49;36m{nome}\033[m, ferido e exausto, tenta resistir!")
+            time.sleep(3)
+            Escolha = int(input("""Modo manual ativado!
+[1]-Avançar com o restos das suas forças
+[2]-Tentar fugir
+[3]-Jogar os dados"""))
+            if Escolha == 1:
+                print(f"\033[1;49;36m{nome}\033[m avança com os restos das suas forçass, em um ataque desesperado")
+                pausa_dramatica()
+                Jogador_ação = randint(0, 11)
+                computador = randint(0, 10)
+                if Jogador_ação == computador:
+                    print("Ambos os combatentes estão cansados, mas a batalha ainda não acabou.")
+                elif Jogador_ação > computador:
+                    Lobo -= 100
+                    print(
+                        f"\033[1;49;36m{nome}\033[m, decidido, avança com um golpe lateral rápido, usando o galho como extensão de sua vontade,para acertar o Lobo")
+                elif computador > Jogador_ação:
+                    vida -= 100
+                    print(f"O lobo, aproveitando sua superioridade, continua a atacar")
+                    time.sleep(1)
+                    print("\033[1;49;91mDano recebido pelo jogador\033[m")
+                if computador > 5:
+                    print(
+                        f"O \033[2;49;90mlobo\033[m mordeu o braço do \033[1;49;36m{nome}\033[m,causando \033[4;31msangramento\033[m")
+                    vida -= 80
+                elif Lobo == 50:
+                    print("O \033[2;49;90mlobo\033[m, ferido, recua momentaneamente")
+                    time.sleep(2)
+                    Lobo += 80
+                    print("Em um avanço de furia,o lobo usa suas  mandíbulas afiadas.")
+                    time.sleep(1.5)
+                    print(
+                        f"O \033[2;49;90mlobo\033[m, agora dominante, mantém \033[1;49;36m{nome}\033[m no chão com uma mordida certeira no braço")
+                    vida -= 175
+        if Lobo < 0:
+            exp += 20
+            lobo_venci += 1
+            gold += 50
+            break
+        if vida < 0:
+            print("\033[5;49;31mPersonagem foi morto\033[m")
+            sys.exit()
+            break
+def itens_lobo(nome, Pele_lobo, Dentes_lobo):
+    time.sleep(2)
+    print("\033[33mNovo item\033[m")
+    print("2-Pele de lobo")
+    time.sleep(1)
+    print("1-Dentes_lobo")
+    inventario.append('Pele_de_lobo = 2')
+    inventario.append('Dentes_lobo = 1')
+    if Pele_lobo == 4:
+        inventario.remove('Pele_de_lobo = 2')
+        inventario.remove('Dentes_lobo = 1')
+        inventario.remove('Pele_de_lobo = 2')
+        inventario.remove('Dentes_lobo = 1')
+        time.sleep(1)
+        inventario.append('Pele_de_lobo = 4')
+        inventario.append('Dentes_lobo = 2')
+        time.sleep(1)
+    if Pele_lobo == 6:
+        inventario.remove('Pele_de_lobo = 2')
+        inventario.remove('Dentes_lobo = 1')
+        inventario.remove('Pele_de_lobo = 4')
+        inventario.remove('Dentes_lobo = 2')
+        time.sleep(1)
+        inventario.append('Pele_de_lobo = 6')
+        inventario.append('Dentes_lobo = 3')
+        time.sleep(1)
+    if Pele_lobo == 8:
+        inventario.remove('Pele_de_lobo = 2')
+        inventario.remove('Dentes_lobo = 1')
+        inventario.remove('Pele_de_lobo = 4')
+        inventario.remove('Dentes_lobo = 2')
+        inventario.remove('Pele_de_lobo = 6')
+        inventario.remove('Dentes_lobo = 3')
+        time.sleep(1)
+        inventario.append('Pele_de_lobo = 8')
+        inventario.append('Dentes_lobo = 4')
+
+
+batalha(vida, rodada, Lobo, lobo_venci, exp, gold)
+rodada = 0
+print("---" * 10)
+time.sleep(1.5)
+print(f"\033[4;49;37mO lobo, derrotado,cai desmaiado no chão, onde\033[m \033[1;49;36m{nome}\033[m \033[4;49;37mo finaliza tirando sua vida\033[m!")
+time.sleep(2)
+print(f"Após uma luta árdua, \033[1;49;36m{nome}\033[m emergiu vitorioso diante do lobo")
+print("---" * 10)
+if vida > Lobo:
+    print(f"\033[1;49;36m{nome}\033[m conseguiu sobreviver matando o lobo")
+elif vida < 0:
+    print(f"O lobo matou \033[1;49;36m{nome}\033[m")
+    time.sleep(2)
+    print("\033[31mGame over\033[m")
+    sys.exit()
+print(f"Ao matar o lobo \033[1;49;36m{nome}\033[m ganha 20 de exp!")
+Pele_lobo += 2
+Dentes_lobo += 1
+itens_lobo(nome, Pele_lobo, Dentes_lobo)
+pausa_dramatica()
+print(f"\033[1;49;36m{nome}\033[m está com \033[32m{vida} de vida\033[m")
+exp += 100
+level += 1
+gold += 50
+rotina(exp, vida, level, gold)
+def Explorar(nome, Lobo, vida, rodada, exp, lobo_venci, gold):
+    print(f"O que \033[1;49;36m{nome}\033[m fara agora?")
+    print("""
+[1]-Explorar ao redor
+[2]-Descançar
+[3]-...""")
+    Escolha_1 = leiaInt(":")
+    if Escolha_1 == 1:
+        print("Após uma batalha intensa,observa-se ao redor para ver se não existe nehuma nova ameaça presente.")
+    elif Escolha_1 == 2:
+        time.sleep(1)
+        print(
+            f"\033[1;49;36m{nome}\033[m decidiu buscar refúgio em uma árvore próxima para descansar e recuperar suas forças.")
+        vida += 150
+        time.sleep(2)
+    elif Escolha_1 == 3:
+        pausa_dramatica()
+        time.sleep(2)
+    print("30 MINUTOS DEPOIS...")
+    time.sleep(2)
+    pausa_dramatica()
+    time.sleep(2)
+    print(f"\033[4;49;32mNo horizonte, uma abertura escura capturou a atenção de \033[1;49;36m{nome}\033[m")
+    time.sleep(1.5)
+    print(f"Uma caverna se revelava, onde \033[1;49;36m{nome}\033[m decidiu explorar a caverna.")
+    time.sleep(1.5)
+    print("Ao adentrar o local escuro, a luz fraca da lua revelou uma série de corredores escuro, onde no final dele havia uma pequena faisca de luz")
+    time.sleep(1.5)
+    print("E ali, em meio à penumbra, estavam os dois lobos ")
+    pausa_dramatica()
+    time.sleep(1.5)
+    print(f"Sem tempo para descanso, \033[1;49;36m{nome}\033[m rapidamente empunhou o galho e enfrentou os dois lobos simultaneamente")
+    time.sleep(2)
+    print("O primeiro avançou pela esquerda, enquanto o segundo flanqueava pela direita")
+    crítico = 0
+    Lobo = 150
+    Lobo_2 = 300
+    Lobo_morto = 0
+    computador_off = 0
+    while True:
+        print("===" * 15)
+        time.sleep(1)
+        print(f"Rodada \033[1;34m{rodada}\033[m")
+        time.sleep(2)
+        Jogador_ação = randint(0, 10)
+        if Lobo >= 10:
+            computador = randint(0, 10)
+        if Lobo_2 >= 10:
+            computador_2 = randint(0, 12)
+        time.sleep(1)
+        rodada += 1
+        Evasão = 0
+        print(f"\033[1;49;36m{nome}\033[m tirou \033[2;49;97m{Jogador_ação}\033[m,\033[2;49;90mlobo(1)\033[m tirou \033[2;49;97m{computador}\033[m o \033[2;49;90mlobo(2)\033[m tirou \033[2;49;97m{computador_2}\033[m")
+        if Jogador_ação >= 9:
+            crítico += 1
+            Evasão += 1
+        if crítico > 3:
+            vida += 300
+            print(f"\033[1;49;32mApós estar lutando pela sua sobrevivencia novamente, recebe um explosão de adrenalina em sua veias novamente\033[m")
+            time.sleep(2.8)
+            if Jogador_ação >= computador:
+                print(f"\033[37m{nome}\033[m deu 250 de dano  por estar no \033[34mestado crítico\033[m, no 1 e o 2 lobo")
+                Lobo -= 250
+                Lobo_2 -= 250
+        elif Evasão > 3:
+            print("~~~~~~" * 2)
+            print(f"\033[1;49;36m{nome}\033[m,\033[1;49;32mágil, conseguiu desviar do primeiro ataque, por pouco o segundo lobo não arranhou sua perna.\033[m")
+            vida += 100
+            time.sleep(1.5)
+            print("~~~~~~" * 2)
+        elif Jogador_ação == computador:
+            print("\033[1;49;39mAmbos os combatentes estão cansados, mas a batalha ainda não acabou\033[m")
+            time.sleep(1.5)
+        if Jogador_ação > computador:
+            Lobo -= 100
+            print(f"\033[1;49;36m{nome}\033[m, percebendo a necessidade de estratégia, decidiu dividir a atenção dos lobos. Ele rodou o galho no ar, atraindo a atenção de ambos")
+            time.sleep(2.8)
+            print(f"Com a precha criada,acertou um golpe certeiro no focinho do primeiro lobo.")
+            time.sleep(1.5)
+        if Jogador_ação > computador_2:
+            Lobo_2 -= 150
+            print("Aproveitando um momento de desequilíbrio dos lobos, desferiu golpes precisos em direção aos flancos")
+            time.sleep(1.5)
+        elif computador > Jogador_ação:
+            vida -= 120
+            print(f"Os lobos, habilmente, flanquearam \033[1;49;36m{nome}\033[m na penumbra")
+            time.sleep(1.5)
+            print("\033[1;49;91mDano recebido pelo jogador\033[m")
+        if computador_2 > Jogador_ação:
+            vida -= 100
+            print(f"O lobo(2) atacou por trás, derrubando \033[1;49;36m{nome}\033[m ao chão.")
+            time.sleep(1)
+            print("\033[1;49;91mDano recebido pelo jogador\033[m")
+            time.sleep(1.5)
+        if computador > 7:
+            print(f"Antes que  pudesse reagir, o lobo mordeu violentamente seu braço")
+            time.sleep(1.5)
+            vida -= 150
+            print("\033[1;49;91mDano recebido pelo jogador\033[m")
+        if computador_2 > 10:
+            time.sleep(1.5)
+            print(f"Em um momento de adrenalina da parte do Lobo(2), ele avança violentamente desferindo diversas mordidas,o imobilizando.")
+            time.sleep(1.5)
+            for n in range(0, 3):
+                vida -= 60
+                n = vida
+                time.sleep(1.5)
+                print(f"Jogador vida-(\033[32m{vida}\033[m)")
+        elif Lobo == 50:
+            print("O \033[2;49;90mlobo\033[m, ferido, recua momentaneamente")
+            time.sleep(2)
+            Lobo += 80
+            print("Em um avanço de furia,o lobo usa suas  mandíbulas afiadas.")
+            time.sleep(1.5)
+            print(f"O \033[2;49;90mlobo\033[m, agora dominante, mantém \033[1;49;36m{nome}\033[m no chão com uma mordida certeira no braço")
+            vida -= 175
+        elif vida < 100:
+            print(f"\033[37m{nome}\033[m está em um estado crítico, por isso de agora em diante você deverá controlar ele!")
+            time.sleep(3)
+            Escolha = leiaInt("""Modo manual ativado!
+[1]-Avançar com o restos das suas forças
+[2]-Tentar fugir
+[3]-Jogar os dados""")
+            if Escolha == 1:
+                print("f\033[37m{nome}\033[m decidiu ir para cima do lobo!")
+                pausa_dramatica()
+                Jogador_ação = randint(0, 10)
+                computador = randint(0, 10)
+                Lobo -= 50
+                Lobo_2 -= 50
+                if Jogador_ação == computador:
+                    print("\033[1;49;39mAmbos os combatentes estão cansados, mas a batalha ainda não acabou\033[m.")
+                    time.sleep(1.5)
+                elif Jogador_ação > computador:
+                    Lobo -= 100
+                    print(f"\033[1;49;36m{nome}\033[m, percebendo a necessidade de estratégia, decidiu dividir a atenção dos lobos. Ele rodou o galho no ar, atraindo a atenção de ambos")
+                    time.sleep(2.8)
+                    print(f"Com a precha criada,acertou um golpe certeiro no focinho do primeiro lobo.")
+                elif Jogador_ação > computador_2:
+                    Lobo_2 -= 100
+                    print("Aproveitando um momento de desequilíbrio dos lobos, desferiu golpes precisos em direção aos flancos")
+                    time.sleep(1.5)
+                elif computador or computador_2 > Jogador_ação:
+                    vida -= 200
+                    print(f"Os lobos, habilmente, flanquearam \033[1;49;36m{nome}\033[m na penumbra")
+                    time.sleep(1)
+                    print("\033[1;49;91mDano recebido pelo jogador\033[m")
+                    time.sleep(1.5)
+                if computador > 7:
+                    print(f"Antes que  pudesse reagir, o lobo mordeu violentamente seu braço")
+                    time.sleep(1.5)
+                    vida -= 150
+                    print("\033[1;49;91mDano recebido pelo jogador\033[m")
+                elif Lobo == 50:
+                    print("O \033[2;49;90mlobo\033[m, ferido, recua momentaneamente")
+                    time.sleep(2)
+                    Lobo += 80
+                    print("Em um avanço de furia,o lobo usa suas  mandíbulas afiadas.")
+                    time.sleep(1.5)
+                    print(f"O \033[2;49;90mlobo\033[m, agora dominante, mantém \033[1;49;36m{nome}\033[m no chão com uma mordida certeira no braço")
+                    vida -= 175
+        if Lobo < 0:
+            exp += 20
+            print("Matamos o 1 lobo")
+            Lobo = Lobo_morto
+            lobo_venci += 1
+            computador = False
+        if Lobo_2 < 0:
+            exp += 60
+            print("---" * 10)
+            time.sleep(1.5)
+            print(f"\033[4;49;37mO segundo lobo foi morto\033[m")
+            lobo_venci += 1
+            gold += 100
+            print("---" * 10)
+            time.sleep(1.5)
+            break
+        if vida < 0:
+            print("\033[4;31mGame over\033[m")
+            time.sleep(1.5)
+            print( f"O \033[2;49;90mlobo(1)\033[m estava com {Lobo} de vida, O \033[2;49;90mlobo(2)\033[m estava com {Lobo_2} pontos de vida\033[31m")
+            rodada = 0
+            sys.exit()
+            break
+    if vida < 0:
+        print(f"\033[1;49;36m{nome}\033[m Morreu!")
+        print("\033[4;31mGame over\033[m")
+        sys.exit()
+
+
+Explorar(nome, Lobo, vida, rodada, exp, lobo_venci, gold)
+time.sleep(1)
+Pele_lobo += 2
+Dentes_lobo += 1
+itens_lobo(nome, Pele_lobo, Dentes_lobo)
+pausa_dramatica()
+rodada = 0
+time.sleep(1)
+print("f\033[37m{nome}\033[m está com \033[32m{vida} de vida\033[m")
+exp += 200
+level += 2
+gold += 100
+rotina(exp, vida, level, gold)
+Escolha_1 = leiaInt("""
+[1]-Explorar mais 
+[2]-Descançar
+[3]-Sair dalí:""")
+if Escolha_1 == 1:
+    Explorar(nome, Lobo, vida, rodada, exp, lobo_venci, gold)
+    Pele_lobo += 2
+    Dentes_lobo += 2
+    itens_lobo(nome, Pele_lobo, Dentes_lobo)
+if Escolha_1 == 2:
+    time.sleep(1)
+    print(f"\033[1;49;36m{nome}\033[m deita em uma árvore,para descansar,enquanto observar o ambiente ao seu redor")
+    vida += 200
+    time.sleep(2)
+elif Escolha_1 == 3:
+    print(f"\033[1;49;36m{nome}\033[m Observa a sua volta e depois o céu, após um tempo decidi sair dali.")
+    vida += 100
+Recompensa_lobo(nome, Pele_lobo, Dentes_lobo)
+Gostaria_vida(vida, nome)
+time.sleep(2.5)
+print(f"Continuando sua aventura \033[1;49;36m{nome}\033[m sai da caverna muito ferido pela sua luta inesperado")
+print("A lua, surgindo timidamente entre as copas das árvores, lançava uma luz prateada sobre a cena, destacando os vestígios da luta no solo.")
+time.sleep(1.5)
+print(f"\033[1;49;36m{nome}\033[m, ainda empunhando o galho como uma espécie de troféu improvisado, contemplou a complexidade da natureza ao seu redor.")
+time.sleep(1.5)
+print("Então decidiu se acomodar na entrada da caverna para descansar e recuperar suas energias")
+pausa_dramatica()
+print("Ao acordar, ele percebeu que ainda estava na entrada da caverna e decidiu levantar.")
+time.sleep(2.3)
+print("Enquanto procurava um abrigo,avistou ao longe um local iluminado e decidiu se dirigir até lá.")
+time.sleep(2.1)
+print("Ao se aproximar, ele percebeu que era uma vila movimentada, cheia de pessoas e estabelecimentos")
+time.sleep(2.3)
+print("Ao chegar lá, sua primeira ação foi ir até uma pousada em busca de hospedagem.")
+time.sleep(2.3)
+print("No entanto, ao entrar na pousada, testemunhou duas pessoas envolvidas em uma luta intensa.")
+time.sleep(3)
+print(f"\033[37m{nome}\033[m observou o conflito por um momento, mas decidiu ignorar e seguir até a recepção, onde alugou um quarto.")
+time.sleep(3.5)
+pausa_dramatica()
+print(f"Ao chegar em seu quarto, exausto,\033[1;49;36m{nome}\033[m caiu na cama e rapidamente adormeceu, mergulhando em um sono profundo. ")
+time.sleep(2)
+print("=-=" * 10)
+print("\033[4;49;97mAviso do Sistema!\033[m")
+time.sleep(1)
+print(f"\033[1;49;36m{nome}\033[m recuperou todo sua vida e energia")
+time.sleep(1)
+time.sleep(1.5)
+vida += 1500
+print("=-=" * 10)
+print(f"Pontos de vida atual \033[2;49;92m{vida}\033[m")
+time.sleep(1)
+print("==========" * 10)
+time.sleep(1.5)
+print("\033[4;49;96mCap-1-finalizado!\033[m")
+time.sleep(3)
+print(f"""Enquanto {nome} dormia profundamente em seu quarto na pousada da movimentada vila, o som suave de passos começou 
+a ecoar nos corredores. Passos leves, quase imperceptíveis, ecoavam pelos corredores da pousada, intercalados pelo 
+ocasional ranger do assoalho.Ainda adormecido, permanecia alheio aos sons ao seu redor""")
+time.sleep(8.9)
+time.sleep(1.5)
+pausa_dramatica()
+time.sleep(1.5)
+print(f"Enquanto \033[1;49;36m{nome}\033[m dormia na pousada, os passos suaves de uma misteriosa macareira se aproximaram")
+time.sleep(3.0)
+print("""Ela adentrou seu quarto com cautela, revelando-se na penumbra. O que a motivava permanecia oculto, criando uma
+atmosfera de suspense""")
+time.sleep(3.1)
+print(f"""Após a chegada misteriosa da macareira,{nome} acordar de seu sono, e tenta interagir com a senhora,
+porém perceber que ao falar com ela, não entendi o que era dito""")
+time.sleep(3.0)
+print("==" * 10)
+print("Sistema:Agora você deve escobrir o que ela esta tentando dizer!")
+time.sleep(0.5)
+print("==" * 10)
+acerto_polindromo = 0
+def Polidrono(acerto_polindromo):
+    while True:
+        print("Agora escreva o que ela quiz dizer com essa frase (rohnes adan ed ies oãn etnemsilefni uE)".strip().upper())
+        Tentando_descobrir_placa = str(input(":"))
+        if Tentando_descobrir_placa == "EU INFELISMENTE NÃO SEI DE NADA SENHOR":
+            print(f"{nome} após pensar bastante, entendeu o que era dito,(Eu infelismente não sei de nada senhor)")
+            time.sleep(1)
+            acerto_polindromo += 1
+            break
+        else:
+            time.sleep(1)
+            print("...")
+            time.sleep(1.8)
+            print(f"{nome} \033[31merrou!\033[m tente novamente!")
+Polidrono(acerto_polindromo)
+print("Após a breve visita da macareira, ela se retirou do quarto com a mesma sutileza com a qual chegara.")
+time.sleep(2.9)
+print("Alheio ao que havia ocorrido, voltou ao sono.")
+time.sleep(1.5)
+print(f"Horas depois,{nome} despertou")
+pausa_dramatica()
+print("Percebendo que estava em um mundo desconhecido e decidira traçar uma estratégia para compreendê-lo,e sobreviver")
+time.sleep(2)
+print(f"Sentado à beira da cama,{nome} contemplou a vila movimentada lá fora")
+time.sleep(1.8)
+print(f"Decidido a sobreviver nesse novo ambiente, no qual não sabe nada, {nome} formulou uma estratégia.")
+pausa_dramatica()
+pausa_dramatica()
+time.sleep(2.8)
+print(f"Após pensar bastante {nome} decidiu voltar a dormir, e esperar o amanhecer do novo dia")
+pausa_dramatica()
+print(f"""Com o amanhecer do novo dia,{nome} decide colocar seu plano em pratica, e sai do seu quarto em busca 
+de explorar esse pequena cidade no qual se encontrava""")
+time.sleep(2.9)
+print("Saindo do seu quarto, testemunha uma vista até que normal, porém com suas peculiaridade.")
+time.sleep(1.8)
+print("Gostaria de sair da pequena pousada onde se encontra?")
+while True:
+    escolha_2 = str(input("\033[36m[S/N]\033[m")).strip().upper()
+    if escolha_2 == "S":
+        print(f"\033[37m{nome}\033[m decide sair  da pousada e observar a cidade onde estava.")
+        time.sleep(1)
+        break
+    elif escolha_2 == "N":
+        print(f"primeiramente \033[37m{nome}\033[m não quis sair da pousada, mas percebeu que não tinha mais o que fazer lã,é sai ")
+        time.sleep(1.5)
+        break
+    else:
+        print("\033[0;49;91mComando invalido,tente novamente\033[m")
+print(f"Ao sair da pousada,{nome}começou a explorar a cidade, colocando meticulosamente seu plano em execução.")
+time.sleep(1.5)
+print(f"Ele perambulava pelas ruas movimentadas, observando detalhes e absorvendo a atmosfera peculiar daquele lugar desconhecido.")
+time.sleep(1.8)
+print(f"Após um tempo de caminhada,{nome} alcançou o centro da cidade")
+time.sleep(1.9)
+print("Lá, o cenário era vibrante, com pessoas de diferentes trajetórias cruzando-se entre as lojas coloridas e os sons animados do comércio local. ")
+time.sleep(1.5)
+print("\033[4;49;90mNo meio da agitação, algo chamou sua atenção: um grupo de aventureiros!\033[m")
+time.sleep(2.5)
+print(f"""Curioso, {nome} se aproximou do grupo, notando-os entre os cidadãos comuns. Enquanto observava,
+percebeu um aventureiro dentro de uma das lojas.""")
+time.sleep(3.5)
+print(f"Decidido a iniciar uma conversa,{nome} se dirigiu até lá,porém no meu do caminho e interrompido por um comerciante")
+time.sleep(2.5)
+print("Gostaria de comprar algumas das coisas desse comerciante?")
+# Continuação parte(3)
+Manto_lobo = 0
+def loja(gold, vida, Pele_lobo, Manto_lobo):
+    print(f"Após observar os produtos \033[37m{nome}\033[m vé o que ele pode comprar")
+    time.sleep(1.5)
+    Equipamento = ('[1]-Armadura leve(colete de couro e uma calça reforçada).....', 270,
+                   '[2]-Armadura passiva(Colete de ferro,braceletes,capacete)....', 350,
+                   '[3]-Armadura pesada(Equipamento pro corpo inteiro)\033[35m(+A)\033[m.......', 990,
+                   '[4]-Armadura adaptável(Ela é boa em todas as situações)......', 300,
+                   '[5]-Manto (Pele de lobo)...', 200,
+                   '[6]-Sair da loja')
+    print(f"\033[36mSistema:\033[m\033[37m{nome}\033[m esta com atualmente \033[33m{gold}\033[m gold")
+    print("---" * 10)
+    print("Lista de Equipamentos")
+    print("---" * 10)
+    for pos in range(0, len(Equipamento)):
+        if pos % 2 == 0:
+            print(f"{Equipamento[pos]:.<20}", end='')
+        else:
+            print(f"R$ {Equipamento[pos]:>7.2f}")
+    print("---" * 10)
+    while True:
+        equipamentos = leiaInt("Qual a sua escolha?:")
+        time.sleep(1.5)
+        if equipamentos == 1:
+            if gold >= 270:
+                print("Você escolheu a \033[33marmadura leve!\033[m")
+                time.sleep(1)
+                print("...")
+                time.sleep(1.2)
+                print("Agora você está usando a armadura leve")
+                inventario.append('Armadura (Leve)')
+                vida += 300
+                gold -= 270
+                break
+            else:
+                print("Você não tem dinheiro o suficiente")
+        if equipamentos == 2:
+            if gold >= 350:
+                print("Você escolheu a \033[33m passiva!\033[m")
+                time.sleep(1)
+                print("...")
+                time.sleep(1.2)
+                print("Agora você está usando a armadura passiva")
+                inventario.append('Armadura (Passivo)')
+                vida += 375
+                gold -= 350
+                break
+            else:
+                print("Você não tem dinheiro o suficiente")
+        if equipamentos == 3:
+            if gold >= 990:
+                print("Você escolheu a \033[33marmadura (Pesada)\033[m!")
+                time.sleep(1)
+                print("...")
+                time.sleep(1.2)
+                print("Agora você está usando a armadura (Pesada)")
+                inventario.append('Armadura (Pesada)')
+                vida += 1000
+                gold -= 990
+                break
+            else:
+                print("Você não tem dinheiro o suficiente")
+        if equipamentos == 4:
+            if gold >= 300:
+                print("Você escolheu a \033[33marmadura Adaptável\033[m!")
+                time.sleep(1)
+                print("...")
+                time.sleep(1.2)
+                print("Agora você está usando a armadura Adaptável")
+                inventario.append('Armadura (Adptavel)')
+                vida += 300
+                gold -= 300
+                break
+            else:
+                print("Você não tem dinheiro o suficiente")
+                time.sleep(1)
+        if equipamentos == 5:
+            if Pele_lobo >= 4:
+                if gold >= 200:
+                    print("Você escolheu o \033[33mManto (Pele de lobo)\033[m!")
+                    time.sleep(1)
+                    print("...")
+                    time.sleep(1.2)
+                    print("Agora você está usando Manto (Pele de lobo)")
+                    inventario.append('Manto (Pele de lobo)')
+                    vida += 300
+                    gold -= 200
+                    Pele_lobo -= 4
+                    Manto_lobo += 1
+                    if Pele_lobo == 5:
+                        inventario.remove('Pele_de_lobo = 4')
+                    if Pele_lobo == 6:
+                        inventario.remove('Pele_de_lobo = 6')
+                        inventario.append("Pele_de_lobo = 2")
+                    print(f"\033[37m{nome}\033[m esta com {Pele_lobo} Pele de lobo")
+                    break
+                else:
+                    print("Você não tem dinheiro o suficiente")
+            else:
+                print("Você não tem a contidade nessesaria de (Pele de lobo) para isso")
+
+        if equipamentos == 6:
+            print(f"\033[37m{nome}\033[m decidi sair da loja....")
+            time.sleep(1.5)
+            break
+        else:
+            print("\033[31mComando invalido, tente novamente\033[m")
+def Armas(gold, vida, Dentes_lobo):
+    print(f"Após observar os produtos \033[37m{nome}\033[m vé o que ele pode comprar")
+    time.sleep(1.5)
+    Equipamento = ('[1]-Espada(prata).....', 200,
+                   '[2]-Machado....', 400,
+                   '[3]-Cajado de (vibranio)\033[35m(+A)\033[m.......', 1100,
+                   '[4]-Espada longa......', 300,
+                   '[5]-Adaga de (Pressas de lobo)...', 150,
+                   '[6]-Sair da loja')
+    print(f"\033[36mSistema:\033[m\033[37m{nome}\033[m esta com atualmente \033[33m{gold}\033[m gold")
+    print("---" * 10)
+    print("Lista de Armas")
+    print("---" * 10)
+    for pos in range(0, len(Equipamento)):
+        if pos % 2 == 0:
+            print(f"{Equipamento[pos]:.<20}", end='')
+        else:
+            print(f"R$ {Equipamento[pos]:>7.2f}")
+    print("---" * 10)
+    while True:
+        equipamentos = leiaInt("Qual a sua escolha?:")
+        time.sleep(1.5)
+        if equipamentos == 1:
+            if gold >= 200:
+                print("Você escolheu a \033[33mEspada\033[m")
+                time.sleep(1)
+                print("...")
+                time.sleep(1.2)
+                print("Agora você está usando a Espada de (prata)")
+                inventario.append('Espada de (Prata)')
+                vida += 300
+                gold -= 200
+                break
+            else:
+                print("Você não tem dinheiro o suficiente")
+        if equipamentos == 2:
+            if gold >= 400:
+                print("Você escolheu o \033[33mMachado\033[m")
+                time.sleep(1)
+                print("...")
+                time.sleep(1.2)
+                print("Agora você está usando o Machado agora")
+                inventario.append('Machado')
+                vida += 375
+                gold -= 400
+                break
+            else:
+                print("Você não tem dinheiro o suficiente")
+        if equipamentos == 3:
+            if gold >= 1100:
+                print("Você escolheu o \033[33mCajado de (vibranio)\033[m!")
+                time.sleep(1)
+                print("...")
+                time.sleep(1.2)
+                print("Agora você está usando Cajado de (vibranio)")
+                inventario.append('Cajado de (vibranio)')
+                vida += 1000
+                gold -= 1100
+                break
+            else:
+                print("Você não tem dinheiro o suficiente")
+        if equipamentos == 4:
+            if gold >= 300:
+                print("Você escolheu a \033[33mEspada longa\033[m!")
+                time.sleep(1)
+                print("...")
+                time.sleep(1.2)
+                print("Agora você está usando a Espada longa")
+                inventario.append('Espada-(longa)')
+                vida += 300
+                gold -= 300
+                break
+            else:
+                print("Você não tem dinheiro o suficiente")
+                time.sleep(1)
+        if equipamentos == 5:
+            if Dentes_lobo >= 3:
+                if gold >= 150:
+                    print("Você escolheu \033[33mAdaga de (Pressas de lobo)\033[m ")
+                    time.sleep(1)
+                    print("...")
+                    time.sleep(1.2)
+                    print("Agora você está usando a Adaga de (Pressas de lobo)")
+                    inventario.append('Adaga (Pressas)')
+                    vida += 200
+                    gold -= 150
+                    Dentes_lobo -= 3
+                    time.sleep(1)
+                    inventario.remove('Dentes_lobo = 3')
+                    print(f"\033[37m{nome}\033[m esta com {Dentes_lobo} Dentes de lobo")
+                    break
+                else:
+                    print("Você não tem dinheiro o suficiente")
+                    time.sleep(1)
+            print(f"{nome} não tem a contindade necessaria de pressas de lobo, para fazer a adaga")
+        if equipamentos == 6:
+            print(f"\033[37m{nome}\033[m decidi sair da loja....")
+            time.sleep(1.5)
+            break
+def aliado_1(gold, aliados, vida_aliado1, aliado_nome1):
+    print("Gostaria de propor uma aliança com ele?")
+    aliança = str(input("\033[36m[S/N]\033[m")).strip().upper()
+    if aliança == "S":
+        aliados += 1
+        gold -= 100
+        time.sleep(1)
+        print("\033[4;34m Você tem um novo aliado\033[m")
+        aliados += 1
+        print("Escolha um para se aliar a sua jornada!")
+        print("""[1]-Alberto-Um \033[4;49;32m(Arqueólogo)\033[m experiente que ira-lhe ajudar a descobrir sobre esse mundo.
+[2]-Dinark-Um nobre \033[4;49;93m(cavaleiro)\033[m apesar de ser iniciando nesse caminho, ira lhe proporcinal uma boa proteção.
+[3]-Kaert-um jovem rapaz,porém muito malando e perspicaz em suas ações \033[4;49;97m(gatuno)\033[m""")
+        while True:
+            aliado_classe1 = int(input("Qual sua escolha?:"))
+            if aliado_classe1 == 1:
+                print(f"{nome} escolheu -Alberto- como seu novo aliado, onde ira-lhe proporcinar uma vasta gama de conhecimento")
+                aliado_nome1 = aliado_nome1.replace("Alberto")
+                vida_aliado1 += 1800
+                break
+            elif aliado_classe1 == 2:
+                print(f"{nome} escolheu -Dinark- como seu novo aliado, onde ira-lhe proporcionar proteção")
+                vida_aliado1 += 5000
+                aliado_nome1 = aliado_nome1.replace("Dinark")
+                break
+            elif aliado_classe1 == 3:
+                print(f"{nome} escolheu -Kaert- como seu novo aliado,talvez isso não tenha sido uma boa ideia, mas ok...")
+                vida_aliado1 += 2000
+                aliado_nome1 = aliado_nome1.replace("Kaert")
+                break
+            else:
+                print("\033[31mClasse inválida\033[m")
+                time.sleep(1)
+                print("Tente novamente ")
+        time.sleep(1)
+    if aliança == "Nn":
+        time.sleep(1)
+        print(f"{nome} ignora a ideia de se aliar com ele e sai dali")
+time.sleep(1.5)
+Escolha_2 = str(input("\033[36m[S/N]\033[m").strip().upper())
+if Escolha_2 == "S":
+    print(f"\033[37m{nome} /\033[maceita a oferta do comerciante, e segue ele até sua loja")
+    time.sleep(2)
+    print(f"Ao chegar na loja \033[37m{nome}\033[m, percebe que se tratava de uma loja de armaduras...")
+    time.sleep(2)
+    loja(gold, vida, Pele_lobo, Manto_lobo)
+    time.sleep(1.5)
+    print(f"Após sair da loja \033[37m{nome}\033[m, vai onde estava o aventureiro")
+    time.sleep(2)
+    print("A o chegar lã ,o aventureiro já não estava mais lã")
+    time.sleep(2)
+    pausa_dramatica()
+elif Escolha_2 == "N":
+    print("Você recusa educadamente, é segue seu destino")
+    time.sleep(1.8)
+    print(f"""Após chegar onde o aventureiro estava, \033[37m{nome}\033[m começa uma conversa com ele e percebe, que ele estava 
+buscando conseguir completar uma missão que dara dinheiro para ele conseguir alçancar seus objetivo""")
+    aliados = 0
+    vida_aliado1 = 10
+    aliado_1(gold, aliados, vida_aliado1, aliado_nome1)
+    time.sleep(1)
+    print(f"O nome do seu novo aliado é \033[1;34m{aliado_nome1}\033[m")
+    time.sleep(1)
+    aliados += 1
+time.sleep(1)
+print("...")
+time.sleep(1)
+print("""Após a alianca, decidiram estabelecer um acordo detalhado, definindo uma estrutura de compartilhamento de 
+recursos e ganhos para cada conquista que alcançassem""")
+time.sleep(2.5)
+print(f"Com isso, {nome} e {aliado_nome1} decidem explorar a cidade, em busca de melhores equipamentos e recursos")
+pausa_dramatica()
+print("Determinados, juntos exploraram varias lojas de equipamentos, até acharem uma que atendiam suas necessidades")
+Armas(gold, vida, Dentes_lobo)
+print("Agora vamos a loja de (vestimenta)?")
+loja(gold, vida, Pele_lobo, Manto_lobo)
+pausa_dramatica()
+print("Em posse de seus novos equipamentos reluzentes")
+time.sleep(2.0)
+print(f"Agora preparado {nome} e {aliado_nome1} decidem,buscar informações sobre o lugar que estão")
+print("Guiados por mapas antigos e histórias")
+pausa_dramatica()
+print(f"""Após muito tempo explorando com a ajuda do mapa, {nome} encontra informações sobre um lugar no qual poderiam ficar,
+porém ao um custo de informação""")
+time.sleep(2.5)
+pagar_informação = str(input("Esta disposto a pagar por essa informação(10 Moedas) \033[36m[S/N]\033[m").strip().upper())
+if pagar_informação == "S" or "s":
+    gold -= 10
+    print(f"Com a troca de moedas,{nome} adquiriu a informção sobre um lugar, uma pequena sala em um predio onde estavam vendendo-o")
+    time.sleep(1.5)
+    print(f"Após percorrerem o caminho e chegarem até lá, a oferta dada pelo quarto foi de (1000 moedas)")
+    pausa_dramatica()
+    troca_quarto = str(input("\033[2;49;94mEsta disposto a fazer essa troca por essa pequena sala?[S/N]:\033[m").strip().upper())
+    if gold >= 1000:
+        if troca_quarto == "S" or "s":
+            print(f"Após a troca {nome} e {aliado_nome1} decidem, se mudar para lá e fazer esse novo lugar sua bate de reuniões")
+            gold -= 1000
+            quarto_novo = True
+    if gold <= 1000:
+        print("Contidade de ouro, não alcançada")
+    elif troca_quarto == "N" or "n":
+        print(f"{nome} recusa e segue a adiante.")
+    else:
+        print("Comando invalido")
+if pagar_informação == "N" or "n":
+    print(f"{nome} decide recusar a ofera, e buscar informações pelo seu proprio merito")
+time.sleep(1.5)
+if quarto_novo == True:
+    print(f"Após chegaram com suas coisas no novo quarto {nome} e {aliado_nome1} decidem descasar por aquele dia")
+    exp += 70
+    vida += 1500
+    vida_aliado1 += 1500
+elif quarto_novo == False:
+    print(f"{nome} e {aliado_nome1} decidem cessar suas buscas por aquele dia, e alugam um quarto em uma pousada para descansarem.")
+    gold -= 100
+    vida += 300
+pausa_dramatica()
+print("Ao amanhecer, os primeiros raios de sol romperam o horizonte, pintando o céu com tons suaves de rosa e laranja.")
+time.sleep(1.5)
+print(f"Com o amanhecer desse novo dia, {nome} e seu {aliado_nome1} decidiram explorar uma pequena cidade vizinha.")
+time.sleep(1.8)
+print("Descobriram, por meio de uma receptiva recepcionista, informações valiosas sobre ")
+time.sleep(1.8)
+print(f"""Com  isso {nome} descobriu que esse lugar era um reino dividido em diversas cidades, 
+cada uma com sua própria cultura e peculiaridades. O desafio agora era atravessar essas cidades para coletar 
+informações cruciais que o ajudariam a entender o mundo e garantir sua sobrevivência""")
+time.sleep(3.5)
+pausa_dramatica()
+print(f"Em uma noite, durante uma reunião na vila, {nome} e {aliado_nome1} decidiram formar uma aliança com outros viajantes em situações semelhantes.")
+time.sleep(1.8)
+print("Juntos, eles planejaram uma jornada para a cidade vizinha, conhecida por abrigar uma biblioteca repleta de conhecimento sobre o mundo.")
+time.sleep(1.8)
+print("Acreditavam que lá encontrariam informações essenciais para compreender a natureza desse novo lugar e, assim, melhorarem suas chances de sobrevivência.")
+pausa_dramatica()
+print(f"{nome},{aliado_nome1}  sairam rumo a essa cidade vizinha em busca,de descobrirem mais sobre como esse mundo funciona")
+pausa_dramatica()
+print("==========" * 10)
+time.sleep(1.5)
+print("Cap-2-finalizado!")
+print("==========" * 10)
+print("Criador:Esta gostando até aqui?")
+time.sleep(1.5)
+gostando = str(input("[S/N]")).strip().upper()
+if gostando == "S":
+    print("Obrigado,vamos continuar então")
+if gostando == "N":
+    print("Entendo, quer encerrar o jogo aqui?")
+    fechar_jogo = str(input("[S/N]")).strip().upper()
+    if fechar_jogo == "N" or "n":
+        tempo_final = time.time()
+        print(f"Ultimos dados salvos:")
+        print(f"Ultimos dados salvos:")
+        print(f"->\033[5;49;94mNome:\033[m[{nome}]")
+        print(f"->\033[5;49;94mNivel:\033[m[{level}]")
+        print(f"->\033[5;49;94mGold:\033[m[{gold}]")
+        print(f"->\033[5;49;94mAliado:\033[m[{aliado_nome1}]")
+        print(f"->\033[5;49;94mTempo de jogo:\033[m[{int(tempo_inicial - tempo_final) / 60}] \033[5;49;94mminutos\033[m")
+    sys.exit()
+print("=-=-=-=-=" * 10)
+print(f"""À medida que a jornada avançava,{nome} testemunhou algo nunca antes visto: uma flora e fauna 
+totalmente diferentes daquelas que ele conhecia""")
+time.sleep(1.5)
+print("Com o decorrer da caminhada, um imprevisto ocorreuo")
+time.sleep(1.2)
+print(f"Ao lançar um olhar rápido para a densa mata, {nome} percebeu um vulto se movendo entre as sombras.")
+time.sleep(1.5)
+print(f"""Antes que pudessem reagir, {nome} e {aliado_nome1} estavam sendo cercados por figuras encapuzadas,
+cobertas por panos que ocultavam suas identidades, criando uma atmosfera tensa e desconhecida""")
+time.sleep(1.9)
+print("Eram como sombras, surgindo silenciosamente para desafiar a tranquilidade da jornada.")
+pausa_dramatica()
+print("AVISO!!!")
+time.sleep(1)
+print("Você está entrando em uma cena de batalha, suas ações seram decididas pelos números dos dados")
+a1_aliado = False
+def figuras_encapuzadas_iniciante(vida, nome, gold, vida_aliado1, aliados, aliado_nome1, crítico, exp, adptação,a1_aliado, Evasão):
+    figuras_encapuzadas = 2000
+    figuras_encapuzadas2 = 2000
+    figuras_encapuzadas_morot1 = 0
+    figuras_encapuzadas_iadeath = 0
+    figuras_encapuzadas_vencidos = 0
+    rodada = 0
+    print(f"""Percebendo a necessidade de estratégia,{aliado_nome1} e {nome}, hábil em combate, decidiu dividir a atenção dos adversários."
+Diante dele, dois oponentes encapuzados, ágeis e imprevisíveis""")
+    if Manto_lobo >= 1:
+        print(f"\033[37m{nome}\033[m esta usando o manto de lobo, por isso tera uma \033[32mmaior chance de desviar\033[m de ataques.")
+        Evasão += 2
+    while True:
+        print("====" * 15)
+        time.sleep(1)
+        print(f"Rodada \033[1;34m{rodada}\033[m")
+        time.sleep(2)
+        Jogador_ação = randint(0, 12)
+        if aliados == 1:
+            Aliado_1 = randint(0, 10)
+        if a1_aliado == True:
+            Aliado_1 = False
+        if figuras_encapuzadas >= 10:
+            figuras_encapuzadas_ia1 = randint(0, 11)
+        if figuras_encapuzadas2 >= 10:
+            figuras_encapuzadas_ia2 = randint(0, 12)
+        time.sleep(1)
+        rodada += 1
+        Evasão = 0
+        if aliados == 1:
+            print("\033[1;49;36m{nome}\033[m tirou \033[2;49;97m{Jogador_ação}\033[m,\033[1;34m{aliado_nome1}\033[m tirou \033[2;49;97m{Aliado_1}\033[m,já a figuras_encapuzadas(1) tirou \033[2;49;97m{figuras_encapuzadas_ia1}\033[m, figuras_encapuzadas(2) tirou \033[2;49;97m{figuras_encapuzadas_ia2}\033[m")
+        if aliados == 0:
+            print(f"\033[1;49;36m{nome}\033[m tirou \033[2;49;97m{Jogador_ação}\033[m,já a figuras_encapuzadas(1) tirou {figuras_encapuzadas_ia1}, figuras_encapuzadas(2) tirou {figuras_encapuzadas_ia2}")
+        if Jogador_ação >= 9:
+            crítico += 1
+            adptação += 1
+        if crítico > 3:
+            vida += 300
+            print(
+                f"Apos conseguir tirar dados acima de 9, 3 vezes seguidas \033[37m{nome}\033[m  ativa a habilidade \033[34m(Adptação)\033[m é \033[34m(critico)\033[m")
+            Jogador_ação = randint(0, 15)
+            if Jogador_ação == figuras_encapuzadas_ia2:
+                print(f"""Por \033[1;49;36m{nome}\033[m acabou de usar uma nova habilidade,\033[34m(Adptação)\033[m, ele consegue ferir as 
+figuras-encapuzadas,causando graves danos""")
+                figuras_encapuzadas -= 450
+                figuras_encapuzadas2 -= 450
+                crítico -= 3
+        elif Evasão > 3:
+            print("~~~~~~" * 2)
+            print(f"Apesar da pressão crescente, \033[37m{nome}\033[m manteve sua calma.")
+            print(f"\033[1;49;36m{nome}\033[m conseguiu se adptar a batalha, conseguindo usar a habilidade \033[34mesquiva!\033[m")
+            vida += 300
+            time.sleep(1.5)
+            print("~~~~~~" * 2)
+            figuras_encapuzadas1 = randint(0, 7)
+            figuras_encapuzadas2 = randint(0, 7)
+            Evasão -= 0.5
+        if Jogador_ação == figuras_encapuzadas_ia1:
+            print(f"\033[1;49;39m\033[1;49;96m{nome}\033[m usou suas habilidades de combate para bloquear os ataques vindos de todos os lados\033[m\033[m")
+            Evasão += 1
+            time.sleep(1.5)
+            if aliados == 1:
+                if Aliado_1 == figuras_encapuzadas_ia1:
+                    print("\033[1;49;39mAmbos atacaram, mas nenhum conseguiu lhe infrigir dano\033[m")
+        time.sleep(1.5)
+        if Jogador_ação > figuras_encapuzadas_ia1:
+            figuras_encapuzadas -= 175
+            print(f"Aproveitando a distração,\033[1;49;36m{nome}\033[m avançou rapidamente em direção a um dos seres selvagens, desferindo um golpe certeiro em suas costas")
+            time.sleep(1)
+            figuras_encapuzadas -= 150
+        if aliados == 1:
+            if Aliado_1 > figuras_encapuzadas_ia1:
+                print(f"Com a distração criada, \033[1;34m{aliado_nome1}\033[m avançou com destreza, desferindo um golpe certeiro no encapuzado à esquerda. ")
+                time.sleep(1.5)
+                print("O oponente, momentaneamente atordoado, tentou se reequilibrar.")
+                figuras_encapuzadas -= 175
+            if figuras_encapuzadas_ia1 > Aliado_1:
+                print("Antes que pudesse reagir completamente, Alberto sentiu uma mordida violenta em seu braço.")
+                vida_aliado1 -= 200
+        if Jogador_ação > figuras_encapuzadas_ia2:
+            figuras_encapuzadas2 -= 175
+            print(f"A luta estava intensa, mas \033[1;49;36m{nome}\033[m percebeu uma abertura. ")
+            time.sleep(1)
+            print("\033[2;49;39mEle concentrou sua energia, evitando um ataque e contra-atacando com uma série de movimentos rápidos\033[m")
+        if aliados == 1:
+            if Aliado_1 > figuras_encapuzadas_ia2:
+                print(f"""\033[1;34m{aliado_nome1}\033[m, aproveitando um breve desequilíbrio dos adversários, retaliou com uma série de movimentos calculados"
+em direção aos flancos.""")
+                figuras_encapuzadas2 -= 175
+        elif figuras_encapuzadas_ia1 > Jogador_ação:
+            vida -= 200
+            print(f"\033[1;49;36m{nome}\033[m estava cercado, e um deles avançou com velocidade impressionante, golpeando-o com força")
+            time.sleep(1)
+            print("\033[1;49;91mDano recebido pelo jogador\033[m")
+            time.sleep(1.5)
+        if figuras_encapuzadas_ia2 > Jogador_ação:
+            print(f"O \033[32mfigura-encapuzadas(2)\033[m avança e consegue se sobre sair, causando dano ao \033[1;49;36m{nome}\033[m")
+            time.sleep(1)
+            print("\033[1;49;91mDano recebido pelo jogador\033[m")
+            time.sleep(1.5)
+            vida -= 215
+        if figuras_encapuzadas_ia2 > 8:
+            print(f"Furioso e agitado, avançam em direção a {nome} e {aliado_nome1} é o ferem drasticamente")
+            vida -= 300
+            vida_aliado1 -= 275
+            time.sleep(2)
+            print(".", end="")
+            time.sleep(0.5)
+            print(".", end="")
+            time.sleep(0.5)
+            print(".", end="")
+            if aliados == 1:
+                vida_aliado1 -= 75
+            time.sleep(1.5)
+        if figuras_encapuzadas_ia2 > 10:
+            time.sleep(1.5)
+            print(f"O líder dos seres selvagens, percebendo a ameaça representada por \033[1;49;36m{nome}\033[m, avançou com fúria.")
+            time.sleep(1.5)
+            vida -= 750
+            if aliados == 1:
+                vida_aliado1 -= 80
+                vida -= 100
+                for n in range(0, 3):
+                    vida -= 120
+                    n = vida
+                    time.sleep(1.5)
+                print(f"Jogador vida \033[32m{vida}\033[m")
+                print(f"\033[1;34m{aliado_nome1}\033[m vida \033[32m{vida_aliado1}\033[m")
+                time.sleep(1.2)
+        elif vida < 100:
+            print(f"\033[1;49;36m{nome}\033[m está em um estado crítico, por isso de agora em diante você deverá controlar ele!")
+            time.sleep(3)
+            Escolha = leiaInt("""Modo manual ativado!
+[1]-Avançar com o restos das suas forças
+[2]-Tentar fugir
+[3]-Jogar os dados""")
+            if Escolha == 1:
+                print(f"\033[1;49;36m{nome}\033[m decidiu ir para cima da \033[32mfigura-encapuzadas\033[m!")
+                pausa_dramatica()
+                Jogador_ação = randint(0, 12)
+                if aliados == 1:
+                    Aliado_1 = randint(0, 10)
+                figuras_encapuzadas_ia1 = randint(0, 11)
+                figuras_encapuzadas_ia2 = randint(0, 12)
+                if Jogador_ação == figuras_encapuzadas_ia1:
+                    print("""Ambos conseguiram observar a chance perfeita,para atacar porém quando ia executar preceberam,
+que ambos estavam executando a mesma coisa, assim um anulando o outro""")
+                    time.sleep(1.5)
+                figuras_encapuzadas -= 150
+                if Jogador_ação > figuras_encapuzadas_ia1:
+                    figuras_encapuzadas -= 175
+                    print(f"Aproveitando a distração, \033[1;49;36m{nome}\033[m avançou rapidamente em direção a um dos seres selvagens, desferindo um golpe certeiro em suas costas")
+                    time.sleep(1)
+                    figuras_encapuzadas -= 150
+                if Jogador_ação > figuras_encapuzadas_ia2:
+                    figuras_encapuzadas2 -= 175
+                    print(f"A luta estava intensa, mas \033[1;49;36m{nome}\033[m percebeu uma abertura. ")
+                    time.sleep(1)
+                    print("Ele concentrou sua energia, evitando um ataque e contra-atacando com uma série de movimentos rápidos")
+                if aliados == 1:
+                    if Aliado_1 > figuras_encapuzadas_ia2:
+                        figuras_encapuzadas2 -= 100
+                        print(f"\033[1;34m{aliado_nome1}\033[m foi mais rapido é mais habilidoso e causou dano a \033[32mfigura-encapuzada\033[m")
+                        time.sleep(1)
+                elif figuras_encapuzadas_ia1 > Jogador_ação:
+                    vida -= 200
+                    print(f"\033[1;49;36m{nome}\033[m estava cercado, e um deles avançou com velocidade impressionante, golpeando-o com força")
+                    time.sleep(1)
+                    print("\033[1;49;91mDano recebido pelo jogador\033[m")
+                    time.sleep(1.5)
+                if figuras_encapuzadas_ia2 > Jogador_ação:
+                    vida -= 215
+                    print(f"O \033[32mfigura-encapuzadas(2)\033[m avança e consegue se sobre sair, causando dano ao \033[1;49;36m{nome}\033[m")
+                    time.sleep(1)
+                    print("\033[1;49;91mDano recebido pelo jogador\033[m")
+                    time.sleep(1.5)
+                if figuras_encapuzadas_ia1 > 7:
+                    print(f"O \033[32m Figuras_encapuzadas(1) usa seus rapidos moviementos, para chegar por trás e executar um rapido golpe")
+                    vida -= 100
+                    if aliados == 1:
+                        vida_aliado1 -= 75
+                        time.sleep(1.5)
+        if figuras_encapuzadas < 0:
+            exp += 60
+            print(f"Em um momento de desequilíbrio dos inimigos, \033[1;49;36m{nome}\033[m desferiu golpes precisos, incapacitando um deles.")
+            print("\033[0;49;90mA primeiro figura-encapuzada sucumbi\033[m")
+            figuras_encapuzadas_ia1 = figuras_encapuzadas_iadeath
+            figuras_encapuzadas_vencidos += 1
+        if figuras_encapuzadas2 < 0:
+            exp += 120
+            print(f"\033[37m{nome}\033[m derrota a segunda figura-encapuzada")
+            figuras_encapuzadas_vencidos += 1
+            figuras_encapuzadas_ia2 = figuras_encapuzadas_iadeath
+            gold += 300
+            break
+        if aliados == 1:
+            if vida_aliado1 < 0:
+                print("\033[1;34m{}\033[m foi nocauteado".format(aliado_nome1))
+                Aliado_1 = False
+                a1_aliado = True
+                time.sleep(1)
+            if Aliado_1 > figuras_encapuzadas_ia1:
+                print(f"Com a distração criada, \033[1;34m{aliado_nome1}\033[m avançou com destreza, desferindo um golpe certeiro no encapuzado à esquerda. ")
+                time.sleep(1.5)
+                print("O oponente, momentaneamente atordoado, tentou se reequilibrar.")
+                figuras_encapuzadas -= 175
+            if figuras_encapuzadas_ia1 > Aliado_1:
+                print("Antes que pudesse reagir completamente, Alberto sentiu uma mordida violenta em seu braço.")
+                vida_aliado1 -= 200
+        if vida < 0:
+            print("\033[4;31mGame over\033[m")
+            time.sleep(1.5)
+            print(f"O \033[32mInimigo(1)\033[mvida atual {figuras_encapuzadas}, O \033[32mInimigo(2)\033[mvida atual {figuras_encapuzadas2},")
+            sys.exit()
+            break
+    if vida < 0:
+        print("\033[4;31mGame over\033[m")
+        time.sleep(1.5)
+        print(f"O \033[2;49;32mInimigo(1)\033[m vida atual \033[5;49;32m{figuras_encapuzadas}\033[m, O \033[2;49;32mInimigo(2)\033[m vida atual \033[5;49;32m{figuras_encapuzadas2}\033[m")
+        sys.exit()
+Ossos_goblins = 0
+def itens_Goblin(nome, Ossos_goblins):
+    time.sleep(2)
+    print("\033[33mNovo item\033[m")
+    print("2- Ossos goblins")
+    time.sleep(1)
+    inventario.append('Ossos(goblins) = 2')
+    if Ossos_goblins == 4:
+        inventario.remove('Ossos(goblins) = 2')
+        inventario.remove('Ossos(goblins) = 2')
+        time.sleep(1)
+        inventario.append('Ossos(goblins) = 4')
+        time.sleep(1)
+    if Ossos_goblins == 6:
+        inventario.remove('Ossos(goblins) = 2')
+        inventario.remove('Ossos(goblins) = 4')
+        time.sleep(1)
+        inventario.append('Ossos(goblins) = 6')
+        time.sleep(1)
+    if Ossos_goblins == 8:
+        inventario.remove('Ossos(goblins) = 2')
+        inventario.remove('Ossos(goblins) = 4')
+        inventario.remove('Ossos(goblins) = 6')
+        time.sleep(1)
+        inventario.append('Ossos(goblins) = 8')
+
+
+figuras_encapuzadas_iniciante(vida, nome, gold, vida_aliado1, aliados, aliado_nome1, crítico, exp, adptação, a1_aliado,Evasão)
+Ossos_goblins += 2
+itens_Goblin(nome, Ossos_goblins)
+time.sleep(1)
+exp += 500
+level += 5
+gold += 250
+rotina(exp, vida, level, gold)
+if aliados == 1:
+    print(f"\033[37m{nome}\033[m esta com {vida} de vida, \033[1;34m{aliado_nome1}\033[m esta com {vida_aliado1} de vida")
+pausa_dramatica()
+if aliados == 0:
+    print(f"Com essa luta intenção no caminho para a nova cidade,{nome} decide apresar-se para chegar mais rapido ainda em seu objetivo")
+time.sleep(1.5)
+print(f"{nome} e {aliado_nome1} decidiram acelerar o passo, para chegarem mais rapido a cidada, para previnir outro incidente.")
+time.sleep(1.5)
+print(f"Chegando à nova cidade, depararam-se com uma metrópole agitada, repleta de vida e cultura única")
+pausa_dramatica()
+print("""Procuraram bibliotecas, sábios locais e pessoas conhecedoras, ávidas por absorver cada detalhe que 
+pudessem adquirir para desvendar os mistérios desse mundo.""")
+time.sleep(3.0)
+print("""Explorando os corredores das bibliotecas e conversando com os eruditos da cidade, Art e seu aliado descobriram "
+informações fascinantes sobre a história antiga, a geografia diversificada""")
+time.sleep(2)
+print(f"Com o passar do tempo,{nome} e {aliado_nome1} foram adquirindo mais conhecimento atraves da leitura de varios livros sobre")
+time.sleep(1.8)
+print(f"Cada livro, cada conversa, adicionava peças valiosas ao quebra-cabeça que tentavam montar.")
+print(".", end="")
+time.sleep(0.5)
+print(".", end="")
+time.sleep(0.5)
+print(".", end="")
+time.sleep(1.9)
+print("Com paciência e determinação, compilaram conhecimentos cruciais sobre as dinâmicas entre as diferentes cidades, os recursos disponíveis e até mesmo rumores")
+time.sleep(1.5)
+print(f"Após algumas horas adquirindo mais e mais conhecimento,um sabio local interesou-se neles, e decidiu ajuda-lo em sua busca")
+print("==========" * 10)
+time.sleep(1.5)
+print("Cap-3-finalizado!")
+print("==========" * 10)
+print("Criador:Esta gostando até aqui?")
+time.sleep(1.5)
+gostando = str(input("[S/Yes/Claro/...]")).strip().upper()
+if gostando == "S":
+    print("Obrigado,vamos continuar então")
+elif gostando == "Claro":
+    print("Isso ae, vamos continuar!")
+if gostando == "Yes":
+    print("Thanks,let's continus your adventure")
+if gostando == "...":
+    print("Se você escolheu essa opção estava esperando um [não] como opção então")
+    time.sleep(1.5)
+    gostando_2 = str(input("Está gostando \033[36m[S/N]\033[m?")).strip().upper()
+    if gostando_2 == "S":
+        print("Agora sim")
+    if gostando_2 == "N":
+        print("Então podemos parar aqui certo?!")
+        time.sleep(1)
+        print("Fechando o programa...")
+        tempo_final = time.time()
+        print(f"Ultimos dados salvos:")
+        print(f"Nome:[{nome}]"
+              f"Nivel[{level}]"
+              f"Gold[{gold}]"
+              f"Aliado[{aliado_nome1}]"
+              f"Tempo de jogo[{int(tempo_inicial - tempo_final / 60)}] minutos")
+        sys.exit()
+time.sleep(1.5)
+print("==========" * 10)
+print("30 MINUTOS DEPOIS....")
+time.sleep(1)
+print("...")
+time.sleep(1.5)
+print(f"Com gratidão, agradeceram ao ancião por sua disposição em ajudá-los e esperaram ansiosos por seus ensinamentos.")
+time.sleep(2)
+print(f"O sábio, um homem de barbas longas e olhos sábios, compartilhou conhecimentos profundos sobre o reino em que se encontravam.")
+time.sleep(1.5)
+print(f"{nome}, preparado com mais informações, decidiu aplicar de imediato as lições aprendidas, realizando uma análise detalhada do ambiente ao seu redor")
+time.sleep(1.8)
+print("Principais descobertas:")
+print("""1-[O Local - Uma Subcapital Militar]
+2-[Classes Baseadas em Habilidades e Conhecimento]
+3-[Escalada Social por Desafios]""")
+time.sleep(3)
+print("===" * 15)
+time.sleep(2)
+print(f"Com a analise rapida feito por {nome} decidiu sair de lá e correr em busca de uma nova forma de adquirir habilidade que tanto era requisitada.")
+time.sleep(3)
+print("===" * 15)
+time.sleep(2)
+print(f"Com suas análises rápidas e conclusões afiadas, {nome} tomou a decisão de deixar a subcapital para buscar uma nova forma de adquirir as habilidades tão requisitadas naquele mundo.")
+time.sleep(1.8)
+print(f"{nome} e {aliado_nome1} partiram, prontos para colocar em pratica o que adquiriram de conhecimento no local")
+pausa_dramatica()
+print(f"Enquanto atravessavam terras desconhecidas, enfrentaram desafios diversos, desde criaturas selvagens até ambientes hostis.")
+time.sleep(2.5)
+print(f"Durante sua jornada, {nome} e {aliado_nome1} se depararam com mestres itinerantes, experts em diversas formas de combate e sabedoria.")
+time.sleep(1.5)
+print(f"Esses sábios ambulantes ofereceram treinamentos intensivos, compartilhando técnicas avançadas e insights valiosos sobre o mundo ao redor.")
+time.sleep(1.5)
+print(f"{nome} mergulhou nas lições, aprimorando sua destreza com seu novo equipamento e {aliado_nome1} refinou suas habilidades")
+time.sleep(1.5)
+print(f"Aprenderam, também, sobre a história das diferentes regiões e os segredos que moldavam o reino.")
+time.sleep(1.5)
+print("Com o tempo passado-la, contribuiu para a crescente bagagem de conhecimento e habilidade da dupla.")
+time.sleep(1.5)
+print(f"A busca por desafios mais significativos levou {nome} e {aliado_nome1} a terras distantes, onde encontraram guerreiros habilidosos")
+time.sleep(1.5)
+print(f"ENTÃO PARA DECIDIR QUEM IRIA ENFRENTAR AQUELE NOVO GUERREIRO {nome} E {aliado_nome1} DECIDIRAM FAZER UM JOGO")
+time.sleep(1.5)
+print("\033[1;49;33mPedra/Papel e Tesoura\033[m")
+print("=-=-" * 10)
+time.sleep(1)
+def pedra_papel_tesoura(rodada,aliado_vencido,jogador_vencido):
+    print(f"\033[4;49;33mA cada 2 vitorias sera contada 1 ponto tanto para {nome} quando para {aliado_nome1}\033[m")
+    time.sleep(1.5)
+    pontos_jogador = 0
+    pontos_aliado = 0
+    aliado_vencido = 0
+    jogador_vencido = 0
+    while True:
+        print("===" * 15)
+        time.sleep(1)
+        print(f"Rodada \033[1;34m{rodada}\033[m")
+        rodada += 1
+        itens = ("\033[1;49;90mPEDRA\033[m", "\033[1;49;97mPAPEL\033[m", "\033[0;49;94mTESOURA\033[m")
+        aliado = randint(0, 2)
+        print("Suas opções:"
+              "[0]-PEDRA"
+              "[1]-PAPEL"
+              "[2]-TESOURA")
+        Jogador = int(input("Qual a sua escolher?"))
+        time.sleep(1)
+        pausa_dramatica()
+        time.sleep(1)
+        print(f"O \033[1;34m{aliado_nome1}\033[m escolheu usar {itens[aliado]}")
+        if aliado == 0:
+            if Jogador == 0:
+                print(f"\033[1;49;36m{nome}\033[m usou \033[1;49;90m(Pedra)\033[m")
+                time.sleep(1)
+                print("\033[1;49;39mEmbate\033[m")
+                time.sleep(1)
+            elif Jogador == 1:
+                print(f"\033[1;49;36m{nome}\033[m usou \033[1;49;97m(Papel)\033[m")
+                time.sleep(1)
+                print(f"\033[1;49;36m{nome}\033[m \033[5;49;92mganhou\033[m")
+                time.sleep(1)
+                pontos_jogador += 1
+            elif Jogador == 2:
+                print(f"\033[1;49;36m{nome}\033[m usou \033[0;49;94m(Tesoura)\033[m")
+                print(f"\033[1;34m{aliado_nome1}\033[m ganhou")
+                pontos_aliado += 1
+                time.sleep(1)
+            else:
+                print("\033[0;31;40mação inválida\033[m")
+        elif aliado == 1:
+            if Jogador == 0:
+                print(f"\033[1;49;36m{nome}\033[m usou \033[1;49;90m(Pedra)\033[m")
+                print(f"\033[1;34m{aliado_nome1}\033[m \033[1mganhou\033[m")
+                pontos_aliado += 1
+                time.sleep(1)
+            elif Jogador == 1:
+                print(f"\033[1;49;36m{nome}\033[m usou \033[1;49;97m(Papel)\033[m")
+                print("\033[1;49;39mEmbate\033[m")
+                time.sleep(1)
+            elif Jogador == 2:
+                print(f"\\033[1;49;36m{nome}\033[m usou \033[0;49;94m(Tesoura)\033[m")
+                print(f"\033[1;49;36m{nome}\033[m \033[5;49;92mganhou\033[m")
+                pontos_jogador += 1
+                time.sleep(1)
+            else:
+                print("\033[0;31;40m ação inválida\033[m")
+
+        elif aliado == 2:  # Tesoura
+            if Jogador == 0:
+                print(f"\033[1;49;36m{nome}\033[m usou \033[1;49;90m(Pedra)\033[m")
+                print(f"\033[1;49;36m{nome}\033[m \033[5;49;92mganhou\033[m")
+                pontos_jogador += 1
+                time.sleep(1)
+            elif Jogador == 1:
+                print(f"\033[1;49;36m{nome}\033[m usou \033[1;49;97m(Papel)\033[m")
+                print(f"{aliado_nome1} ganhou")
+                pontos_aliado += 1
+                time.sleep(1)
+            elif Jogador == 2:
+                print(f"\033[1;49;36m{nome}\033[m usou \033[0;49;94m(Tesoura)\033[m")
+                pausa_dramatica()
+                print("\033[1;49;39mEmbate\033[m")
+                time.sleep(1)
+            else:
+                print("\033[0;31;40m ação inválida\033[m")
+        if pontos_jogador == 2:
+            aliado_vencido += 1
+            print(f"\033[1;49;36m{nome}\033[m \033[5;49;92mConseguiu ganhar {aliado_vencido} do \033[m \033[1;34m{aliado_nome1}\033[m!")
+            pontos_jogador = 0
+        if aliado_vencido == 3:
+            print(f"\033[1;49;36m{nome}\033[m conseguiu vencer\033[m")
+            time.sleep(1.5)
+            break
+        if pontos_aliado == 2:
+            jogador_vencido += 1
+            print(f"\033[31m{aliado_nome1} conseguiu ganhar {jogador_vencido} do\033[m \033[1;49;36m{nome}\033[m!\033[m")
+            pontos_aliado = 0
+        if jogador_vencido == 3:
+            print(f"\033[1;34m{aliado_nome1}\033[m venceu, e ira começar a batalha")
+            break
+pedra_papel_tesoura(rodada,aliado_vencido,jogador_vencido)
+time.sleep(1.5)
+print(f"Tentativas de \033[37m{nome}\033[{pontos_aliado}] ,até alcançar seu objetivo")
+pausa_dramatica()
+vida_aventureiro = 300
+rodada = 0
+if vida <= 700:
+    vida_aventureiro += 700
+elif vida == 1000:
+    vida_aventureiro += 1000
+if vida >= 1300:
+    vida_aventureiro += 1800
+else:
+    vida_aventureiro += 600
+print(f"Com isso foi decidido quem iria iniciar o duelo")
+if jogador_vencido == 3:
+    print(f"{aliado_nome1} se prepara para o inicio do combate")
+elif aliado_vencido == 3:
+    print(f"{nome} toma dianteira e inicia o combate")
+
+def guerreiro_habilidoso(rodada,vida, nome, vida_aliado1, aliados, aliado_nome1, crítico, exp, adptação,a1_aliado, Evasão,vida_aventureiro,jogador_vencido,aliado_vencido):
+    vida_aventureiro += 50
+    aventureiro_morot1 = 0
+    rodada = 0
+    if aliados == 1:
+        if jogador_vencido == 3:
+            print(f"\033[1;49;36m{nome}\033[m e \033[1;34m{aliado_nome1}\033[m enfrentaram o novo guerreiro habilidoso no centro da subcapital")
+            time.sleep(1.5)
+            print("Cada um dos combatentes assumiu sua postura, preparado para o duelo iminente.")
+    if aliados == 0:
+        print("Cada um dos combatentes assumiu sua postura, preparado para o duelo iminente.")
+    if Manto_lobo >= 1:
+        print(f"\033[1;49;36m{nome}\033[m esta usando o manto de lobo, por isso tera uma \033[32mmaior chance de desviar\033[m de ataques")
+        Evasão += 2
+    while True:
+        print("====" * 15)
+        time.sleep(1)
+        print(f"Rodada \033[1;34m{rodada}\033[m")
+        time.sleep(2)
+        Jogador_ação = randint(3, 14)
+        aventureiro_ai = randint(0, 18)
+        if aliados == 1:
+            if jogador_vencido == 3:
+                Aliado_1 = randint(3, 15)
+        if a1_aliado == True:
+            Aliado_1 = False
+        time.sleep(1)
+        rodada += 1
+        Evasão = 0
+        if aliado_vencido == 3:
+            print(f"\033[1;49;36m{nome}\033[m tirou \033[2;49;97m{Jogador_ação}\033[m,já o Aventureir-habilidoso tirou \033[2;49;97m{aventureiro_ai}\033[m")
+            if Jogador_ação >= 9:
+                crítico += 1
+                adptação += 1
+        if jogador_vencido == 3:
+            if aliados == 1:
+                if a1_aliado == False:
+                    print(f"\033[1;34m{aliado_nome1}\033[m tirou \033[2;49;97m{Aliado_1}\033[m,já o Aventureir-habilidoso tirou \033[2;49;97m{aventureiro_ai}\033[m")
+            if vida_aliado1 <= 0:
+                    print(f"\033[1;34m{aliado_nome1}\033[m foi nocauteado")
+                    a1_aliado = True
+                    time.sleep(1)
+                    print(f"Com isso \033[1;49;36m{nome}\033[m asume a batalha pelo seu aliado caido")
+                    jogador_vencido = 0
+                    aliado_vencido = 3
+            if aliados == 1:
+                if Aliado_1 > aventureiro_ai:
+                    print(f"Com a distração criada, \033[1;34m{aliado_nome1}\033[m avançou com destreza, desferindo um golpe certeiro")
+                    time.sleep(1.5)
+                    print("O oponente, momentaneamente atordoado, tentou se reequilibrar.")
+                    vida_aventureiro -= 250
+                    print(f"{aliado_nome1}, por sua vez, concentra-se em estudar os padrões de movimento do guerreiro habilidoso, buscando identificar brechas em sua defesa.")
+                    time.sleep(1.8)
+                    print(f"\033[0;49;92m{aliado_nome1} coseguiu causar dano ao seu inimigo \033[m")
+                if Aliado_1 == aventureiro_ai:
+                    print("\033[1;49;39mAmbos se preparam para seus movimentos,porém ambos se interceptão\033[m")
+                    time.sleep(1.8)
+                if aventureiro_ai > Aliado_1:
+                    print(f"Antes que pudesse reagir completamente, {aliado_nome1} sentiu uma presença atraz de si mesmo, antes que pudesse se virar foi golpeado violentamente.")
+                    vida_aliado1 -= 250
+                    print(f"\033[1;49;91mDano recebido pelo {aliado_nome1}\033[m")
+                if aventureiro_ai == [2,4,6,8,10,12,16,18]:
+                    print(f"A tentativa de desarmamento é bem executada, mas o guerreiro habilidoso antecipa o movimento de {aliado_nome1}, bloqueando habilmente e mantendo sua arma segura.")
+                    time.sleep(1.8)
+                    vida_aventureiro += 100
+                if aventureiro_ai > 14:
+                    print(f"Determinado e concentrado o guerreiro avança com uma concentraçaõ é uma furia tremenda avança para cima de {aliado_nome1} o ferindo drasticamente")
+                    vida_aliado1 -= 675
+                    pausa_dramatica()
+                    for n in range(0, 3):
+                        vida_aliado1 -= 120
+                        n = vida
+                        time.sleep(1.5)
+                    print(f"\033[1;49;92m{vida_aliado1}\033[m")
+                    print(f"\033[1;49;91mDano recebido pelo {aliado_nome1}\033[m")
+                if vida_aventureiro <= 0:
+                    exp += 60
+                    print(f"Em um momento de desequilíbrio do guerreiro, \033[1;49;36m{aliado_nome1}\033[m desferiu golpes precisos, incapacitando um deles.")
+                    time.sleep(1.8)
+                    print(f"\033[4;49;92m Guerreiro incapacitado de lutar por {aliado_nome1} \033[m")
+                    aventureiro_morot1 += 1
+                    break
+        if aliado_vencido == 3:
+                if Jogador_ação > aventureiro_ai:
+                    print(f"{nome} avança com seu armamento, lançando golpes calculados.")
+                    time.sleep(1.5)
+                    print("O oponente, momentaneamente atordoado, tentou se reequilibrar.")
+                    print(f"{nome}, por sua vez, concentra-se em estudar os padrões de movimento do guerreiro habilidoso, buscando identificar brechas em sua defesa.")
+                    time.sleep(1.8)
+                    vida_aventureiro -= 250
+                    print(f"\033[0;49;92m{nome} coseguiu causar dano ao seu inimigo \033[m")
+                if Jogador_ação == aventureiro_ai:
+                    print("\033[1;49;39mAmbos se preparam para seus movimentos,porém ambos se interceptão\033[m")
+                    time.sleep(1.8)
+                if aventureiro_ai > Jogador_ação:
+                    print("O guerreiro habilidoso prepara um ataque concentrado.")
+                    time.sleep(1.8)
+                    print(f"Em um intervalo de tempo quase inexistente,o guerreiro surge atrás de \033[1;49;36m{nome}\033[m como uma sombra acertando suas costas")
+                    vida -= 250
+                    print("\033[1;49;91mDano recebido pelo jogador\033[m")
+                if aventureiro_ai == [2,4,6,8,10,12,16,18]:
+                    print(f"A tentativa de desarmamento é bem executada, mas o guerreiro habilidoso antecipa o movimento de {aliado_nome1}, bloqueando habilmente e mantendo sua arma segura.")
+                    vida_aventureiro += 100
+                    time.sleep(1.8)
+                if aventureiro_ai > 14:
+                    print(f"Determinado e concentrado o guerreiro avança com uma concentraçaõ é uma furia tremenda avança para cima de {nome} o ferindo drasticamente")
+                    vida -= 675
+                    pausa_dramatica()
+                    for n in range(0, 3):
+                        vida -= 120
+                        n = vida
+                        time.sleep(1.5)
+                    print(f"\033[1;49;92m{vida}\033[m")
+                    print("\033[1;49;91mDano recebido pelo jogador\033[m")
+                if vida_aventureiro <= 0:
+                    exp += 60
+                    print(f"Em um momento de desequilíbrio do guerreiro, \033[1;49;36m{aliado_nome1}\033[m desferiu golpes precisos, incapacitando um deles.")
+                    time.sleep(1.8)
+                    print(f"4;49;92mGuerreiro incapacitado de lutar por {nome}\033[m")
+                    aventureiro_morot1 += 1
+                    break
+        if vida < 0:
+            print("\033[4;31mGame over\033[m")
+            time.sleep(1.5)
+            print(f"O\033[32m Guerreiro\033[m vida atual {vida_aventureiro}")
+            break
+            sys.exit()
+
+
+guerreiro_habilidoso(rodada,vida, nome, vida_aliado1, aliados, aliado_nome1, crítico, exp, adptação,a1_aliado, Evasão,vida_aventureiro,jogador_vencido,aliado_vencido)
+
+rodada = 0
+time.sleep(1.5)
+exp += 500
+vida += 1500
+level += 5
+gold += 500
+rotina(exp, vida, level, gold)
+time.sleep(1.5)
+print(f"Após a intensa batalha, {nome}, decide descansar para seguir para o proximo desafio!")
+pausa_dramatica()
+print(f"Com isso {nome} e {aliado_nome1} decidem encontrar mais desafiantes, porém agora com um novo estilo de luta")
+pausa_dramatica()
+print("===" * 10)
+print("\033[1;49;35mNovo estilo de jogo desbloquedado!\033[m")
+print("===" * 10)
+time.sleep(1.5)
+golpes_acertados = 0
+def novo_estilo_duelo(golpes_acertados, rodada,vida,jogador_sucumbiu):
+    while True:
+        print("====" * 15)
+        time.sleep(1)
+        print(f"Rodada \033[1;34m{rodada}\033[m")
+        time.sleep(2)
+        valor1 = randint(3, 30)
+        valor2 = randint(2, 22)
+        junção = valor1 * valor2
+        time.sleep(1)
+        rodada += 1
+        print(f"\033[1;49;36m{nome}\033[m avança em direção ao seu novo inimigo")
+        print("De acordo com quantos resultados você acerte, ira deficinir sua chance de vitoria")
+        golpes = int(input(f"Para acertar o golpe, acerta o resultado! \033[0;39;93m{valor1}\033[m X \033[0;39;93m{valor2}\033[m :"))
+        if golpes == junção:
+            print(f"\033[1;49;36m{nome}\033[m \033[1;49;92macerto um golpe!\033[m")
+            time.sleep(1)
+            golpes_acertados += 1
+            print(f"\033[1;49;36m{nome}\033[m\033[1;34m acertos + (1)\033[m")
+            time.sleep(1)
+        if golpes_acertados == 10:
+            print("-=-=-=-" * 5)
+            print(f"\033[1;49;36m{nome}\033[m conseguiu acertar mais de 10 golpes em seu adversario, o derrotando")
+            time.sleep(1.5)
+            print("-=-=-=-" * 5)
+            break
+        if vida <= 0:
+            print(f"\033[1;49;36m{nome}\033[m foi acertado muitas vezes, pelo seu inimigo e seu corpo sucumbiu aos golpes")
+            pausa_dramatica()
+            jogador_sucumbiu += 1
+            break
+        if golpes is not junção:
+            print(f"Valor certo:\033[2;49;95m{junção}\033[m")
+            print(f"\033[1;49;36m{nome}\033[m ataca com velocidade, porém ele erra o alvo, no qual se defende é contra ataca")
+            print("\033[1;49;91mDano recebido pelo jogador\033[m")
+            vida -= 200
+novo_estilo_duelo(golpes_acertados, rodada,vida,jogador_sucumbiu)
+if jogador_sucumbiu == 1:
+    print(f"Após uma longa disputa, infelismente \033[1;49;36m{nome}\033[m sucumbiu na mão de seu inimigo, tendo que ser levado por {aliado_nome1}")
+    vida += 100
+elif golpes_acertados == 10:
+    print(f"Após uma disputada partida \033[1;49;36m{nome}\033[m cnsegue se sobresair, e vence seu inimigo")
+pausa_dramatica()
+time.sleep(1.8)
+print(f"Com a conclusão de seu ultimo desafio {nome} e {aliado_nome1}, finalmente retornam a capital")
+time.sleep(1.5)
+print("====" * 10)
+print("Cap \033[2;49;95m3\033[m-finalizado")
+time.sleep(1.5)
+print("====" * 10)
+# Continuação parte(4)
+exp += 200
+gold = 100
+level += 2
+time.sleep(1)
+rotina(exp, vida, level, gold)
+time.sleep(1)
+print(f"Parabens \033[37m{nome}\033[m, você ganhou um bônus entra, por conseguir sobreviver até aqui!")
+time.sleep(1.8)
+if aliados == 1:
+    print(f"\033[34mSistema:\033[m\033[37m{nome}\033[m Ganhou um \033[34mbônus extra!\033[m")
+time.sleep(2.0)
+print(f"Ao atravessarem os portões da subcapital, sentiram uma mistura de nostalgia e determinação.")
+time.sleep(1.5)
+print(f"""Agora, com um novo status e uma bagagem rica em experiências, estavam prontos para continuar moldando seus 
+destinos e desvendando os segredos do mundo que se revelava diante deles.""")
+pausa_dramatica()
+if aliados == 1:
+    print(f"Ao entrarem na subcapital, {nome} e {aliado_nome1} perceberam que muitas coisas haviam mudado desde sua última visita")
+    time.sleep(1.5)
+    print(f"Novos edifícios se erguiam, as ruas estavam mais movimentadas, e a atmosfera vibrava com uma energia renovada.")
+    time.sleep(2.5)
+    print(f"Parecia que a subcapital estava em constante evolução, assim como eles.")
+    time.sleep(2.5)
+    print(f"Decididos a se reintegrarem à comunidade, os dois amigos começaram a explorar os lugares familiares.")
+    time.sleep(1.5)
+    print(f"Após a volta para a capital {nome} decidi fazer um teste para subir como um guerreiro da capital, e subir sua hierarquia social")
+    print(f"Em busca de adquirir mais poder e influencia, para poder descobir mais sobre esse mundo")
+    pausa_dramatica()
+if aliados == 0:
+    print(f"Ao entrar na subcapital, {nome} perceberu que muitas coisas haviam mudado desde sua última visita")
+    print(f"Novos edifícios se erguiam, as ruas estavam mais movimentadas, e a atmosfera vibrava com uma energia renovada.")
+    time.sleep(2.5)
+    print(f"Parecia que a subcapital estava em constante evolução, assim como ele.")
+    time.sleep(2.5)
+    print(f"Decidido a se volar à comunidade, {nome} começa a explorar os lugares familiares que frequentava.")
+    time.sleep(1.5)
+    print(f"Após a volta para a capital {nome} decidi fazer um teste para subir como um guerreiro da capital, e subir sua hierarquia social")
+    print(f"Em busca de adquirir mais poder e influencia, para poder descobir mais sobre esse mundo")
+    pausa_dramatica()
+
+print(f"Com isso {nome} correu por toda a capital em busca de informações sobre como fazer a prova de admisão, até encontrar")
+pausa_dramatica()
+print(f"\033[1;49;33mAgora cara a cara com o recrutador você deve acertar suas perguntas, para passar pela primeira etap de 3 (1/3)\033[m")
+
+if level >= 7:
+    print(f"\033[37m{nome}\033[m aprendeu a habilidade \033[35m(Subjugar)\033[m")
+    time.sleep(1.5)
+    print(f"\033[34mSistema:\033[mA habilidade \033[35m(Subjulgar)\033[m fara que seu dano se eleve, é os inimigos tenha uma menor chance de acerto")
+    vida += 700
+    Evasão += 3
+    crítico += 4
+pausa_dramatica()
+print("2 HORAS DEPOIS")
+pausa_dramatica()
+print(f"\033[5;49;94mO teste ira iniciar\033[m")
+pausa_dramatica()
+def novo_estilo_duelo(rodada):
+    chance = 0
+    acertos = 0
+    erros = 0
+    perguntas = 1
+    rodada = 0
+    while True:
+        print("====" * 15)
+        time.sleep(1)
+        print(f"Rodada \033[1;34m{rodada}\033[m")
+        time.sleep(2)
+        rodada += 1
+        if perguntas == 1:
+            print(f"Primeira pergunta aventureiro {nome}")
+            resposta_certa_1 = leiaInt("""Qual é a prioridade número um em uma situação de sobrevivência?
+1) Construir um abrigo
+2) Encontrar comida
+3) Purificar água
+4) Acender uma fogueira
+:""")
+            if resposta_certa_1 == 2:
+                print("\033[2;49;92mResposta certa\033[m")
+                acertos += 1
+                perguntas += 1
+            elif resposta_certa_1 == 1 or 3 or 4:
+                print("\033[2;49;91mRespota errada\033[m")
+                erros += 1
+
+        if perguntas == 2:
+            print(f"Segunda pergunta aventureiro {nome}")
+            resposta_certa_2 = leiaInt("""O que é essencial para a sinalização de emergência?
+1) Espelho
+2) Corda
+3) Binóculos
+4) Bússola
+:""")
+            if resposta_certa_2 == 1:
+                print("\033[2;49;92mResposta certa\033[m")
+                acertos += 1
+                perguntas += 1
+            elif resposta_certa_2 == 3 or 2 or 4:
+                print("\033[2;49;91mRespota errada\033[m")
+                erros += 1
+
+
+        if perguntas == 3:
+            print(f"Terceira pergunta aventureiro {nome}")
+            resposta_certa_3 = leiaInt("""Em uma situação de frio extremo, qual é a melhor maneira de evitar a hipotermia?
+1) Vestir camadas de roupas
+2) Comer alimentos ricos em proteínas
+3) Dormir diretamente no chão
+4) Evitar o movimento para conservar energia
+:""")
+            if resposta_certa_3 == 1:
+                print("\033[2;49;92mResposta certa\033[m")
+                acertos += 1
+                perguntas += 1
+            elif resposta_certa_3 == 3 or 2 or 4:
+                print("\033[2;49;91mRespota errada\033[m")
+                erros += 1
+
+        if perguntas == 4:
+            print(f"Quarta pergunta aventureiro {nome}")
+            resposta_certa_4 = leiaInt("""Qual é a regra geral ao escolher alimentos selvagens para consumo em uma situação de sobrevivência?
+1) Se parecer comestível, é seguro comer
+2) Comer apenas frutas
+3) Evitar qualquer planta desconhecida
+4) Cozinhar sempre os alimentos antes de consumir
+:""")
+            if resposta_certa_4 == 3:
+                print("\033[2;49;92mResposta certa\033[m")
+                acertos += 1
+                perguntas += 1
+            elif resposta_certa_4 == 1 or 2 or 4:
+                print("\033[2;49;91mRespota errada\033[m")
+                erros += 1
+
+        if acertos >= 3 and acertos >= erros:
+            print(f"Você passou na primeira etapa")
+            print(f"{nome} tentativas fracassada {erros}, acertos {acertos}")
+            break
+novo_estilo_duelo(rodada)
+print(f"Ao final da primeira fase, {nome} foi escoltado para uma sala de espera, onde os resultados seriam anunciados.")
+time.sleep(1.5)
+print(f"A tensão pairava no ar enquanto os candidatos aguardavam ansiosos.")
+pausa_dramatica()
+print(f"""Quando o momento chegou, um mensageiro real proclamou os nomes dos que avançariam para o próximo estágio, 
+e o nome de {nome} ecoou na sala""")
+time.sleep(2.5)
+print(f"""Avançando para a segunda fase, os candidatos foram instruídos a explorar a Floresta dos Desafios, 
+um local conhecido por seus terrenos traiçoeiros e criaturas misteriosas""")
+time.sleep(2.5)
+print(f"{nome} teria que colocar em prática o aprendizado da fase anterior e sobreviver durante uma semana nesse novo habitat.")
+time.sleep(1.5)
+print(f"Ao decorrer do teste, foi instruído que os participantes, não sendo apenas {nome}, tomassem cuidado, pois haveria candidatos que pretendiam matar uns aos outros.")
+time.sleep(1.8)
+print(f"Surpreso com essa notícia, {nome} mal teve tempo para processar a informação até que um grupo de três candidatos o cercou e avançou em sua direção.")
+time.sleep(1.5)
+print(f"Era uma emboscada, uma traição entre colegas que compartilhavam o mesmo objetivo")
+
+
+
+print("Após uma  longa corrida \033[37m{}\033[m consegue chegar no covil onde estavam as criatuas".format(nome))
+time.sleep(1.5)
+print(f"\033[36mSistema:\033[mEstá preparado,para lutar?")
+entrar_covil = str(input("\033[36m[S/N]\033[m").strip().upper())
+if entrar_covil == "S":
+    print("\033[37m{}\033[m decidi entrou no covil...".format(nome))
+elif entrar_covil == "N":
+    print("ok")
+    time.sleep(1.5)
+    print(".", end="")
+    time.sleep(0.5)
+    print(".", end="")
+    time.sleep(0.5)
+    print(".", end="")
+    time.sleep(2)
+    entrar_covil2 = str(input("Agora vamos entrar ?\033[36m[S/N]\033[m").strip().upper())
+    if entrar_covil2 == "S":
+        print("Então vamos lá \033[37m{}\033[m".format(nome))
+        time.sleep(1)
+    elif entrar_covil2 == "N":
+        print("Você não tem desculpa dessa vez, vamos!!!")
+time.sleep(1.5)
+print("...")
+time.sleep(1)
+print("""Enquanto \033[37m{}\033[m entra no covil, ele avista 3 sombras de movendo em sua direção...
+pouco tempo depois percebeu que se tratavão de \033[32m3 goblin\033[m que vieram correndo sua direção o atacando...""".format(
+    nome))
+time.sleep(1.5)
+print("______________" * 4)
+print("\033[37m{}\033[m irá lutar contra \033[32m3 goblins\033[m!".format(nome))
+time.sleep(1)
+print("______________" * 4)
+Goblin_Strong1 = 1200
+Goblin_Strong2 = 1300
+a1_aliado = False
+a2_aliado = False
+
+
+def Goblins_3(rodada, Goblin_Strong1, Goblin_Strong2, vida, crítico, vida_aliado1, vida_aliado2, Goblin_morot1, exp,
+              goblin_vencidos, gold, Goblin_iadeath, Manto_lobo, Evasão, a1_aliado, a2_aliado, aliados_2):
+    while True:
+        print("===" * 15)
+        time.sleep(1)
+        print("Rodada {}".format(rodada))
+        time.sleep(2)
+        if Manto_lobo >= 1:
+            print(
+                f"\033[37m{nome}\033[m esta usando o manto de lobo, por isso tera uma \033[32mmaior chance de desviar\033[m de ataques.")
+            Evasão += 2
+        Jogador_ação = randint(0, 13)
+        if aliados == 1:
+            if vida_aliado1 >= 0:
+                Aliado_1 = randint(0, 11)
+            if vida_aliado1 <= 0:
+                Aliado_1 = randint(0)
+        if aliados_2 == 1:
+            Aliado_2 = randint(0, 10)
+        if a1_aliado == True:
+            Aliado_1 = False
+        if a2_aliado == True:
+            Aliado_2 = False
+        if Goblin_Strong1 >= 10:
+            Goblin_ia1 = randint(0, 13)
+        if Goblin_Strong2 >= 10:
+            Goblin_ia2 = randint(0, 15)
+        time.sleep(1)
+        rodada += 1
+        Evasão = 0
+        if aliados == 1:
+            print(
+                "jogador tirou {} o \033[1;34m{}\033[m tirou {},o \033[32mGoblin_Strong1\033[m-tirou {} o \033[32mGoblin_Strong2\033[m-tirou {}".format(
+                    Jogador_ação, aliado_nome1, Aliado_1, Goblin_ia1, Goblin_ia2))
+        if aliados_2 == 1:
+            print(
+                "jogador tirou {} o \033[35m{}\033[m tirou {},o \033[32mGoblin_Strong1\033[m-tirou {} o \033[32mGoblin_Strong2\033[m-tirou {}".format(
+                    Jogador_ação, aliado_nome2, Aliado_2, Goblin_ia1, Goblin_ia2))
+        if Jogador_ação >= 9:
+            crítico += 1
+            Evasão += 1
+        if crítico > 3:
+            vida += 300
+            print(
+                f"Apos conseguir tirar dados acima de 9, 3 vezes seguidas \033[37m{nome}\033[m  ativa a habilidade \033[34m(Adptação)\033[m é \033[34m(critico)\033[m")
+            Jogador_ação = randint(0, 15)
+            print(
+                f"Apos conseguir tirar dados acima de 9, 3 vezes seguidas \033[37m{nome}\033[m  ativa a habilidade \033[34m(Adptação)\033[m é \033[34m(critico)\033[m")
+            if Jogador_ação == Goblin_ia1:
+                print(f"""Por \033[37m{nome}\033[m estar um a habilidade  \033[34m(Adptação)\033[m ativade, ele consegue ferir os 
+2 goblins, tirando-o 250 de Hp""")
+                Goblin_Strong1 -= 250
+                Goblin_Strong2 -= 250
+                crítico -= 3
+        elif Evasão > 3:
+            print("~~~~~~" * 2)
+            print(
+                f"\033[37m{nome}\033[m conseguiu se adptar a batalha, conseguindo usar a habilidade \033[34mesquiva!\033[m")
+            vida += 300
+            time.sleep(1.5)
+            print("~~~~~~" * 2)
+            Goblin_ia1 = randint(0, 7)
+            Goblin_ia2 = randint(0, 7)
+            Evasão -= 0.5
+        elif Jogador_ação == Goblin_ia1:
+            print("Ambos atacaram, mas nenhum conseguiu lhe infrigir dano")
+            Evasão += 1
+            time.sleep(1.5)
+            if aliados == 1:
+                if Aliado_1 == Goblin_ia1:
+                    print("Ambos atacaram, mas nenhum conseguiu lhe infrigir dano")
+            if aliados_2 == 1:
+                if Aliado_2 == Goblin_ia1:
+                    print("Ambos atacaram, mas nenhum conseguiu lhe infrigir dano")
+        time.sleep(1.5)
+        if Jogador_ação > Goblin_ia1:
+            Goblin_Strong1 -= 215
+            print(
+                f"\033[37m{nome}\033[m foi mais rapido é mais habilidoso e causou dano ao \033[32mGoblin_strong1\033[m")
+            time.sleep(1)
+            print("\033[32mGoblin_strong 1\033[m perdeu 215 de hp")
+            time.sleep(1.5)
+        if aliados == 1:
+            if Aliado_1 > Goblin_ia1:
+                Goblin_Strong1 -= 175
+            print(
+                f"\033[34m{aliado_nome1}\033[m foi mais rapido é mais habilidoso e causou dano ao \033[32mGoblin_strong1\033[m")
+            time.sleep(1.5)
+            print("\033[32mGoblin_strong 1\033[m perdeu 175 de hp")
+        if aliados_2 == 1:
+            if Aliado_2 > Goblin_ia1:
+                Goblin_Strong1 -= 175
+                print(
+                    f"\033[35m{aliado_nome2}\033[m foi mais rapido é mais habilidoso e causou dano ao \033[32mGoblin_strong1\033[m")
+                time.sleep(1.5)
+                print("\033[32mGoblin_strong 1\033[m perdeu 175 de hp")
+        if Jogador_ação > Goblin_ia2:
+            Goblin_Strong2 -= 230
+            print(
+                f"\033[37m{nome}\033[m foi mais rapido é mais habilidoso e causou dano ao \033[32mGoblin_strong 2\033[m")
+            time.sleep(1)
+            print("\033[32mGoblin_strong 2\033[m perdeu 230 de hp")
+        time.sleep(1.5)
+        if aliados == 1:
+            if Aliado_1 > Goblin_ia2:
+                Goblin_Strong2 -= 175
+                print(
+                    f"\033[34m{aliado_nome1}\033[m foi mais rapido é mais habilidoso e causou dano ao \033[32mGoblin_strong 2\033[m")
+                time.sleep(1)
+                print("\033[32mGoblin_strong 2\033[m perdeu 175 de hp")
+        if aliados_2 == 1:
+            if Aliado_2 > Goblin_ia2:
+                Goblin_Strong2 -= 175
+                print(
+                    f"\033[35m{aliado_nome2}\033[m foi mais rapido é mais habilidoso e causou dano ao \033[32mGoblin_strong 2\033[m")
+                time.sleep(1)
+                print("\033[32mGoblin_strong 2\033[m perdeu 175 de hp")
+        elif Goblin_ia1 > Jogador_ação:
+            vida -= 300
+            print(
+                f"O \033[32mGoblin_strong 1\033[m avança e consegue sse sobre sair, causando dano ao \033[37m{nome}\033[m...")
+            time.sleep(1)
+            print(f"\033[37m{nome}\033[m \033[31mperdeu 300 de hp\033[m")
+            time.sleep(1.5)
+        if Goblin_ia2 > Jogador_ação:
+            vida -= 315
+            print(
+                f"O\033[32mGoblin_strong 2\033[m avança e consegue sse sobre sair, causando dano ao \033[37m{nome}\033[m...")
+            time.sleep(1)
+            print(f"\033[37m{nome}\033[m \033[31mperdeu 315 de hp\033[m")
+        if Goblin_ia1 > 8:
+            print(
+                f"O \033[32mGoblin_Strong1\033[m usa suas grandes unhas,e corta seu braço do \033[37m{nome}\033[m,causando \033[31msangramento\033[m")
+            vida -= 150
+            if aliados == 1:
+                vida_aliado1 -= 75
+            time.sleep(1.5)
+            if aliados_2 == 1:
+                vida_aliado2 -= 75
+            time.sleep(1.5)
+        if Goblin_ia2 > 10:
+            time.sleep(1.5)
+            print(f"""Ao conseguir tirar dados acima de 10, mais de 3 vezes, O \033[32mGoblin_strong 2\033[m entra em um 
+\033[31mde furia\033[m, executando 3 ataques em sequencia no jogador...""")
+            for n in range(0, 3):
+                vida -= 160
+                if aliados == 1:
+                    vida_aliado1 -= 150
+                if aliados_2 == 1:
+                    vida_aliado2 -= 150
+                n = vida
+                n1 = vida_aliado1
+                n2 = vida_aliado2
+                time.sleep(1.5)
+                print("Jogador vida \033[32m {}\033[m".format(vida))
+                time.sleep(0.8)
+                if aliados == 1:
+                    print(f"\033[1;34m{aliado_nome1}\033[m vida {vida_aliado1}")
+                time.sleep(1.5)
+                if aliados_2 == 1:
+                    vida_aliado2 -= 80
+                    print(f"\033[1;35m{aliado_nome2}\033[m vida {vida_aliado2}")
+        elif vida < 100:
+            print(
+                "\033[37m{}\033[m está em um estado \033[4;31mcrítico\033[m, por isso de agora em diante você deverá controlar ele!".format(
+                    nome))
+            time.sleep(3)
+            Escolha = int(input("""O que você fará agora?
+[1]-Ir pra cima para tentar matalo
+[2]-Recuar um pouco
+[3]-Jogar os dados"""))
+            if Escolha == 1:
+                print("\033[37m{}\033[m decidiu ir para cima dos \033[32mGoblins\033[m!".format(nome))
+                time.sleep(1.5)
+                Goblin_Strong2 -= 100
+                Goblin_Strong1 -= 100
+                Jogador_ação = randint(0, 12)
+                if aliados == 1:
+                    Aliado_1 = randint(0, 10)
+                if aliados_2 == 1:
+                    Aliado_2 = randint(0, 10)
+                Goblin_ia1 = randint(0, 11)
+                Goblin_ia2 = randint(0, 12)
+                if Jogador_ação == Goblin_ia1:
+                    print("Ambos atacaram, mas nenhum conseguiu lhe infrigir dano")
+                    time.sleep(1.5)
+                if aliados == 1:
+                    if Aliado_1 == Goblin_ia1:
+                        print("Ambos atacaram, mas nenhum conseguiu lhe infrigir dano")
+                        time.sleep(1.5)
+                if aliados_2 == 1:
+                    if Aliado_2 == Goblin_ia1:
+                        print("Ambos atacaram, mas nenhum conseguiu lhe infrigir dano")
+                        time.sleep(1.5)
+                elif Jogador_ação > Goblin_ia1:
+                    Goblin_Strong1 -= 150
+                    print(
+                        f"\033[37m{nome}\033[m foi mais rapido é mais habilidoso e causou dano ao \033[32mGoblin_strong 1\033[m")
+                    time.sleep(1)
+                    print("\033[32mGoblin_strong 1\033[m perdeu 150 de hp")
+                if aliados == 1:
+                    if Aliado_1 > Goblin_ia1:
+                        Goblin_Strong1 -= 100
+                        print(
+                            f"\033[1;34m{aliado_nome1}\033[m atacou o \033[32 Goblin_strong (1)\033[m tirando 100 de vida dele ")
+                        time.sleep(1.5)
+                if aliados_2 == 1:
+                    if Aliado_2 > Goblin_ia2:
+                        Goblin_Strong1 -= 100
+                        print(
+                            f"\033[1;35m{aliado_nome2}\033[m atacou o \033[32 Goblin_strong (1)\033[m tirando 100 de vida dele ")
+                        time.sleep(1.5)
+                elif Jogador_ação > Goblin_ia2:
+                    Goblin_Strong2 -= 100
+                    print(
+                        f"\033[37m{nome}\033[m foi mais rapido é mais habilidoso e causou dano ao \033[32mGoblin_strong 2\033[m")
+                    time.sleep(1)
+                    print("\033[32mGoblin_strong 2\033[m perdeu 100 de hp")
+                if aliados == 1:
+                    if Aliado_1 > Goblin_ia2:
+                        Goblin_Strong2 -= 100
+                        print(
+                            f"\033[34m{aliado_nome1}\033[m foi mais rapido é mais habilidoso e causou dano ao \033[32mGoblin_strong 2\033[m")
+                        time.sleep(1)
+                        print("\033[32mGoblin_strong 2\033[m perdeu 100 de hp")
+                if aliados_2 == 1:
+                    if Aliado_2 > Goblin_ia2:
+                        Goblin_Strong2 -= 100
+                        print(
+                            f"\033[35m{aliado_nome2}\033[m foi mais rapido é mais habilidoso e causou dano ao \033[32mGoblin_strong 2\033[m")
+                        time.sleep(1)
+                        print("\033[32mGoblin_strong 2\033[m perdeu 100 de hp")
+                elif Goblin_ia2 > Jogador_ação:
+                    vida -= 2150
+                    print(
+                        f"\033[37m{nome}\033[m foi atacado pelo \033[32mGoblin_Strong2\033[m e \033[31mperdeu\033[m \033[31m215\033[m de vida")
+                if aliados == 1:
+                    if Goblin_ia2 > Aliado_1:
+                        vida_aliado1 -= 200
+                        print(
+                            f"O \033[32mGoblin_strong 2\033[m avança e consegue sse sobre sair, causando dano ao \033[37m{aliado_nome1}\033[m...")
+                        time.sleep(1)
+                        print(f"\033[37m{aliado_nome1}\033[m \033[31mperdeu 200 de hp\033[m")
+                        time.sleep(1.5)
+                if aliados_2 == 1:
+                    if Goblin_ia2 > Aliado_2:
+                        vida_aliado1 -= 200
+                        print(
+                            f"O \033[32mGoblin_strong 2\033[m avança e consegue sse sobre sair, causando dano ao \033[37m{aliado_nome2}\033[m...")
+                        time.sleep(1)
+                        print(f"\033[35m{aliado_nome2}\033[m \033[31mperdeu 200 de hp\033[m")
+                        time.sleep(1.5)
+                if Goblin_ia1 > 7:
+                    print(f"""O \033[32mGoblin_Strong1\033[m usa suas grandes unhas,e cortar seu braço do \033[37m{nome}\033[m,causando
+\033[31msangramento\033[m""")
+                    vida -= 150
+                    if aliados == 1:
+                        vida_aliado1 -= 75
+                        time.sleep(1.5)
+                    if aliados_2 == 1:
+                        vida_aliado2 -= 75
+                        time.sleep(1.5)
+        if Goblin_Strong1 <= 0:
+            exp += 60
+            print("Matamos o 1 \033[32mGoblin_Strong1\033[m")
+            Goblin_ia1 = Goblin_morot1
+            goblin_vencidos += 1
+        if Goblin_Strong2 <= 0:
+            print("\033[37m{}\033[m conseguiu matar o 2 \033[32mGoblin_Strong2\033[m".format(nome))
+            goblin_vencidos += 1
+            Goblin_ia2 = Goblin_iadeath
+            gold += 300
+            break
+        if aliados == 1:
+            if vida_aliado1 <= 0:
+                print("{} está nocauteado".format(aliado_nome1))
+                time.sleep(1)
+                a2_aliado = True
+        if aliados_2 == 1:
+            if vida_aliado2 <= 0:
+                print("{} está nocauteado".format(aliado_nome2))
+                time.sleep(1)
+                a2_aliado = True
+        if vida <= 0:
+            print("\033[4;31mGame over\033[m")
+            time.sleep(1.5)
+            print(
+                "O \033[32mGoblin_strong 1\033[m  estava com {} de vida,O \033[32m 2 Goblin_strong\033[m estava com \033[31m{} vida\033[m".format(
+                    Goblin_Strong1, Goblin_Strong2))
+            sys.exit()
+            break
+    if vida < 0:
+        print("\033[4;31mGame over\033[m")
+        time.sleep(1.5)
+        print(
+            "O \033[32mGoblin_strong 1\033[m estava com {} de vida,O  \033[32m 2 Goblin_strong\033[m estava com \033[31m{} vida\033[m".format(
+                Goblin1, Goblin2))
+        sys.exit()
+    print("\033[37m{}\033[m Vida \033[32m{}\033[m".format(nome, vida))
+    time.sleep(1)
+    if aliados == 1:
+        print("\033[37m{}\033[m Vida \033[32m{}\033[m, \033[1;34m{}\033[m vida {}".format(nome, vida, aliado_nome1,
+                                                                                          vida_aliado1))
+    if aliados_2 == 1:
+        print("\033[37m{}\033[m Vida \033[32m{}\033[m, \033[1;35m{}\033[m vida {}".format(nome, vida, aliado_nome2,
+                                                                                          vida_aliado2))
+
+
+Goblins_3(rodada, Goblin_Strong1, Goblin_Strong2, vida, crítico, vida_aliado1, vida_aliado2, Goblin_morot1, exp,
+          goblin_vencidos, gold, Goblin_iadeath, Manto_lobo, Evasão, a1_aliado, a2_aliado, aliados_2)
+Ossos_goblins += 2
+itens_Goblin(nome, Ossos_goblins)
+vida += 5000
+print("\033[37m{}\033[m Vida \033[32m{}\033[m".format(nome, vida))
+print(f"Para previnir o pior \033[37m{nome}\033[m usa seus item e recupera sua vida é a do seu aliado")
+time.sleep(1.5)
+if aliados == 1:
+    print("\033[37m{}\033[m Vida \033[32m{}\033[m, \033[1;34m{}\033[m vida {}".format(nome, vida, aliado_nome1,
+                                                                                      vida_aliado1))
+    vida_aliado1 += 2000
+if aliados_2 == 1:
+    print("\033[37m{}\033[m Vida \033[32m{}\033[m, \033[1;35m{}\033[m vida {}".format(nome, vida, aliado_nome2,
+                                                                                      vida_aliado2))
+    vida_aliado2 += 2000
+time.sleep(1)
+print(".", end="")
+time.sleep(0.5)
+print(".", end="")
+time.sleep(0.5)
+print(".", end="")
+time.sleep(5)
+print(
+    f"Após derrotar 2 goblin \033[37m{nome}\033[m achava que tinha ganhado até a chegada repentina de um goblin gigante,o acertando... ")
+vida -= 300
+time.sleep(2.5)
+print(".", end="")
+time.sleep(0.5)
+print(".", end="")
+time.sleep(0.5)
+print(".", end="")
+time.sleep(2)
+if vida <= 0:
+    print(f"\033[37m{nome}\033[m foi acertado com tanta força que ficou inconsiente,agora seu aliado deve protejelo!")
+if vida >= 10:
+    print("Apos \033[37m{}\033[m ser acertado ele voa pra longe, mas ainda permanece conciente, para batalha".format(
+        nome))
+Goblin_iaBoss_vida = 3000
+
+
+def lest_fight(vida_aliado1, vida_aliado2, rodada, vida, crítico, Goblin_iaBoss_vida, Goblin_Strong1, a1_aliado,
+               a2_aliado):
+    while True:
+        print("-=-=-=-=-=-=-=-=-=-!" * 15)
+        time.sleep(1)
+        print("Rodada {}".format(rodada))
+        time.sleep(2)
+        if vida >= 10:
+            Jogador_ação = randint(0, 18)
+        elif vida <= 0:
+            Jogador_ação = 0
+        if aliados == 1:
+            Aliado_1 = randint(5, 13)
+        if aliados_2 == 1:
+            Aliado_2 = randint(5, 15)
+        if a1_aliado == True:
+            Aliado_1 = False
+        if a2_aliado == True:
+            Aliado_2 = False
+        Goblin_iaBoss = randint(0, 22)
+        time.sleep(1)
+        rodada += 1
+        Evasão = 0
+        if aliados == 1:
+            print(
+                "jogador tirou {} o \033[1;34m{}\033[m tirou {}, o \033[31m1Goblin(Mais forte)\033[m CONSEGUIU {}".format(
+                    Jogador_ação, aliado_nome1, Aliado_1, Goblin_iaBoss))
+        if aliados_2 == 1:
+            print(
+                "jogador tirou {} o \033[1;35m{}\033[m tirou {}, o \033[31m1Goblin(Mais forte)\033[m CONSEGUIU {}".format(
+                    Jogador_ação, aliado_nome2, Aliado_2, Goblin_iaBoss))
+        if Jogador_ação >= 12:
+            crítico += 1
+            Evasão += 1
+        if crítico > 5:
+            vida += 500
+            print(
+                f"Apos conseguir tirar dados acima de 9, 3 vezes seguidas \033[37m{nome}\033[m  ativa a habilidade \033[34m(Adptação)\033[m é \033[34m(critico)\033[m")
+            Jogador_ação = randint(0, 21)
+            if Jogador_ação == Goblin_iaBoss:
+                print(f"""Por \033[37m{nome}\033[m estar um a habilidade  \033[34m(Adptação)\033[m ativade, ele consegue ferir os 
+Goblins, tirando-o 350 de Hp""")
+                Goblin_iaBoss_vida -= 350
+                crítico -= 3
+        elif Evasão > 5:
+            print("~~~~~~" * 2)
+            print(
+                f"\033[37m{nome}\033[m conseguiu se adptar a batalha, conseguindo usar a habilidade \033[34mesquiva!\033[m")
+            vida += 500
+            time.sleep(1.5)
+            print("~~~~~~" * 2)
+        if vida >= 10:
+            if Jogador_ação == Goblin_iaBoss:
+                print(
+                    "Ambos atacaram mais,\033[31m1 Goblin(Mais forte)\033[m era mais forte e ganha de {}".format(nome))
+                vida -= 100
+                time.sleep(1.5)
+        if aliados == 1:
+            if Aliado_1 == Goblin_iaBoss:
+                print("Ambos atacaram mais,\033[31m1Goblin(Mais forte)\033[m era mais forte e ganha de {}".format(
+                    aliado_nome1))
+                vida_aliado1 -= 100
+                time.sleep(1)
+            if Aliado_1 > Goblin_iaBoss:
+                Goblin_Strong1 -= 175
+                print(
+                    f"\033[1;34m{aliado_nome1}\033[m atacou o \033[31m1 Goblin(Mais forte)\033[m tirando 175 de vida dele")
+                time.sleep(1.5)
+            if Goblin_iaBoss > Aliado_1:
+                vida_aliado1 -= 300
+                print(
+                    f"\033[31m1Goblin(Mais forte)\033[m atacou \033[1;34m{aliado_nome1}\033[m  tirando 300 de vida dele")
+                time.sleep(1.5)
+            if vida_aliado1 <= 350:
+                print("\033[34m{}\033[m Ativou o estado de \033[4;31mperseverança\033[m".format(aliado_nome1))
+                vida_aliado1 += 50
+                if vida_aliado1 <= 100:
+                    print("\033[34m{}\033[m não consegue mais usar o estado de perseverança".format(aliado_nome1))
+        if vida <= 0:
+            if vida_aliado1 <= 0:
+                print("\033[1;34m{}\033[m esta \033[31mMORTO\033[m!".format(aliado_nome1))
+                time.sleep(1)
+                print(f"{vida_aliado1}")
+                if Goblin_iaBoss_vida >= 700:
+                    print("Ainda faltava muito pra você derrotá-lo")
+                elif Goblin_iaBoss_vida < 700:
+                    print("O \033[31mGoblin(Mais forte)\033[m estava com {} de vida".format(Goblin_iaBoss_vida))
+                sys.exit()
+        if aliados_2 == 1:
+            if Aliado_2 == Goblin_iaBoss:
+                print("Ambos atacaram mais,\033[31m1Goblin(Mais forte)\033[m era mais forte e ganha de {}".format(
+                    aliado_nome2))
+                time.sleep(1.5)
+                vida_aliado2 -= 100
+            if Aliado_2 > Goblin_iaBoss:
+                Goblin_Strong1 -= 175
+                print(
+                    f"\033[1;35m{aliado_nome2}\033[m atacou o \033[31m1Goblin(Mais forte)\033[m tirando 175 de vida dele")
+                time.sleep(1.5)
+            if Goblin_iaBoss > Aliado_2:
+                vida_aliado2 -= 300
+                print(
+                    f"\033[31m1Goblin(Mais forte)\033[m atacou \033[1;35m{aliado_nome2}\033[m  tirando 300 de vida dele")
+                time.sleep(1.5)
+            while True:
+                if vida_aliado2 >= 100 & vida_aliado2 <= 350:
+                    print("\033[35m{}\033[m Ativou o estado de \033[31mperseverança\033[m".format(aliado_nome2))
+                    vida_aliado2 += 50
+                    break
+                if vida_aliado2 <= 100:
+                    print("\033[35m{}\033[m não consegue mais usar o estado de perseverança".format(aliado_nome2))
+                    break
+                else:
+                    break
+        if vida <= 0:
+            if vida_aliado2 <= 0:
+                print("\033[1;35m{}\033[m esta \033[31mMORTO\033[m".format(aliado_nome2))
+                time.sleep(1)
+                print(f"{vida_aliado2}")
+                print("Vida \033[31mgoblin(Mais Forte)\033[m {}".format(Goblin_iaBoss_vida))
+                if Goblin_iaBoss_vida >= 700:
+                    print("Ainda faltava muito pra você derrotá-lo")
+                elif Goblin_iaBoss_vida < 700:
+                    print("O \033[31mGoblin(Mais forte)\033[m estava com {} de vida".format(Goblin_iaBoss_vida))
+                    sys.exit()
+        if vida >= 10:
+            if Jogador_ação > Goblin_iaBoss:
+                Goblin_iaBoss_vida -= 250
+                print(f"\033[37m{nome}\033[m atacou o \033[31m 1Goblin(Mais forte)\033[m tirando 250 de vida dele")
+            if Goblin_iaBoss > Jogador_ação:
+                vida -= 600
+                print(
+                    f"\033[37m{nome}\033[m foi atacado pelo \033[31m1Goblin(Mais forte)\033[m e \033[31mperdeu\033[m \033[31m315\033[m de vida")
+                time.sleep(1.5)
+        if Goblin_iaBoss > 19:
+            time.sleep(1.5)
+            print(f"O \033[31mO Goblin\033[m tirou dados acima de 19...")
+            time.sleep(1.5)
+            print("O Goblin pisou no chão causando terremotos!")
+            for n in range(0, 3):
+                if vida >= 10:
+                    vida -= 300
+                if aliados == 1:
+                    vida_aliado1 -= 80
+                if aliados_2 == 1:
+                    vida_aliado2 -= 80
+                n = vida
+                n1 = vida_aliado1
+                n2 = vida_aliado2
+                time.sleep(1.5)
+            print("Jogador vida \033[32m {}\033[m".format(vida))
+            time.sleep(0.8)
+            if aliados == 1:
+                print(f"\033[1;34m{aliado_nome1}\033[m vida {vida_aliado1}")
+            time.sleep(1.5)
+            if aliados_2 == 1:
+                vida_aliado2 -= 80
+                print(f"\033[1;35m{aliado_nome2}\033[m vida {vida_aliado2}")
+        if vida <= 300:
+            if vida_aliado1 > 50 & vida_aliado1 < 300:
+                print("\033[34m{}\033[m esta em um estado critico!".format(aliado_nome1))
+                time.sleep(1.5)
+                print("O que você vai fazer?")
+                time.sleep(1)
+                aliado_açõa = int(input(f"""Suas opções:
+[1]-Ir na direção do \033[37m{nome}\033[m, para usar os suprimentos dele para ajudar na batalha,
+[2]-Tentar usar o ambiente como um fator de vantagem
+[3]-Correr para se recuperar"""))
+                if aliado_açõa == 1:
+                    print(
+                        "\033[1;34m{}\033[m decide sair correndo na direção de \033[37m{}\033[m, e encontra os suprimento, e usa-os".format(
+                            aliado_nome1, nome))
+                    time.sleep(1.5)
+                    print("...-Passos...")
+                    time.sleep(1.5)
+                    print(
+                        "\033[1;34m{}\033[m consegue usar os recursos, nele e no \033[37m{}\033[m é consegue trazer o \033[37m{}\033[m devolta pra batalha".format(
+                            aliado_nome1, nome, nome))
+                    vida_aliado1 += 500
+                    vida += 500
+                    time.sleep(1.5)
+                    print(f"Agora \033[37m{nome}\033[m está devolta na batalha!")
+                if aliado_açõa == 2:
+                    print("""\033[1;34m{}\033[m olha a sua volta e percebe, que estava em desvantegem dentro daquela caverna,
+e decidi sair correndo de lá, para poder equilibrar o jogo!""".format(aliado_nome1))
+                    vida_aliado1 += 100
+                if aliado_açõa == 3:
+                    print("""\033[1;34m{}\033[m olha a sua volta e percebe, que estava em desvantegem dentro daquela caverna,
+e decidi sair correr de lá, para poder equilibrar o jogo!""".format(aliado_nome1))
+                    vida_aliado1 += 100
+        if vida <= 200:
+            if vida_aliado2 > 50 & vida_aliado2 < 300:
+                print(f"\033[35m{aliado_nome2}\033[m esta em um estado critico!")
+                time.sleep(1.5)
+                print("O que você vai fazer?")
+                time.sleep(1)
+                aliado_açõa = int(input(f"""Suas opções:
+[1]-Ir na direção do \033[37m{nome}\033[m, para usar os suprimentos dele para ajudar na batalha,
+[2]-Tentar usar o ambiente como um fator de vantagem
+[3]-Correr para se recuperar"""))
+                if aliado_açõa == 1:
+                    print(
+                        "\033[1;35m{}\033[m decide sair correndo na direção de \033[37m{}\033[m, e encontra os suprimento, e usa-os".format(
+                            aliado_nome2, nome))
+                    time.sleep(1.5)
+                    print("...-Passos...")
+                    time.sleep(1.5)
+                    print(
+                        "\033[1;35m{}\033[m consegue usar os recursos, nele e no \033[37m{}\033[m é consegue trazer o \033[37m{}\033[m devolta pra batalha".format(
+                            aliado_nome2, nome, nome))
+                    vida_aliado2 += 500
+                    vida += 500
+                    time.sleep(1.5)
+                    print(f"Agora \033[37m{nome}\033[m está devolta na batalha!")
+                    print(f"Agora \033[37m{nome}\033[m está devolta na batalha!")
+                if aliado_açõa == 2:
+                    print("""\033[1;35m{}\033[m olha a sua volta e percebe, que estava em desvantegem dentro daquela caverna,
+e decidi sair correndo de lá, para poder equilibrar o jogo!""".format(aliado_nome2))
+                    vida_aliado2 += 100
+                if aliado_açõa == 3:
+                    print("""\033[1;35m{}\033[m olha a sua volta e percebe, que estava em desvantegem dentro daquela caverna,
+e decidi sair correndo de lá, para poder equilibrar o jogo!""".format(aliado_nome2))
+                    vida_aliado2 += 100
+        if vida <= 0:
+            print("\033[37m{}\033[m está inconsiente".format(nome))
+            time.sleep(1)
+            print("...")
+        if Goblin_iaBoss_vida <= 0:
+            break
+        if Goblin_iaBoss > 20:
+            if Goblin_iaBoss % 2:
+                print("Conseguiu achar uma brecha, no seu attack")
+                time.sleep(1)
+                print("...")
+                if aliados == 1:
+                    if Aliado_1 % 2:
+                        print("O Goblin ia atacar mas \033[34m{}\033[m consegue desviar do seu attack!".format(
+                            aliado_nome1))
+                        time.sleep(1)
+                        vida_aliado1 -= 300
+                if aliados_2 == 1:
+                    if Aliado_2 % 2:
+                        print("O goblin ia atacar mas \033[35m{}\033[m consegue desviar do seu attack!".format(
+                            aliado_nome2))
+                        time.sleep(1)
+                else:
+                    print(
+                        "O \033[31mGoblin(Mais forte)\033[m com um movimento veloz acerta-o tirando 300 de vida dele!")
+                    if aliados == 1:
+                        vida_aliado1 -= 300
+                        print("{} \033[31mperdeu {} de vida\033[m".format(aliado_nome1, vida_aliado1))
+                    if aliados_2 == 1:
+                        vida_aliado2 -= 300
+                        print("{} \033[31mperdeu {} de vida\033[m".format(aliado_nome2, vida_aliado2))
+                    time.sleep(1)
+            if vida <= 0:
+                if vida_aliado2 <= 0:
+                    print("\033[31mGame over\033[m")
+                    sys.exit()
+                if vida_aliado1 <= 0:
+                    print("\033[31mGame over\033[m")
+                    sys.exit()
+            else:
+                print("...")
+
+
+lest_fight(vida_aliado1, vida_aliado2, rodada, vida, crítico, Goblin_iaBoss_vida, Goblin_Strong1, a1_aliado, a2_aliado)
+level += 8
+gold += 1000
+rotina(exp, vida, level, gold)
+print("------")
+time.sleep(1.5)
+print("Depois de uma difícil luta, conseguem derrotar o Goblin(Mais forte),assim sobrevivendo...")
+time.sleep(1.5)
+print("~~~~~~~~~~~~~~" * 6)
+print(
+    "\033[34mCriador:\033[mSe você chegou até aqui, parabéns, pois eu fiz esse projeto com objetivo de poucos conseguirem completar")
+time.sleep(2)
+print("\033[34mCriador:\033[mMais uma vez parabéns por ter conseguido completar!")
+time.sleep(1)
+print("Assim chegamos ao final do Projeto(History). . .")
+time.sleep(1)
+print("Status atual")
+time.sleep(1)
+print(f"{vida}, vida aliado_ 1 {vida_aliado1}, vida_aliado2 {vida_aliado2}")
+time.sleep(1)
+print(f"level {level}, gold- {gold}, inventario-{inventario}")
+time.sleep(0.5)
+print(".", end="")
+time.sleep(0.5)
+print(".", end="")
+time.sleep(0.5)
+print(".", end="")
+print("\033[7;37mFIM\033[m")
