@@ -40,6 +40,10 @@ jogador_vencido = 0
 aliado_vencido = 0
 # aliado_nome1 = str(input("Nome aliado:"))]
 jogador_sucumbiu= 0
+Primeiro_round = "Anonimo"
+Segundo_round = "..."
+Terceiro_round = "..."
+Quarto_round = "..."
 def rotina(exp, vida, level, gold):
     time.sleep(1)
     while True:
@@ -1668,10 +1672,7 @@ def guerreiro_habilidoso(rodada,vida, nome, vida_aliado1, aliados, aliado_nome1,
             print(f"O\033[32m Guerreiro\033[m vida atual {vida_aventureiro}")
             break
             sys.exit()
-
-
 guerreiro_habilidoso(rodada,vida, nome, vida_aliado1, aliados, aliado_nome1, crítico, exp, adptação,a1_aliado, Evasão,vida_aventureiro,jogador_vencido,aliado_vencido)
-
 rodada = 0
 time.sleep(1.5)
 exp += 500
@@ -1895,394 +1896,416 @@ time.sleep(1.8)
 print(f"Surpreso com essa notícia, {nome} mal teve tempo para processar a informação até que um grupo de três candidatos o cercou e avançou em sua direção.")
 time.sleep(1.5)
 print(f"Era uma emboscada, uma traição entre colegas que compartilhavam o mesmo objetivo")
-
-
-
-print("Após uma  longa corrida \033[37m{}\033[m consegue chegar no covil onde estavam as criatuas".format(nome))
-time.sleep(1.5)
-print(f"\033[36mSistema:\033[mEstá preparado,para lutar?")
-entrar_covil = str(input("\033[36m[S/N]\033[m").strip().upper())
-if entrar_covil == "S":
-    print("\033[37m{}\033[m decidi entrou no covil...".format(nome))
-elif entrar_covil == "N":
-    print("ok")
+def fase_2(rodada, crítico, adptação, vida):
+    print(f"{nome}, com sua habilidade afiada, conseguiu reagir rapidamente, desviando-se dos golpes iniciais")
     time.sleep(1.5)
-    print(".", end="")
-    time.sleep(0.5)
-    print(".", end="")
-    time.sleep(0.5)
-    print(".", end="")
-    time.sleep(2)
-    entrar_covil2 = str(input("Agora vamos entrar ?\033[36m[S/N]\033[m").strip().upper())
-    if entrar_covil2 == "S":
-        print("Então vamos lá \033[37m{}\033[m".format(nome))
-        time.sleep(1)
-    elif entrar_covil2 == "N":
-        print("Você não tem desculpa dessa vez, vamos!!!")
-time.sleep(1.5)
-print("...")
-time.sleep(1)
-print("""Enquanto \033[37m{}\033[m entra no covil, ele avista 3 sombras de movendo em sua direção...
-pouco tempo depois percebeu que se tratavão de \033[32m3 goblin\033[m que vieram correndo sua direção o atacando...""".format(
-    nome))
-time.sleep(1.5)
-print("______________" * 4)
-print("\033[37m{}\033[m irá lutar contra \033[32m3 goblins\033[m!".format(nome))
-time.sleep(1)
-print("______________" * 4)
-Goblin_Strong1 = 1200
-Goblin_Strong2 = 1300
-a1_aliado = False
-a2_aliado = False
-
-
-def Goblins_3(rodada, Goblin_Strong1, Goblin_Strong2, vida, crítico, vida_aliado1, vida_aliado2, Goblin_morot1, exp,
-              goblin_vencidos, gold, Goblin_iadeath, Manto_lobo, Evasão, a1_aliado, a2_aliado, aliados_2):
+    print(f"A luta tornou-se intensa, cada movimento calculado, cada ataque avaliado com precisão")
+    traidor_1_vida = 1200
+    traidor_2_vida = 1200
+    traidor_3_vida = 1500
+    Jogador_ação = randint(4, 15)
+    traidor_1_morto = False
+    traidor_2_morto = False
+    traidor_3_morto = False
     while True:
-        print("===" * 15)
+        print("====" * 15)
         time.sleep(1)
-        print("Rodada {}".format(rodada))
+        print(f"Rodada \033[1;34m{rodada}\033[m")
         time.sleep(2)
-        if Manto_lobo >= 1:
-            print(
-                f"\033[37m{nome}\033[m esta usando o manto de lobo, por isso tera uma \033[32mmaior chance de desviar\033[m de ataques.")
-            Evasão += 2
-        Jogador_ação = randint(0, 13)
-        if aliados == 1:
-            if vida_aliado1 >= 0:
-                Aliado_1 = randint(0, 11)
-            if vida_aliado1 <= 0:
-                Aliado_1 = randint(0)
-        if aliados_2 == 1:
-            Aliado_2 = randint(0, 10)
-        if a1_aliado == True:
-            Aliado_1 = False
-        if a2_aliado == True:
-            Aliado_2 = False
-        if Goblin_Strong1 >= 10:
-            Goblin_ia1 = randint(0, 13)
-        if Goblin_Strong2 >= 10:
-            Goblin_ia2 = randint(0, 15)
-        time.sleep(1)
         rodada += 1
-        Evasão = 0
-        if aliados == 1:
-            print(
-                "jogador tirou {} o \033[1;34m{}\033[m tirou {},o \033[32mGoblin_Strong1\033[m-tirou {} o \033[32mGoblin_Strong2\033[m-tirou {}".format(
-                    Jogador_ação, aliado_nome1, Aliado_1, Goblin_ia1, Goblin_ia2))
-        if aliados_2 == 1:
-            print(
-                "jogador tirou {} o \033[35m{}\033[m tirou {},o \033[32mGoblin_Strong1\033[m-tirou {} o \033[32mGoblin_Strong2\033[m-tirou {}".format(
-                    Jogador_ação, aliado_nome2, Aliado_2, Goblin_ia1, Goblin_ia2))
-        if Jogador_ação >= 9:
+        Jogador_ação = randint(4, 15)
+        if traidor_1_morto == False:
+            traidor_1 = randint(0, 10)
+        elif traidor_1_morto == True:
+            traidor_1 = 0
+        if traidor_2_morto == False:
+            traidor_2 = randint(0, 10)
+        elif traidor_2_morto == True:
+            traidor_2 = 0
+        if traidor_3_morto == False:
+            traidor_3 = randint(1, 11)
+        elif traidor_3_morto == True:
+            traidor_3 = 0
+        print(
+            f"\033[1;49;36m{nome}\033[m->\033[2;49;97m{Jogador_ação}\033[m/\033[2;49;90madversario(1)\033[m->\033[2;49;97m{traidor_1}\033[m/\033[2;49;90madversario(2)\033[m->\033[2;49;97m{traidor_2}\033[m/ \033[1;49;33madversario(3)\033[m->\033[2;49;97m{traidor_3}\033[m")
+        if Jogador_ação >= 12:
             crítico += 1
-            Evasão += 1
-        if crítico > 3:
-            vida += 300
-            print(
-                f"Apos conseguir tirar dados acima de 9, 3 vezes seguidas \033[37m{nome}\033[m  ativa a habilidade \033[34m(Adptação)\033[m é \033[34m(critico)\033[m")
-            Jogador_ação = randint(0, 15)
-            print(
-                f"Apos conseguir tirar dados acima de 9, 3 vezes seguidas \033[37m{nome}\033[m  ativa a habilidade \033[34m(Adptação)\033[m é \033[34m(critico)\033[m")
-            if Jogador_ação == Goblin_ia1:
-                print(f"""Por \033[37m{nome}\033[m estar um a habilidade  \033[34m(Adptação)\033[m ativade, ele consegue ferir os 
-2 goblins, tirando-o 250 de Hp""")
-                Goblin_Strong1 -= 250
-                Goblin_Strong2 -= 250
-                crítico -= 3
-        elif Evasão > 3:
-            print("~~~~~~" * 2)
-            print(
-                f"\033[37m{nome}\033[m conseguiu se adptar a batalha, conseguindo usar a habilidade \033[34mesquiva!\033[m")
-            vida += 300
-            time.sleep(1.5)
-            print("~~~~~~" * 2)
-            Goblin_ia1 = randint(0, 7)
-            Goblin_ia2 = randint(0, 7)
-            Evasão -= 0.5
-        elif Jogador_ação == Goblin_ia1:
-            print("Ambos atacaram, mas nenhum conseguiu lhe infrigir dano")
-            Evasão += 1
-            time.sleep(1.5)
-            if aliados == 1:
-                if Aliado_1 == Goblin_ia1:
-                    print("Ambos atacaram, mas nenhum conseguiu lhe infrigir dano")
-            if aliados_2 == 1:
-                if Aliado_2 == Goblin_ia1:
-                    print("Ambos atacaram, mas nenhum conseguiu lhe infrigir dano")
-        time.sleep(1.5)
-        if Jogador_ação > Goblin_ia1:
-            Goblin_Strong1 -= 215
-            print(
-                f"\033[37m{nome}\033[m foi mais rapido é mais habilidoso e causou dano ao \033[32mGoblin_strong1\033[m")
-            time.sleep(1)
-            print("\033[32mGoblin_strong 1\033[m perdeu 215 de hp")
-            time.sleep(1.5)
-        if aliados == 1:
-            if Aliado_1 > Goblin_ia1:
-                Goblin_Strong1 -= 175
-            print(
-                f"\033[34m{aliado_nome1}\033[m foi mais rapido é mais habilidoso e causou dano ao \033[32mGoblin_strong1\033[m")
-            time.sleep(1.5)
-            print("\033[32mGoblin_strong 1\033[m perdeu 175 de hp")
-        if aliados_2 == 1:
-            if Aliado_2 > Goblin_ia1:
-                Goblin_Strong1 -= 175
+            adptação += 1
+        if crítico == 3:
+            if Jogador_ação > traidor_1 or traidor_2:
                 print(
-                    f"\033[35m{aliado_nome2}\033[m foi mais rapido é mais habilidoso e causou dano ao \033[32mGoblin_strong1\033[m")
+                    f"\033[4;49;34m{nome} por estar com seus intintos a flor da pele, consegue observar tudo devagar é rapidamente desvia de todos os golpes do inimigo o acertando no queixo\033[m")
+                traidor_1_vida -= 550
+                print("\033[1;49;92mDano (critico) infligido pelo jogador\033[m")
+                if Jogador_ação > traidor_2:
+                    traidor_2_vida -= 250
+                    print("\033[1;49;92mDano (critico) infligido pelo jogador\033[m")
+            if Jogador_ação > traidor_3:
+                print(f"\033[4;49;34m{nome} avança, vendo tudo em camera lenta\033[m")
                 time.sleep(1.5)
-                print("\033[32mGoblin_strong 1\033[m perdeu 175 de hp")
-        if Jogador_ação > Goblin_ia2:
-            Goblin_Strong2 -= 230
-            print(
-                f"\033[37m{nome}\033[m foi mais rapido é mais habilidoso e causou dano ao \033[32mGoblin_strong 2\033[m")
-            time.sleep(1)
-            print("\033[32mGoblin_strong 2\033[m perdeu 230 de hp")
-        time.sleep(1.5)
-        if aliados == 1:
-            if Aliado_1 > Goblin_ia2:
-                Goblin_Strong2 -= 175
                 print(
-                    f"\033[34m{aliado_nome1}\033[m foi mais rapido é mais habilidoso e causou dano ao \033[32mGoblin_strong 2\033[m")
-                time.sleep(1)
-                print("\033[32mGoblin_strong 2\033[m perdeu 175 de hp")
-        if aliados_2 == 1:
-            if Aliado_2 > Goblin_ia2:
-                Goblin_Strong2 -= 175
-                print(
-                    f"\033[35m{aliado_nome2}\033[m foi mais rapido é mais habilidoso e causou dano ao \033[32mGoblin_strong 2\033[m")
-                time.sleep(1)
-                print("\033[32mGoblin_strong 2\033[m perdeu 175 de hp")
-        elif Goblin_ia1 > Jogador_ação:
-            vida -= 300
+                    f"Porém {nome},percebeu sua estrategia, e já encurta o espaço e decide dar um chute potente no abdomen de seu adversario")
+                print("\033[1;49;92mDano (critico) infligido pelo jogador\033[m")
+                traidor_3_vida -= 550
+        if Jogador_ação > traidor_1 or traidor_2:
             print(
-                f"O \033[32mGoblin_strong 1\033[m avança e consegue sse sobre sair, causando dano ao \033[37m{nome}\033[m...")
-            time.sleep(1)
-            print(f"\033[37m{nome}\033[m \033[31mperdeu 300 de hp\033[m")
+                f"Avalia rapidamente a situação, decide atacar o traidor à direita com um golpe rápido de sua espada.")
+            traidor_1_vida -= 250
+            print("\033[1;49;92mDano infligido pelo jogador\033[m")
+            if Jogador_ação > traidor_2:
+                traidor_2_vida -= 250
+                print("\033[1;49;92mDano infligido pelo jogador\033[m")
+        if Jogador_ação > traidor_3:
+            print(f"Avançam em {nome}, tentando restabelecer a dominancia ")
             time.sleep(1.5)
-        if Goblin_ia2 > Jogador_ação:
-            vida -= 315
             print(
-                f"O\033[32mGoblin_strong 2\033[m avança e consegue sse sobre sair, causando dano ao \033[37m{nome}\033[m...")
-            time.sleep(1)
-            print(f"\033[37m{nome}\033[m \033[31mperdeu 315 de hp\033[m")
-        if Goblin_ia1 > 8:
+                f"Porém {nome},percebeu sua estrategia, e já encurta o espaço e decide dar um chute potente no abdomen de seu adversario")
+            print("\033[1;49;92mDano infligido pelo jogador\033[m")
+            traidor_3_vida -= 250
+        if traidor_1 or traidor_2 > Jogador_ação:
+            print(f"Com seu trabalho em grupo,cercam {nome}, tentando encurralá-lo.")
+            time.sleep(1.5)
             print(
-                f"O \033[32mGoblin_Strong1\033[m usa suas grandes unhas,e corta seu braço do \033[37m{nome}\033[m,causando \033[31msangramento\033[m")
-            vida -= 150
-            if aliados == 1:
-                vida_aliado1 -= 75
+                f"Com isso {nome} perseguido, aumentando a intensidade dos ataques, até uma hora {nome} ser acertado em seu braço é costas")
             time.sleep(1.5)
-            if aliados_2 == 1:
-                vida_aliado2 -= 75
-            time.sleep(1.5)
-        if Goblin_ia2 > 10:
-            time.sleep(1.5)
-            print(f"""Ao conseguir tirar dados acima de 10, mais de 3 vezes, O \033[32mGoblin_strong 2\033[m entra em um 
-\033[31mde furia\033[m, executando 3 ataques em sequencia no jogador...""")
+            print("\033[1;49;91mDano recebido pelo jogador\033[m")
+            vida -= 200
+        if traidor_3 > Jogador_ação:
+            print(
+                f"Sendo o mais forte membro ali, o candidato(3), avança com agressividade para cima de {nome} o surprendendo, é acertando um golpe pesado em seu abdomen, o jogando longe")
+            print("\033[1;49;91mDano recebido pelo jogador\033[m")
+            vida -= 350
+        if traidor_1 or traidor_2 == Jogador_ação:
+            print(
+                f"{nome} percebendo novamente a estrategia dos seus inimigos, decide avançar para cima de um , porém o outro faz o mesmo em sua direção, anulando ambos os ataques")
+        if traidor_3 == Jogador_ação:
+            print(
+                f"Percebendo a velocidade de {nome} o candidato(3), decide esperar o momento certo, para jogar um pedra em {nome}, o fazendo impedir seu avanço em sua direção!")
+        if traidor_3 > 9:
+            print(
+                f"Determinado e concentrado a derrotar {nome} avança com uma concentraçaõ é uma furia absruda infligi um dano, consideravel em {nome}")
+            vida -= 675
+            pausa_dramatica()
             for n in range(0, 3):
-                vida -= 160
-                if aliados == 1:
-                    vida_aliado1 -= 150
-                if aliados_2 == 1:
-                    vida_aliado2 -= 150
+                vida -= 120
                 n = vida
-                n1 = vida_aliado1
-                n2 = vida_aliado2
                 time.sleep(1.5)
-                print("Jogador vida \033[32m {}\033[m".format(vida))
-                time.sleep(0.8)
-                if aliados == 1:
-                    print(f"\033[1;34m{aliado_nome1}\033[m vida {vida_aliado1}")
-                time.sleep(1.5)
-                if aliados_2 == 1:
-                    vida_aliado2 -= 80
-                    print(f"\033[1;35m{aliado_nome2}\033[m vida {vida_aliado2}")
-        elif vida < 100:
-            print(
-                "\033[37m{}\033[m está em um estado \033[4;31mcrítico\033[m, por isso de agora em diante você deverá controlar ele!".format(
-                    nome))
-            time.sleep(3)
-            Escolha = int(input("""O que você fará agora?
-[1]-Ir pra cima para tentar matalo
-[2]-Recuar um pouco
-[3]-Jogar os dados"""))
-            if Escolha == 1:
-                print("\033[37m{}\033[m decidiu ir para cima dos \033[32mGoblins\033[m!".format(nome))
-                time.sleep(1.5)
-                Goblin_Strong2 -= 100
-                Goblin_Strong1 -= 100
-                Jogador_ação = randint(0, 12)
-                if aliados == 1:
-                    Aliado_1 = randint(0, 10)
-                if aliados_2 == 1:
-                    Aliado_2 = randint(0, 10)
-                Goblin_ia1 = randint(0, 11)
-                Goblin_ia2 = randint(0, 12)
-                if Jogador_ação == Goblin_ia1:
-                    print("Ambos atacaram, mas nenhum conseguiu lhe infrigir dano")
-                    time.sleep(1.5)
-                if aliados == 1:
-                    if Aliado_1 == Goblin_ia1:
-                        print("Ambos atacaram, mas nenhum conseguiu lhe infrigir dano")
-                        time.sleep(1.5)
-                if aliados_2 == 1:
-                    if Aliado_2 == Goblin_ia1:
-                        print("Ambos atacaram, mas nenhum conseguiu lhe infrigir dano")
-                        time.sleep(1.5)
-                elif Jogador_ação > Goblin_ia1:
-                    Goblin_Strong1 -= 150
-                    print(
-                        f"\033[37m{nome}\033[m foi mais rapido é mais habilidoso e causou dano ao \033[32mGoblin_strong 1\033[m")
-                    time.sleep(1)
-                    print("\033[32mGoblin_strong 1\033[m perdeu 150 de hp")
-                if aliados == 1:
-                    if Aliado_1 > Goblin_ia1:
-                        Goblin_Strong1 -= 100
-                        print(
-                            f"\033[1;34m{aliado_nome1}\033[m atacou o \033[32 Goblin_strong (1)\033[m tirando 100 de vida dele ")
-                        time.sleep(1.5)
-                if aliados_2 == 1:
-                    if Aliado_2 > Goblin_ia2:
-                        Goblin_Strong1 -= 100
-                        print(
-                            f"\033[1;35m{aliado_nome2}\033[m atacou o \033[32 Goblin_strong (1)\033[m tirando 100 de vida dele ")
-                        time.sleep(1.5)
-                elif Jogador_ação > Goblin_ia2:
-                    Goblin_Strong2 -= 100
-                    print(
-                        f"\033[37m{nome}\033[m foi mais rapido é mais habilidoso e causou dano ao \033[32mGoblin_strong 2\033[m")
-                    time.sleep(1)
-                    print("\033[32mGoblin_strong 2\033[m perdeu 100 de hp")
-                if aliados == 1:
-                    if Aliado_1 > Goblin_ia2:
-                        Goblin_Strong2 -= 100
-                        print(
-                            f"\033[34m{aliado_nome1}\033[m foi mais rapido é mais habilidoso e causou dano ao \033[32mGoblin_strong 2\033[m")
-                        time.sleep(1)
-                        print("\033[32mGoblin_strong 2\033[m perdeu 100 de hp")
-                if aliados_2 == 1:
-                    if Aliado_2 > Goblin_ia2:
-                        Goblin_Strong2 -= 100
-                        print(
-                            f"\033[35m{aliado_nome2}\033[m foi mais rapido é mais habilidoso e causou dano ao \033[32mGoblin_strong 2\033[m")
-                        time.sleep(1)
-                        print("\033[32mGoblin_strong 2\033[m perdeu 100 de hp")
-                elif Goblin_ia2 > Jogador_ação:
-                    vida -= 2150
-                    print(
-                        f"\033[37m{nome}\033[m foi atacado pelo \033[32mGoblin_Strong2\033[m e \033[31mperdeu\033[m \033[31m215\033[m de vida")
-                if aliados == 1:
-                    if Goblin_ia2 > Aliado_1:
-                        vida_aliado1 -= 200
-                        print(
-                            f"O \033[32mGoblin_strong 2\033[m avança e consegue sse sobre sair, causando dano ao \033[37m{aliado_nome1}\033[m...")
-                        time.sleep(1)
-                        print(f"\033[37m{aliado_nome1}\033[m \033[31mperdeu 200 de hp\033[m")
-                        time.sleep(1.5)
-                if aliados_2 == 1:
-                    if Goblin_ia2 > Aliado_2:
-                        vida_aliado1 -= 200
-                        print(
-                            f"O \033[32mGoblin_strong 2\033[m avança e consegue sse sobre sair, causando dano ao \033[37m{aliado_nome2}\033[m...")
-                        time.sleep(1)
-                        print(f"\033[35m{aliado_nome2}\033[m \033[31mperdeu 200 de hp\033[m")
-                        time.sleep(1.5)
-                if Goblin_ia1 > 7:
-                    print(f"""O \033[32mGoblin_Strong1\033[m usa suas grandes unhas,e cortar seu braço do \033[37m{nome}\033[m,causando
-\033[31msangramento\033[m""")
-                    vida -= 150
-                    if aliados == 1:
-                        vida_aliado1 -= 75
-                        time.sleep(1.5)
-                    if aliados_2 == 1:
-                        vida_aliado2 -= 75
-                        time.sleep(1.5)
-        if Goblin_Strong1 <= 0:
-            exp += 60
-            print("Matamos o 1 \033[32mGoblin_Strong1\033[m")
-            Goblin_ia1 = Goblin_morot1
-            goblin_vencidos += 1
-        if Goblin_Strong2 <= 0:
-            print("\033[37m{}\033[m conseguiu matar o 2 \033[32mGoblin_Strong2\033[m".format(nome))
-            goblin_vencidos += 1
-            Goblin_ia2 = Goblin_iadeath
-            gold += 300
-            break
-        if aliados == 1:
-            if vida_aliado1 <= 0:
-                print("{} está nocauteado".format(aliado_nome1))
-                time.sleep(1)
-                a2_aliado = True
-        if aliados_2 == 1:
-            if vida_aliado2 <= 0:
-                print("{} está nocauteado".format(aliado_nome2))
-                time.sleep(1)
-                a2_aliado = True
-        if vida <= 0:
-            print("\033[4;31mGame over\033[m")
-            time.sleep(1.5)
-            print(
-                "O \033[32mGoblin_strong 1\033[m  estava com {} de vida,O \033[32m 2 Goblin_strong\033[m estava com \033[31m{} vida\033[m".format(
-                    Goblin_Strong1, Goblin_Strong2))
-            sys.exit()
-            break
+            print(f"\033[1;49;92m{vida}\033[m")
+            print(f"\033[1;49;91mDano recebido pelo {nome}\033[m")
+
+        if traidor_1_vida <= 0:
+            if traidor_1_morto == False:
+                print(f"\033[4;49;97mPrimeiro adversario derrubado\033[m")
+                traidor_1_morto = True
+        if traidor_2_vida <= 0:
+            if traidor_2_morto == False:
+                print(f"\033[4;49;97mSegundo adversario derrubado\033[m")
+                traidor_2_morto = True
+        if traidor_3_vida <= 0:
+            if traidor_3_morto == False:
+                print(f"\033[4;49;97mTerceiro adversario derrubado\033[m")
+                traidor_3_morto = True
+                break
+
     if vida < 0:
         print("\033[4;31mGame over\033[m")
         time.sleep(1.5)
-        print(
-            "O \033[32mGoblin_strong 1\033[m estava com {} de vida,O  \033[32m 2 Goblin_strong\033[m estava com \033[31m{} vida\033[m".format(
-                Goblin1, Goblin2))
+        print(f"O\033[32m Adversarios\033[m vida atual, 1->{traidor_1_vida},2->{traidor_2_vida},3->{traidor_3_vida}")
         sys.exit()
-    print("\033[37m{}\033[m Vida \033[32m{}\033[m".format(nome, vida))
-    time.sleep(1)
-    if aliados == 1:
-        print("\033[37m{}\033[m Vida \033[32m{}\033[m, \033[1;34m{}\033[m vida {}".format(nome, vida, aliado_nome1,
-                                                                                          vida_aliado1))
-    if aliados_2 == 1:
-        print("\033[37m{}\033[m Vida \033[32m{}\033[m, \033[1;35m{}\033[m vida {}".format(nome, vida, aliado_nome2,
-                                                                                          vida_aliado2))
+fase_2(rodada, crítico, adptação, vida)
 
-
-Goblins_3(rodada, Goblin_Strong1, Goblin_Strong2, vida, crítico, vida_aliado1, vida_aliado2, Goblin_morot1, exp,
-          goblin_vencidos, gold, Goblin_iadeath, Manto_lobo, Evasão, a1_aliado, a2_aliado, aliados_2)
-Ossos_goblins += 2
-itens_Goblin(nome, Ossos_goblins)
 vida += 5000
-print("\033[37m{}\033[m Vida \033[32m{}\033[m".format(nome, vida))
-print(f"Para previnir o pior \033[37m{nome}\033[m usa seus item e recupera sua vida é a do seu aliado")
+rotina(exp, vida, level, gold)
 time.sleep(1.5)
-if aliados == 1:
-    print("\033[37m{}\033[m Vida \033[32m{}\033[m, \033[1;34m{}\033[m vida {}".format(nome, vida, aliado_nome1,
-                                                                                      vida_aliado1))
-    vida_aliado1 += 2000
-if aliados_2 == 1:
-    print("\033[37m{}\033[m Vida \033[32m{}\033[m, \033[1;35m{}\033[m vida {}".format(nome, vida, aliado_nome2,
-                                                                                      vida_aliado2))
-    vida_aliado2 += 2000
-time.sleep(1)
-print(".", end="")
-time.sleep(0.5)
-print(".", end="")
-time.sleep(0.5)
-print(".", end="")
-time.sleep(5)
-print(
-    f"Após derrotar 2 goblin \033[37m{nome}\033[m achava que tinha ganhado até a chegada repentina de um goblin gigante,o acertando... ")
-vida -= 300
+print(f"Nos dias que se seguiram, {nome} enfrentou a solidão e o desafio constante de manter-se alerta. ")
+time.sleep(1.8)
+print(f"Cada noite na floresta era um teste de sua resistência física e mental.")
+time.sleep(1.5)
+print(f"Contudo, sua determinação manteve-se firme, e sua habilidade de adaptação o ajudou a superar cada desafio.")
+pausa_dramatica()
+print(f"""Ao final do terceiro dia, {nome} emergiu da Floresta dos Desafios, não como um aventureiro inexperiente, 
+mas como alguém que havia enfrentado os rigores da natureza e prevalecido.""")
+time.sleep(3.0)
+print(f"Seu sucesso na jornada pela floresta garantia sua passagem para a próxima fase do teste de cavaleiros.")
+time.sleep(1.5)
+print(f"{nome} agora olhava adiante, preparado para os desafios futuros que o aguardavam")
+print("ansioso para continuar sua jornada em direção ao título desejado na Capital Real.")
 time.sleep(2.5)
-print(".", end="")
-time.sleep(0.5)
-print(".", end="")
-time.sleep(0.5)
-print(".", end="")
-time.sleep(2)
-if vida <= 0:
-    print(f"\033[37m{nome}\033[m foi acertado com tanta força que ficou inconsiente,agora seu aliado deve protejelo!")
-if vida >= 10:
-    print("Apos \033[37m{}\033[m ser acertado ele voa pra longe, mas ainda permanece conciente, para batalha".format(
-        nome))
-Goblin_iaBoss_vida = 3000
+print("-------"* 10)
+print(f"Na vibrante Capital Real, a expectativa era palpável enquanto os preparativos para o Torneio dos Cavaleiros na terceira fase estavam em pleno andamento. ")
+time.sleep(1.5)
+print("A arena majestosa estava adornada com bandeiras coloridas, e a multidão reunida aguardava ansiosamente pelo início das competições")
+time.sleep(1.5)
+print("O torneio era um evento grandioso, e os oito cavaleiros excepcionais estavam prontos para mostrar suas habilidades e determinar quem merecia o título tão almejado.")
+pausa_dramatica()
+print("###" * 10)
+time.sleep(1.5)
+print("""Art, Elena, Marcus, Lyra, Gareth, Fiona, Soren e Isolde se destacavam entre a multidão. 
+Cada um deles era uma figura distinta, representando diferentes estilos de combate e habilidades únicas""")
+pausa_dramatica()
+print("O sol brilhava intensamente sobre a arena enquanto o rei proclamava o início do torneio, dando início a uma série de duelos emocionantes.")
+pausa_dramatica()
+print(f"Com isso foi dado o iniciamento das batalhas iliminatorios do torneio")
+print("Quadro de lutas")
+print(f"\033[1;49;93mElena\033[m vs. \033[1;49;34mSoren\033[m")
+print(f"Marcus vs. Lyra")
+print(f"Gareth vs. Fiona ")
+print(f"{nome} vs.Isolde")
+def Primeiro_round(rodada,Primeiro_round):
+    print(f"O juiz da o sinal para o começo da luta")
+    Primeiro_round = "Anonimo"
+    Elena_vida = 4000
+    Soren_vida = 4800
+    Elena_jogada = randint(2, 10)
+    Sore_jogada = randint(1, 15)
+    while True:
+        print("====" * 15)
+        time.sleep(1)
+        print(f"Rodada \033[1;34m{rodada}\033[m")
+        time.sleep(2)
+        rodada += 1
+        Elena_jogada = randint(2, 10)
+        Sore_jogada = randint(1, 15)
+        if Elena_jogada > Sore_jogada:
+            print(f"Elena salta habilmente por cima de um pilar baixo, evitando um ataque rápido de Soren")
+            print("Ela contra-ataca com uma série de golpes precisos")
+            Soren_vida -= 1050
+            print("\033[1;49;34mDano recebido por [Sore]\033[m")
+        if Sore_jogada > Elena_jogada:
+            print(f"Soren responde com movimentos ágeis, tentando encontrar uma abertura.")
+            time.sleep(1.5)
+            print(f"Sore se esquiva habilmente de um golpe surpresa de Elena, mas ele aproveita o impulso para lançar um ataque feroz")
+            Elena_vida -= 1050
+            print("\033[1;49;93mDano recebido por [Elena]\033[m")
+        if Sore_jogada == Elena_jogada:
+            print(f"Ambos começam a se movimentar rapidamente")
+        if Sore_jogada > 13:
+            print(f"Sore com um rapido movimento superou momentanialmento Elena, é a surprende")
+            Elena_vida -= 1075
+            pausa_dramatica()
+            for n in range(0, 3):
+                Elena_vida -= 450
+                n = Elena_vida
+                time.sleep(1.5)
+            print(f"\033[1;49;92m{Elena_vida}\033[m")
+            print("\033[1;49;93mDano recebido por [Elena]\033[m")
+        if Elena_jogada > 9:
+            print(f"Elena decide de mover de um lado para o outro para confundir sore, para aparecer de supressa na sua frente")
+            Soren_vida -= 1075
+            pausa_dramatica()
+            for n in range(0, 3):
+                Soren_vida -= 450
+                n = Soren_vida
+                time.sleep(1.5)
+            print(f"\033[1;49;92m{Soren_vida}\033[m")
+            print("\033[1;49;34mDano recebido por [Sore]\033[m")
+        if Elena_vida < 0:
+            print("\033[1;49;93mElena\033[m \033[1;49;91mfoi derrotada por Sore\033[m")
+            Primeiro_round = "Sore"
+            print("-=-=Quadro de lutas-=-=-")
+            print(f"\033[1;49;93mElena\033[m vs. \033[1;49;34m Soren\033[m ->Vencedor \033[2;49;92m{Primeiro_round}\033[m")
+            break
+        if Soren_vida < 0:
+            print("\033[1;49;34mSore\033[m \033[1;49;91m foi derrotada por Elena\033[m")
+            Primeiro_round = "Elena"
+            print("-=-=Quadro de lutas-=-=-")
+            print(f"\033[1;49;93mElena\033[m vs. \033[1;49;34mSoren\033[m ->Vencedor \033[2;49;92m{Primeiro_round}\033[m")
+            break
+Primeiro_round(rodada,Primeiro_round)
+print(f"\033[2;49;94mMarcus\033[m vs. \033[1;49;37mLyra\033[m")
+print(f"Gareth vs. Fiona ")
+print(f"{nome} vs.Isolde")
+def Segundo_round(rodada,Segundo_round):
+    print(f"O juiz da o sinal para o começo da luta")
+    Marcus_vida = 6000
+    Lyra_vida = 5800
+    while True:
+        print("====" * 15)
+        time.sleep(1)
+        print(f"Rodada \033[1;34m{rodada}\033[m")
+        time.sleep(2)
+        rodada += 1
+        Marcus_jogada = randint(2, 9)
+        Lyra_jogada = randint(0, 12)
+        if Marcus_jogada > Lyra_jogada:
+            print(f"Marcus avança com poderosos golpes de sua espada")
+            print("Ela contra-ataca com uma série de golpes precisos")
+            Lyra_vida -= 1050
+            print("\033[1;49;37mDano recebido por [Lyra]\033[m")
+        if Lyra_jogada > Marcus_jogada:
+            print(f"Enquanto Lyra se movimenta com agilidade, desviando habilmente.")
+            time.sleep(1.5)
+            print(f"Lyra usa a paisagem a seu favor, saltando entre as rochas para criar distrações enquanto planeja seu próximo movimento,até finalmente consegui acerta-lo")
+            Marcus_vida -= 1050
+            print("\033[2;49;94mDano recebido por [Marcus]\033[m")
+        if Lyra_jogada == Marcus_jogada:
+            print(f"Marcus e Lyra se estudam por um momento antes de se lançarem um contra o outro. ")
+        if Lyra_jogada > 11:
+            print(f"Lyra cria uma armadilha astuciosa, fingindo uma fraqueza momentânea,Lyra cria uma armadilha astuciosa, fingindo uma fraqueza momentânea.")
+            Marcus_vida -= 1075
+            pausa_dramatica()
+            for n in range(0, 3):
+                Marcus_vida -= 450
+                n = Marcus_vida
+                time.sleep(1.5)
+            print(f"\033[1;49;92m{Marcus_vida}\033[m")
+            print("\033[2;49;94mDano recebido por [Marcus]\033[m")
+        if Marcus_jogada > 7:
+            print(f"Os golpes poderosos de Marcus,criam passagem para avançar com um ataque violento em Lyra")
+            Lyra_vida -= 1075
+            pausa_dramatica()
+            for n in range(0, 3):
+                Lyra_vida -= 450
+                n = Lyra_vida
+                time.sleep(1.5)
+            print(f"\033[1;49;92m{Lyra_vida}\033[m")
+            print("\033[1;49;37mDano recebido por [Lyra]\033[m")
+        if Marcus_vida < 0:
+            print("\033[1;49;93mMarcus\033[m \033[1;49;91mfoi derrotada por Lyra\033[m")
+            Segundo_round = "Lyra"
+            print("-=-=Quadro de lutas-=-=-")
+            print(f"\033[1;49;93mElena\033[m vs. \033[1;49;34m Soren\033[m ->Vencedor")
+            print(f"\033[2;49;94mMarcus\033[m vs. \033[1;49;37mLyra\033[m ->Vencedor \033[2;49;92m{Segundo_round}\033[m")
+            break
+        if Lyra_vida < 0:
+            print("\033[1;49;34mLyra\033[m \033[1;49;91m foi derrotada por Marcus\033[m")
+            Segundo_round = "Marcus"
+            print("-=-=Quadro de lutas-=-=-")
+            print(f"\033[1;49;93mElena\033[m vs. \033[1;49;34m Soren\033[m")
+            print(f"\033[2;49;94mMarcus\033[m vs. \033[1;49;37mLyra\033[m ->Vencedor \033[2;49;92m{Segundo_round}\033[m")
+            break
+Segundo_round(rodada,Segundo_round)
+print(f"\033[2;49;91mGareth\033[m vs. \033[2;49;92mFiona\033[m ")
+print(f"{nome} vs.Isolde")
+
+def Terceira_round(rodada,Terceiro_round ):
+    print(f"O juiz da o sinal para o começo da luta")
+    Gareth_vida= 2000
+    Fiona_vida = 3800
+    while True:
+        print("====" * 15)
+        time.sleep(1)
+        print(f"Rodada \033[1;34m{rodada}\033[m")
+        time.sleep(2)
+        rodada += 1
+        Gareth_jogada = randint(4, 10)
+        Fiona_jogada = randint(2, 12)
+        if Gareth_jogada > Fiona_jogada:
+            print(f"Gareth, com uma expressão séria, começa a avançar enquanto Fiona mantém uma postura defensiva.")
+            print("Ele contra-ataca com uma série de golpes precisos")
+            Fiona_vida -= 1050
+            print("\033[2;49;92mDano recebido por [Fiona]\033[m")
+        if Fiona_jogada > Gareth_jogada:
+            print(f"Fiona, aproveitando um momento de distração de Gareth, revela sua habilidade de cura ao tratar rapidamente um ferimento.")
+            time.sleep(1.5)
+            Gareth_vida -= 800
+            print("\033[1;49;37mDano recebido por [Gareth]\033[m")
+        if Fiona_jogada == Gareth_jogada:
+            print(f"Em um momento de pausa, Gareth e Fiona param de lutar temporariamente.")
+        if Fiona_jogada > 11:
+            print(f"Fiona com suas habilidade de recuperação, usa a na hora de cansaso de seu adversario, para se recuperar é avançar com tudo em sua direção")
+            Gareth_vida -= 500
+            pausa_dramatica()
+            for n in range(0, 3):
+                Gareth_vida -= 150
+                n = Gareth_vida
+                time.sleep(1.5)
+            print(f"\033[1;49;92m{Gareth_vida}\033[m")
+            print("\033[1;49;37mDano recebido por [Gareth]\033[m")
+        if Gareth_jogada > 9:
+            print(f"Gareth utiliza o terreno a seu favor, movendo-se rapidamente entre as árvores e criando ilusões de emboscadas.")
+            Fiona_vida -= 1075
+            pausa_dramatica()
+            for n in range(0, 3):
+                Fiona_vida -= 450
+                n = Fiona_vida
+                time.sleep(1.5)
+            print(f"\033[1;49;92m{Fiona_vida}\033[m")
+            print("\033[2;49;92mmDano recebido por [Fiona]\033[m")
+        if Gareth_vida < 0:
+            print("\033[1;49;37mGareth\033[m \033[1;49;91m foi derrotada por Fiona\033[m")
+            Terceiro_round  = "Fiona"
+            print("-=-=Quadro de lutas-=-=-")
+            print(f"\033[1;49;93mElena\033[m vs. \033[1;49;34m Soren\033[m")
+            print(f"\033[2;49;94mMarcus\033[m vs. \033[1;49;37mLyra\033[m")
+            print(f"\033[2;49;91mGareth\033[m vs. \033[2;49;92mFiona\033[m ->Vencedor \033[2;49;92m{Terceiro_round}\033[m")
+            break
+        if Fiona_vida < 0:
+            print("\033[2;49;92mFiona\033[m \033[1;49;91m foi derrotada por Gath\033[m")
+            Terceiro_round = "Gath"
+            print("-=-=Quadro de lutas-=-=-")
+            print(f"\033[1;49;93mElena\033[m vs. \033[1;49;34m Soren\033[m")
+            print(f"\033[2;49;94mMarcus\033[m vs. \033[1;49;37mLyra\033[m")
+            print(f"\033[2;49;91mGareth\033[m vs. \033[2;49;92mFiona\033[m ->Vencedor \033[2;49;92m{Terceiro_round}\033[m")
+            break
+Terceira_round(rodada,Terceiro_round )
+print(f"\033[1;49;36m{nome}\033[m vs.\033[5;49;95mIsolde\033[m")
+pausa_dramatica()
+print(f"Agora é a partida de {nome} fica atento")
+
+def Quarto_round(rodada,vida,nome,Quarto_round):
+    print(f"O juiz da o sinal para o começo da luta")
+    print(f"Isolde emerge das sombras enquanto {nome} se posiciona, espada em punho.")
+    Isolde_vida = 4800
+    while True:
+        print("====" * 15)
+        time.sleep(1)
+        print(f"Rodada \033[1;34m{rodada}\033[m")
+        time.sleep(2)
+        rodada += 1
+        Jogada_ação = randint(4, 16)
+        Isolde_jogada = randint(3, 13)
+        if Jogada_ação > Isolde_jogada:
+            print(f"{nome}, com uma série de movimentos calculados, revela uma estratégia luminosa")
+            print("Ele usa a luz a seu favor, revelando a posição de Isolde nas sombras")
+            Isolde_vida -= 1050
+            print("\033[5;49;95mDano recebido por [Isolde]\033[m")
+        if Isolde_jogada > Jogada_ação:
+            print(f"Isolde move-se entre as sombras, criando ilusões e confundindo {nome}.O surprenedendo com um golpe na escuridão")
+            time.sleep(1.5)
+            vida -= 800
+            print(f"\033[1;49;31mDano recebido por\033[m \033[1;49;36m{nome}\033[m")
+        if Isolde_jogada == Jogada_ação:
+            print(f"Em um momento de pausa,ambos param de atacar e se analizam.")
+        if Isolde_jogada > 12:
+            print(f"Isolde, adaptando-se ao novo cenário, usa suas habilidades para criar cópias sombrias de si mesma, confundindo {nome}.")
+            vida -= 1500
+            pausa_dramatica()
+            for n in range(0, 3):
+                vida -= 550
+                n = vida
+                time.sleep(1.5)
+            print(f"\033[1;49;92m{vida}\033[m")
+            print(f"\033[1;49;31mDano recebido por\033[m \033[1;49;36m{nome}\033[m")
+        if Jogada_ação > 14:
+            print(f"{nome}, demonstrando uma incrível destreza, desfaz as ilusões de Isolde e a atinge com um golpe decisivo.")
+            Isolde_vida -= 1075
+            pausa_dramatica()
+            for n in range(0, 3):
+                Isolde_vida -= 450
+                n = Isolde_vida
+                time.sleep(1.5)
+            print(f"\033[1;49;92m{Isolde_vida}\033[m")
+            print("\033[5;49;95mDano recebido por [Isolde]\033[m")
+        if vida < 0:
+            print(f"\033[1;49;36m{nome}\033[m \033[1;49;91m foi derrotada por Isolde\033[m")
+            Quarto_round  = "Isolde"
+            print("-=-=Quadro de lutas-=-=-")
+            print(f"\033[1;49;93mElena\033[m vs. \033[1;49;34m Soren\033[m")
+            print(f"\033[2;49;94mMarcus\033[m vs. \033[1;49;37mLyra\033[m")
+            print(f"\033[2;49;91mGareth\033[m vs. \033[2;49;92mFiona\033[m")
+            print(f"\033[1;49;36m{nome}\033[m vs.Isolde ->Vencedor \033[2;49;92m{Quarto_round}\033[m")
+            break
+        if Isolde_vida < 0:
+            print(f"\033[5;49;95mIsolde\033[m \033[1;49;91m foi derrotada por {nome}\033[m")
+            Quarto_round = f"{nome}"
+            print("-=-=Quadro de lutas-=-=-")
+            print(f"\033[1;49;93mElena\033[m vs. \033[1;49;34m Soren\033[m")
+            print(f"\033[2;49;94mMarcus\033[m vs. \033[1;49;37mLyra\033[m")
+            print(f"\033[2;49;91mGareth\033[m vs. \033[2;49;92mFiona\033[m")
+            print(f"\033[1;49;36m{nome}\033[m vs.\033[5;49;95mIsolde\033[m ->Vencedor \033[2;49;92m{Quarto_round}\033[m")
+            break
+Quarto_round(rodada,vida,nome,Quarto_round)
 
 
 def lest_fight(vida_aliado1, vida_aliado2, rodada, vida, crítico, Goblin_iaBoss_vida, Goblin_Strong1, a1_aliado,
