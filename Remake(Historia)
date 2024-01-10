@@ -534,8 +534,6 @@ def Explorar(nome, Lobo, vida, rodada, exp, lobo_venci, gold):
         print(f"\033[1;49;36m{nome}\033[m Morreu!")
         print("\033[4;31mGame over\033[m")
         sys.exit()
-
-
 Explorar(nome, Lobo, vida, rodada, exp, lobo_venci, gold)
 time.sleep(1)
 Pele_lobo += 2
@@ -621,7 +619,7 @@ print(f"""Após a chegada misteriosa da macareira,{nome} acordar de seu sono, e 
 porém perceber que ao falar com ela, não entendi o que era dito""")
 time.sleep(3.0)
 print("==" * 10)
-print("Sistema:Agora você deve escobrir o que ela esta tentando dizer!")
+print("Sistema:Agora você deve descobrir o que ela esta tentando dizer!")
 time.sleep(0.5)
 print("==" * 10)
 acerto_polindromo = 0
@@ -1047,7 +1045,6 @@ if gostando == "N":
     fechar_jogo = str(input("[S/N]")).strip().upper()
     if fechar_jogo == "N" or "n":
         tempo_final = time.time()
-        print(f"Ultimos dados salvos:")
         print(f"Ultimos dados salvos:")
         print(f"->\033[5;49;94mNome:\033[m[{nome}]")
         print(f"->\033[5;49;94mNivel:\033[m[{level}]")
@@ -2046,559 +2043,1055 @@ pausa_dramatica()
 print("O sol brilhava intensamente sobre a arena enquanto o rei proclamava o início do torneio, dando início a uma série de duelos emocionantes.")
 pausa_dramatica()
 print(f"Com isso foi dado o iniciamento das batalhas iliminatorios do torneio")
-print("Quadro de lutas")
-print(f"\033[1;49;93mElena\033[m vs. \033[1;49;34mSoren\033[m")
+print("-=-=-=-=-=-=Quadro de lutas=-=-=-=-=-=-")
+print(f"-->\033[1;49;93mElena\033[m vs. \033[1;49;34mSoren\033[m")
 print(f"Marcus vs. Lyra")
 print(f"Gareth vs. Fiona ")
 print(f"{nome} vs.Isolde")
-def Primeiro_round(rodada,Primeiro_round):
+def Primeiro_round(rodada,vida,nome):
     print(f"O juiz da o sinal para o começo da luta")
-    Primeiro_round = "Anonimo"
-    Elena_vida = 4000
-    Soren_vida = 4800
-    Elena_jogada = randint(2, 10)
-    Sore_jogada = randint(1, 15)
-    while True:
-        print("====" * 15)
-        time.sleep(1)
-        print(f"Rodada \033[1;34m{rodada}\033[m")
-        time.sleep(2)
-        rodada += 1
-        Elena_jogada = randint(2, 10)
-        Sore_jogada = randint(1, 15)
-        if Elena_jogada > Sore_jogada:
-            print(f"Elena salta habilmente por cima de um pilar baixo, evitando um ataque rápido de Soren")
-            print("Ela contra-ataca com uma série de golpes precisos")
-            Soren_vida -= 1050
-            print("\033[1;49;34mDano recebido por [Sore]\033[m")
-        if Sore_jogada > Elena_jogada:
-            print(f"Soren responde com movimentos ágeis, tentando encontrar uma abertura.")
-            time.sleep(1.5)
-            print(f"Sore se esquiva habilmente de um golpe surpresa de Elena, mas ele aproveita o impulso para lançar um ataque feroz")
-            Elena_vida -= 1050
-            print("\033[1;49;93mDano recebido por [Elena]\033[m")
-        if Sore_jogada == Elena_jogada:
-            print(f"Ambos começam a se movimentar rapidamente")
-        if Sore_jogada > 13:
-            print(f"Sore com um rapido movimento superou momentanialmento Elena, é a surprende")
-            Elena_vida -= 1075
-            pausa_dramatica()
-            for n in range(0, 3):
-                Elena_vida -= 450
-                n = Elena_vida
-                time.sleep(1.5)
-            print(f"\033[1;49;92m{Elena_vida}\033[m")
-            print("\033[1;49;93mDano recebido por [Elena]\033[m")
-        if Elena_jogada > 9:
-            print(f"Elena decide de mover de um lado para o outro para confundir sore, para aparecer de supressa na sua frente")
-            Soren_vida -= 1075
-            pausa_dramatica()
-            for n in range(0, 3):
-                Soren_vida -= 450
-                n = Soren_vida
-                time.sleep(1.5)
-            print(f"\033[1;49;92m{Soren_vida}\033[m")
-            print("\033[1;49;34mDano recebido por [Sore]\033[m")
-        if Elena_vida < 0:
-            print("\033[1;49;93mElena\033[m \033[1;49;91mfoi derrotada por Sore\033[m")
-            Primeiro_round = "Sore"
-            print("-=-=Quadro de lutas-=-=-")
-            print(f"\033[1;49;93mElena\033[m vs. \033[1;49;34m Soren\033[m ->Vencedor \033[2;49;92m{Primeiro_round}\033[m")
-            break
-        if Soren_vida < 0:
-            print("\033[1;49;34mSore\033[m \033[1;49;91m foi derrotada por Elena\033[m")
-            Primeiro_round = "Elena"
-            print("-=-=Quadro de lutas-=-=-")
-            print(f"\033[1;49;93mElena\033[m vs. \033[1;49;34mSoren\033[m ->Vencedor \033[2;49;92m{Primeiro_round}\033[m")
-            break
-Primeiro_round(rodada,Primeiro_round)
-print(f"\033[2;49;94mMarcus\033[m vs. \033[1;49;37mLyra\033[m")
-print(f"Gareth vs. Fiona ")
-print(f"{nome} vs.Isolde")
-def Segundo_round(rodada,Segundo_round):
-    print(f"O juiz da o sinal para o começo da luta")
-    Marcus_vida = 6000
-    Lyra_vida = 5800
-    while True:
-        print("====" * 15)
-        time.sleep(1)
-        print(f"Rodada \033[1;34m{rodada}\033[m")
-        time.sleep(2)
-        rodada += 1
-        Marcus_jogada = randint(2, 9)
-        Lyra_jogada = randint(0, 12)
-        if Marcus_jogada > Lyra_jogada:
-            print(f"Marcus avança com poderosos golpes de sua espada")
-            print("Ela contra-ataca com uma série de golpes precisos")
-            Lyra_vida -= 1050
-            print("\033[1;49;37mDano recebido por [Lyra]\033[m")
-        if Lyra_jogada > Marcus_jogada:
-            print(f"Enquanto Lyra se movimenta com agilidade, desviando habilmente.")
-            time.sleep(1.5)
-            print(f"Lyra usa a paisagem a seu favor, saltando entre as rochas para criar distrações enquanto planeja seu próximo movimento,até finalmente consegui acerta-lo")
-            Marcus_vida -= 1050
-            print("\033[2;49;94mDano recebido por [Marcus]\033[m")
-        if Lyra_jogada == Marcus_jogada:
-            print(f"Marcus e Lyra se estudam por um momento antes de se lançarem um contra o outro. ")
-        if Lyra_jogada > 11:
-            print(f"Lyra cria uma armadilha astuciosa, fingindo uma fraqueza momentânea,Lyra cria uma armadilha astuciosa, fingindo uma fraqueza momentânea.")
-            Marcus_vida -= 1075
-            pausa_dramatica()
-            for n in range(0, 3):
-                Marcus_vida -= 450
-                n = Marcus_vida
-                time.sleep(1.5)
-            print(f"\033[1;49;92m{Marcus_vida}\033[m")
-            print("\033[2;49;94mDano recebido por [Marcus]\033[m")
-        if Marcus_jogada > 7:
-            print(f"Os golpes poderosos de Marcus,criam passagem para avançar com um ataque violento em Lyra")
-            Lyra_vida -= 1075
-            pausa_dramatica()
-            for n in range(0, 3):
-                Lyra_vida -= 450
-                n = Lyra_vida
-                time.sleep(1.5)
-            print(f"\033[1;49;92m{Lyra_vida}\033[m")
-            print("\033[1;49;37mDano recebido por [Lyra]\033[m")
-        if Marcus_vida < 0:
-            print("\033[1;49;93mMarcus\033[m \033[1;49;91mfoi derrotada por Lyra\033[m")
-            Segundo_round = "Lyra"
-            print("-=-=Quadro de lutas-=-=-")
-            print(f"\033[1;49;93mElena\033[m vs. \033[1;49;34m Soren\033[m ->Vencedor")
-            print(f"\033[2;49;94mMarcus\033[m vs. \033[1;49;37mLyra\033[m ->Vencedor \033[2;49;92m{Segundo_round}\033[m")
-            break
-        if Lyra_vida < 0:
-            print("\033[1;49;34mLyra\033[m \033[1;49;91m foi derrotada por Marcus\033[m")
-            Segundo_round = "Marcus"
-            print("-=-=Quadro de lutas-=-=-")
-            print(f"\033[1;49;93mElena\033[m vs. \033[1;49;34m Soren\033[m")
-            print(f"\033[2;49;94mMarcus\033[m vs. \033[1;49;37mLyra\033[m ->Vencedor \033[2;49;92m{Segundo_round}\033[m")
-            break
-Segundo_round(rodada,Segundo_round)
-print(f"\033[2;49;91mGareth\033[m vs. \033[2;49;92mFiona\033[m ")
-print(f"{nome} vs.Isolde")
-
-def Terceira_round(rodada,Terceiro_round ):
-    print(f"O juiz da o sinal para o começo da luta")
-    Gareth_vida= 2000
-    Fiona_vida = 3800
-    while True:
-        print("====" * 15)
-        time.sleep(1)
-        print(f"Rodada \033[1;34m{rodada}\033[m")
-        time.sleep(2)
-        rodada += 1
-        Gareth_jogada = randint(4, 10)
-        Fiona_jogada = randint(2, 12)
-        if Gareth_jogada > Fiona_jogada:
-            print(f"Gareth, com uma expressão séria, começa a avançar enquanto Fiona mantém uma postura defensiva.")
-            print("Ele contra-ataca com uma série de golpes precisos")
-            Fiona_vida -= 1050
-            print("\033[2;49;92mDano recebido por [Fiona]\033[m")
-        if Fiona_jogada > Gareth_jogada:
-            print(f"Fiona, aproveitando um momento de distração de Gareth, revela sua habilidade de cura ao tratar rapidamente um ferimento.")
-            time.sleep(1.5)
-            Gareth_vida -= 800
-            print("\033[1;49;37mDano recebido por [Gareth]\033[m")
-        if Fiona_jogada == Gareth_jogada:
-            print(f"Em um momento de pausa, Gareth e Fiona param de lutar temporariamente.")
-        if Fiona_jogada > 11:
-            print(f"Fiona com suas habilidade de recuperação, usa a na hora de cansaso de seu adversario, para se recuperar é avançar com tudo em sua direção")
-            Gareth_vida -= 500
-            pausa_dramatica()
-            for n in range(0, 3):
-                Gareth_vida -= 150
-                n = Gareth_vida
-                time.sleep(1.5)
-            print(f"\033[1;49;92m{Gareth_vida}\033[m")
-            print("\033[1;49;37mDano recebido por [Gareth]\033[m")
-        if Gareth_jogada > 9:
-            print(f"Gareth utiliza o terreno a seu favor, movendo-se rapidamente entre as árvores e criando ilusões de emboscadas.")
-            Fiona_vida -= 1075
-            pausa_dramatica()
-            for n in range(0, 3):
-                Fiona_vida -= 450
-                n = Fiona_vida
-                time.sleep(1.5)
-            print(f"\033[1;49;92m{Fiona_vida}\033[m")
-            print("\033[2;49;92mmDano recebido por [Fiona]\033[m")
-        if Gareth_vida < 0:
-            print("\033[1;49;37mGareth\033[m \033[1;49;91m foi derrotada por Fiona\033[m")
-            Terceiro_round  = "Fiona"
-            print("-=-=Quadro de lutas-=-=-")
-            print(f"\033[1;49;93mElena\033[m vs. \033[1;49;34m Soren\033[m")
-            print(f"\033[2;49;94mMarcus\033[m vs. \033[1;49;37mLyra\033[m")
-            print(f"\033[2;49;91mGareth\033[m vs. \033[2;49;92mFiona\033[m ->Vencedor \033[2;49;92m{Terceiro_round}\033[m")
-            break
-        if Fiona_vida < 0:
-            print("\033[2;49;92mFiona\033[m \033[1;49;91m foi derrotada por Gath\033[m")
-            Terceiro_round = "Gath"
-            print("-=-=Quadro de lutas-=-=-")
-            print(f"\033[1;49;93mElena\033[m vs. \033[1;49;34m Soren\033[m")
-            print(f"\033[2;49;94mMarcus\033[m vs. \033[1;49;37mLyra\033[m")
-            print(f"\033[2;49;91mGareth\033[m vs. \033[2;49;92mFiona\033[m ->Vencedor \033[2;49;92m{Terceiro_round}\033[m")
-            break
-Terceira_round(rodada,Terceiro_round )
-print(f"\033[1;49;36m{nome}\033[m vs.\033[5;49;95mIsolde\033[m")
-pausa_dramatica()
-print(f"Agora é a partida de {nome} fica atento")
-
-def Quarto_round(rodada,vida,nome,Quarto_round):
-    print(f"O juiz da o sinal para o começo da luta")
-    print(f"Isolde emerge das sombras enquanto {nome} se posiciona, espada em punho.")
-    Isolde_vida = 4800
-    while True:
-        print("====" * 15)
-        time.sleep(1)
-        print(f"Rodada \033[1;34m{rodada}\033[m")
-        time.sleep(2)
-        rodada += 1
-        Jogada_ação = randint(4, 16)
-        Isolde_jogada = randint(3, 13)
-        if Jogada_ação > Isolde_jogada:
-            print(f"{nome}, com uma série de movimentos calculados, revela uma estratégia luminosa")
-            print("Ele usa a luz a seu favor, revelando a posição de Isolde nas sombras")
-            Isolde_vida -= 1050
-            print("\033[5;49;95mDano recebido por [Isolde]\033[m")
-        if Isolde_jogada > Jogada_ação:
-            print(f"Isolde move-se entre as sombras, criando ilusões e confundindo {nome}.O surprenedendo com um golpe na escuridão")
-            time.sleep(1.5)
-            vida -= 800
-            print(f"\033[1;49;31mDano recebido por\033[m \033[1;49;36m{nome}\033[m")
-        if Isolde_jogada == Jogada_ação:
-            print(f"Em um momento de pausa,ambos param de atacar e se analizam.")
-        if Isolde_jogada > 12:
-            print(f"Isolde, adaptando-se ao novo cenário, usa suas habilidades para criar cópias sombrias de si mesma, confundindo {nome}.")
-            vida -= 1500
-            pausa_dramatica()
-            for n in range(0, 3):
-                vida -= 550
-                n = vida
-                time.sleep(1.5)
-            print(f"\033[1;49;92m{vida}\033[m")
-            print(f"\033[1;49;31mDano recebido por\033[m \033[1;49;36m{nome}\033[m")
-        if Jogada_ação > 14:
-            print(f"{nome}, demonstrando uma incrível destreza, desfaz as ilusões de Isolde e a atinge com um golpe decisivo.")
-            Isolde_vida -= 1075
-            pausa_dramatica()
-            for n in range(0, 3):
-                Isolde_vida -= 450
-                n = Isolde_vida
-                time.sleep(1.5)
-            print(f"\033[1;49;92m{Isolde_vida}\033[m")
-            print("\033[5;49;95mDano recebido por [Isolde]\033[m")
-        if vida < 0:
-            print(f"\033[1;49;36m{nome}\033[m \033[1;49;91m foi derrotada por Isolde\033[m")
-            Quarto_round  = "Isolde"
-            print("-=-=Quadro de lutas-=-=-")
-            print(f"\033[1;49;93mElena\033[m vs. \033[1;49;34m Soren\033[m")
-            print(f"\033[2;49;94mMarcus\033[m vs. \033[1;49;37mLyra\033[m")
-            print(f"\033[2;49;91mGareth\033[m vs. \033[2;49;92mFiona\033[m")
-            print(f"\033[1;49;36m{nome}\033[m vs.Isolde ->Vencedor \033[2;49;92m{Quarto_round}\033[m")
-            break
-        if Isolde_vida < 0:
-            print(f"\033[5;49;95mIsolde\033[m \033[1;49;91m foi derrotada por {nome}\033[m")
-            Quarto_round = f"{nome}"
-            print("-=-=Quadro de lutas-=-=-")
-            print(f"\033[1;49;93mElena\033[m vs. \033[1;49;34m Soren\033[m")
-            print(f"\033[2;49;94mMarcus\033[m vs. \033[1;49;37mLyra\033[m")
-            print(f"\033[2;49;91mGareth\033[m vs. \033[2;49;92mFiona\033[m")
-            print(f"\033[1;49;36m{nome}\033[m vs.\033[5;49;95mIsolde\033[m ->Vencedor \033[2;49;92m{Quarto_round}\033[m")
-            break
-Quarto_round(rodada,vida,nome,Quarto_round)
-
-
-def lest_fight(vida_aliado1, vida_aliado2, rodada, vida, crítico, Goblin_iaBoss_vida, Goblin_Strong1, a1_aliado,
-               a2_aliado):
-    while True:
-        print("-=-=-=-=-=-=-=-=-=-!" * 15)
-        time.sleep(1)
-        print("Rodada {}".format(rodada))
-        time.sleep(2)
-        if vida >= 10:
-            Jogador_ação = randint(0, 18)
-        elif vida <= 0:
-            Jogador_ação = 0
-        if aliados == 1:
-            Aliado_1 = randint(5, 13)
-        if aliados_2 == 1:
-            Aliado_2 = randint(5, 15)
-        if a1_aliado == True:
-            Aliado_1 = False
-        if a2_aliado == True:
-            Aliado_2 = False
-        Goblin_iaBoss = randint(0, 22)
-        time.sleep(1)
-        rodada += 1
-        Evasão = 0
-        if aliados == 1:
-            print(
-                "jogador tirou {} o \033[1;34m{}\033[m tirou {}, o \033[31m1Goblin(Mais forte)\033[m CONSEGUIU {}".format(
-                    Jogador_ação, aliado_nome1, Aliado_1, Goblin_iaBoss))
-        if aliados_2 == 1:
-            print(
-                "jogador tirou {} o \033[1;35m{}\033[m tirou {}, o \033[31m1Goblin(Mais forte)\033[m CONSEGUIU {}".format(
-                    Jogador_ação, aliado_nome2, Aliado_2, Goblin_iaBoss))
-        if Jogador_ação >= 12:
-            crítico += 1
-            Evasão += 1
-        if crítico > 5:
-            vida += 500
-            print(
-                f"Apos conseguir tirar dados acima de 9, 3 vezes seguidas \033[37m{nome}\033[m  ativa a habilidade \033[34m(Adptação)\033[m é \033[34m(critico)\033[m")
-            Jogador_ação = randint(0, 21)
-            if Jogador_ação == Goblin_iaBoss:
-                print(f"""Por \033[37m{nome}\033[m estar um a habilidade  \033[34m(Adptação)\033[m ativade, ele consegue ferir os 
-Goblins, tirando-o 350 de Hp""")
-                Goblin_iaBoss_vida -= 350
-                crítico -= 3
-        elif Evasão > 5:
-            print("~~~~~~" * 2)
-            print(
-                f"\033[37m{nome}\033[m conseguiu se adptar a batalha, conseguindo usar a habilidade \033[34mesquiva!\033[m")
-            vida += 500
-            time.sleep(1.5)
-            print("~~~~~~" * 2)
-        if vida >= 10:
-            if Jogador_ação == Goblin_iaBoss:
-                print(
-                    "Ambos atacaram mais,\033[31m1 Goblin(Mais forte)\033[m era mais forte e ganha de {}".format(nome))
-                vida -= 100
-                time.sleep(1.5)
-        if aliados == 1:
-            if Aliado_1 == Goblin_iaBoss:
-                print("Ambos atacaram mais,\033[31m1Goblin(Mais forte)\033[m era mais forte e ganha de {}".format(
-                    aliado_nome1))
-                vida_aliado1 -= 100
-                time.sleep(1)
-            if Aliado_1 > Goblin_iaBoss:
-                Goblin_Strong1 -= 175
-                print(
-                    f"\033[1;34m{aliado_nome1}\033[m atacou o \033[31m1 Goblin(Mais forte)\033[m tirando 175 de vida dele")
-                time.sleep(1.5)
-            if Goblin_iaBoss > Aliado_1:
-                vida_aliado1 -= 300
-                print(
-                    f"\033[31m1Goblin(Mais forte)\033[m atacou \033[1;34m{aliado_nome1}\033[m  tirando 300 de vida dele")
-                time.sleep(1.5)
-            if vida_aliado1 <= 350:
-                print("\033[34m{}\033[m Ativou o estado de \033[4;31mperseverança\033[m".format(aliado_nome1))
-                vida_aliado1 += 50
-                if vida_aliado1 <= 100:
-                    print("\033[34m{}\033[m não consegue mais usar o estado de perseverança".format(aliado_nome1))
-        if vida <= 0:
-            if vida_aliado1 <= 0:
-                print("\033[1;34m{}\033[m esta \033[31mMORTO\033[m!".format(aliado_nome1))
-                time.sleep(1)
-                print(f"{vida_aliado1}")
-                if Goblin_iaBoss_vida >= 700:
-                    print("Ainda faltava muito pra você derrotá-lo")
-                elif Goblin_iaBoss_vida < 700:
-                    print("O \033[31mGoblin(Mais forte)\033[m estava com {} de vida".format(Goblin_iaBoss_vida))
-                sys.exit()
-        if aliados_2 == 1:
-            if Aliado_2 == Goblin_iaBoss:
-                print("Ambos atacaram mais,\033[31m1Goblin(Mais forte)\033[m era mais forte e ganha de {}".format(
-                    aliado_nome2))
-                time.sleep(1.5)
-                vida_aliado2 -= 100
-            if Aliado_2 > Goblin_iaBoss:
-                Goblin_Strong1 -= 175
-                print(
-                    f"\033[1;35m{aliado_nome2}\033[m atacou o \033[31m1Goblin(Mais forte)\033[m tirando 175 de vida dele")
-                time.sleep(1.5)
-            if Goblin_iaBoss > Aliado_2:
-                vida_aliado2 -= 300
-                print(
-                    f"\033[31m1Goblin(Mais forte)\033[m atacou \033[1;35m{aliado_nome2}\033[m  tirando 300 de vida dele")
-                time.sleep(1.5)
-            while True:
-                if vida_aliado2 >= 100 & vida_aliado2 <= 350:
-                    print("\033[35m{}\033[m Ativou o estado de \033[31mperseverança\033[m".format(aliado_nome2))
-                    vida_aliado2 += 50
-                    break
-                if vida_aliado2 <= 100:
-                    print("\033[35m{}\033[m não consegue mais usar o estado de perseverança".format(aliado_nome2))
-                    break
-                else:
-                    break
-        if vida <= 0:
-            if vida_aliado2 <= 0:
-                print("\033[1;35m{}\033[m esta \033[31mMORTO\033[m".format(aliado_nome2))
-                time.sleep(1)
-                print(f"{vida_aliado2}")
-                print("Vida \033[31mgoblin(Mais Forte)\033[m {}".format(Goblin_iaBoss_vida))
-                if Goblin_iaBoss_vida >= 700:
-                    print("Ainda faltava muito pra você derrotá-lo")
-                elif Goblin_iaBoss_vida < 700:
-                    print("O \033[31mGoblin(Mais forte)\033[m estava com {} de vida".format(Goblin_iaBoss_vida))
-                    sys.exit()
-        if vida >= 10:
-            if Jogador_ação > Goblin_iaBoss:
-                Goblin_iaBoss_vida -= 250
-                print(f"\033[37m{nome}\033[m atacou o \033[31m 1Goblin(Mais forte)\033[m tirando 250 de vida dele")
-            if Goblin_iaBoss > Jogador_ação:
-                vida -= 600
-                print(
-                    f"\033[37m{nome}\033[m foi atacado pelo \033[31m1Goblin(Mais forte)\033[m e \033[31mperdeu\033[m \033[31m315\033[m de vida")
-                time.sleep(1.5)
-        if Goblin_iaBoss > 19:
-            time.sleep(1.5)
-            print(f"O \033[31mO Goblin\033[m tirou dados acima de 19...")
-            time.sleep(1.5)
-            print("O Goblin pisou no chão causando terremotos!")
-            for n in range(0, 3):
-                if vida >= 10:
-                    vida -= 300
-                if aliados == 1:
-                    vida_aliado1 -= 80
-                if aliados_2 == 1:
-                    vida_aliado2 -= 80
-                n = vida
-                n1 = vida_aliado1
-                n2 = vida_aliado2
-                time.sleep(1.5)
-            print("Jogador vida \033[32m {}\033[m".format(vida))
-            time.sleep(0.8)
-            if aliados == 1:
-                print(f"\033[1;34m{aliado_nome1}\033[m vida {vida_aliado1}")
-            time.sleep(1.5)
-            if aliados_2 == 1:
-                vida_aliado2 -= 80
-                print(f"\033[1;35m{aliado_nome2}\033[m vida {vida_aliado2}")
-        if vida <= 300:
-            if vida_aliado1 > 50 & vida_aliado1 < 300:
-                print("\033[34m{}\033[m esta em um estado critico!".format(aliado_nome1))
-                time.sleep(1.5)
-                print("O que você vai fazer?")
-                time.sleep(1)
-                aliado_açõa = int(input(f"""Suas opções:
-[1]-Ir na direção do \033[37m{nome}\033[m, para usar os suprimentos dele para ajudar na batalha,
-[2]-Tentar usar o ambiente como um fator de vantagem
-[3]-Correr para se recuperar"""))
-                if aliado_açõa == 1:
-                    print(
-                        "\033[1;34m{}\033[m decide sair correndo na direção de \033[37m{}\033[m, e encontra os suprimento, e usa-os".format(
-                            aliado_nome1, nome))
-                    time.sleep(1.5)
-                    print("...-Passos...")
-                    time.sleep(1.5)
-                    print(
-                        "\033[1;34m{}\033[m consegue usar os recursos, nele e no \033[37m{}\033[m é consegue trazer o \033[37m{}\033[m devolta pra batalha".format(
-                            aliado_nome1, nome, nome))
-                    vida_aliado1 += 500
-                    vida += 500
-                    time.sleep(1.5)
-                    print(f"Agora \033[37m{nome}\033[m está devolta na batalha!")
-                if aliado_açõa == 2:
-                    print("""\033[1;34m{}\033[m olha a sua volta e percebe, que estava em desvantegem dentro daquela caverna,
-e decidi sair correndo de lá, para poder equilibrar o jogo!""".format(aliado_nome1))
-                    vida_aliado1 += 100
-                if aliado_açõa == 3:
-                    print("""\033[1;34m{}\033[m olha a sua volta e percebe, que estava em desvantegem dentro daquela caverna,
-e decidi sair correr de lá, para poder equilibrar o jogo!""".format(aliado_nome1))
-                    vida_aliado1 += 100
-        if vida <= 200:
-            if vida_aliado2 > 50 & vida_aliado2 < 300:
-                print(f"\033[35m{aliado_nome2}\033[m esta em um estado critico!")
-                time.sleep(1.5)
-                print("O que você vai fazer?")
-                time.sleep(1)
-                aliado_açõa = int(input(f"""Suas opções:
-[1]-Ir na direção do \033[37m{nome}\033[m, para usar os suprimentos dele para ajudar na batalha,
-[2]-Tentar usar o ambiente como um fator de vantagem
-[3]-Correr para se recuperar"""))
-                if aliado_açõa == 1:
-                    print(
-                        "\033[1;35m{}\033[m decide sair correndo na direção de \033[37m{}\033[m, e encontra os suprimento, e usa-os".format(
-                            aliado_nome2, nome))
-                    time.sleep(1.5)
-                    print("...-Passos...")
-                    time.sleep(1.5)
-                    print(
-                        "\033[1;35m{}\033[m consegue usar os recursos, nele e no \033[37m{}\033[m é consegue trazer o \033[37m{}\033[m devolta pra batalha".format(
-                            aliado_nome2, nome, nome))
-                    vida_aliado2 += 500
-                    vida += 500
-                    time.sleep(1.5)
-                    print(f"Agora \033[37m{nome}\033[m está devolta na batalha!")
-                    print(f"Agora \033[37m{nome}\033[m está devolta na batalha!")
-                if aliado_açõa == 2:
-                    print("""\033[1;35m{}\033[m olha a sua volta e percebe, que estava em desvantegem dentro daquela caverna,
-e decidi sair correndo de lá, para poder equilibrar o jogo!""".format(aliado_nome2))
-                    vida_aliado2 += 100
-                if aliado_açõa == 3:
-                    print("""\033[1;35m{}\033[m olha a sua volta e percebe, que estava em desvantegem dentro daquela caverna,
-e decidi sair correndo de lá, para poder equilibrar o jogo!""".format(aliado_nome2))
-                    vida_aliado2 += 100
-        if vida <= 0:
-            print("\033[37m{}\033[m está inconsiente".format(nome))
-            time.sleep(1)
-            print("...")
-        if Goblin_iaBoss_vida <= 0:
-            break
-        if Goblin_iaBoss > 20:
-            if Goblin_iaBoss % 2:
-                print("Conseguiu achar uma brecha, no seu attack")
-                time.sleep(1)
-                print("...")
-                if aliados == 1:
-                    if Aliado_1 % 2:
-                        print("O Goblin ia atacar mas \033[34m{}\033[m consegue desviar do seu attack!".format(
-                            aliado_nome1))
-                        time.sleep(1)
-                        vida_aliado1 -= 300
-                if aliados_2 == 1:
-                    if Aliado_2 % 2:
-                        print("O goblin ia atacar mas \033[35m{}\033[m consegue desviar do seu attack!".format(
-                            aliado_nome2))
-                        time.sleep(1)
-                else:
-                    print(
-                        "O \033[31mGoblin(Mais forte)\033[m com um movimento veloz acerta-o tirando 300 de vida dele!")
-                    if aliados == 1:
-                        vida_aliado1 -= 300
-                        print("{} \033[31mperdeu {} de vida\033[m".format(aliado_nome1, vida_aliado1))
-                    if aliados_2 == 1:
-                        vida_aliado2 -= 300
-                        print("{} \033[31mperdeu {} de vida\033[m".format(aliado_nome2, vida_aliado2))
+    Primeiro_round = "Elena"
+    Segundo_round = "..."
+    Terceiro_round = "..."
+    Quarto_round = "..."
+    Primeiro_round_seg = "...."
+    Segundo_round_seg = "..."
+    Terceiro_round_seg = "..."
+    Quarto_round_seg = "..."
+    Fim_Primeiro_round = False
+    Fim_Segundo_round = False
+    Fim_Terceiro_round = False
+    Fim_Quarto_round = True
+    Quinta_round_seg = False
+    segunda_fase_inicio = False
+    Fim_Primeiro_round_seg = False
+    Fim_Segundo_round_seg = False
+    Fim_Terceiro_round_seg = False
+    Fim_Quarto_round_seg = False
+    Fim_Quinta_round_seg = False
+    Fim_segundo_round_seg = False
+    Finais_torneio = False
+    Finais_torneio_on = False
+    Fim_Segundo_round_seg = False
+    Exit = False
+    while Exit is False:
+            if Fim_Primeiro_round == False:
+                Elena_vida = 4000
+                Soren_vida = 4800
+                while True:
+                    print("====" * 15)
                     time.sleep(1)
-            if vida <= 0:
-                if vida_aliado2 <= 0:
-                    print("\033[31mGame over\033[m")
-                    sys.exit()
-                if vida_aliado1 <= 0:
-                    print("\033[31mGame over\033[m")
-                    sys.exit()
-            else:
-                print("...")
+                    print(f"Rodada \033[1;34m{rodada}\033[m")
+                    time.sleep(2)
+                    rodada += 1
+                    Elena_jogada = randint(2, 10)
+                    Sore_jogada = randint(1, 15)
+                    if Elena_jogada > Sore_jogada:
+                        print(f"Elena salta habilmente por cima de um pilar baixo, evitando um ataque rápido de Soren")
+                        print("Ela contra-ataca com uma série de golpes precisos")
+                        Soren_vida -= 1050
+                        print("\033[1;49;91mDano recebido por\033[m \033[1;49;34m[Sore]\033[m")
+                    if Sore_jogada > Elena_jogada:
+                        print(f"Soren responde com movimentos ágeis, tentando encontrar uma abertura.")
+                        time.sleep(1.5)
+                        print(
+                            f"Sore se esquiva habilmente de um golpe surpresa de Elena, mas ele aproveita o impulso para lançar um ataque feroz")
+                        Elena_vida -= 1050
+                        print("\033[1;49;91mDano recebido por\033[m \033[1;49;93m[Elena]\033[m")
+                    if Sore_jogada == Elena_jogada:
+                        print(f"Ambos começam a se movimentar rapidamente")
+                    if Sore_jogada > 13:
+                        print(f"Sore com um rapido movimento superou momentanialmento Elena, é a surprende")
+                        Elena_vida -= 1075
+                        pausa_dramatica()
+                        for n in range(0, 3):
+                            Elena_vida -= 450
+                            n = Elena_vida
+                            time.sleep(1.5)
+                        print(f"Vida-Elena:\033[1;49;92m{Elena_vida}\033[m")
+                        print("\033[1;49;91mDano recebido por\033[m \033[1;49;93m[Elena]\033[m")
+                    if Elena_jogada > 9:
+                        print(
+                            f"Elena decide de mover de um lado para o outro para confundir sore, para aparecer de supressa na sua frente")
+                        Soren_vida -= 1075
+                        pausa_dramatica()
+                        for n in range(0, 3):
+                            Soren_vida -= 450
+                            n = Soren_vida
+                            time.sleep(1.5)
+                        print(f"Vida-Soren:\033[1;49;92m{Soren_vida}\033[m")
+                        print("\033[1;49;91mDano recebido por\033[m \033[1;49;34m[Sore]\033[m")
+                    if Elena_vida < 0:
+                        print("\033[1;49;34mSoren\033[m \033[5;49;91mfoi o vencedor\033[m")
+                        Primeiro_round = "Soren"
+                        print("-=-=-=-=-=-=Quadro de lutas=-=-=-=-=-=-")
+                        print(
+                            f"\033[1;49;93mElena\033[m vs. \033[1;49;34m Soren\033[m ->Vencedor \033[2;49;92m{Primeiro_round}\033[m")
+                        Fim_Primeiro_round = True
+                        break
+                    if Soren_vida < 0:
+                        print("\033[1;49;93mElena\033[m \033[5;49;91mfoi a vencedora\033[m")
+                        Primeiro_round = "Elena"
+                        print("-=-=-=-=-=-=Quadro de lutas=-=-=-=-=-=-")
+                        print(
+                            f"\033[1;49;93mElena\033[m vs. \033[1;49;34mSoren\033[m ->Vencedor \033[2;49;92m{Primeiro_round}\033[m")
+                        Fim_Primeiro_round = True
+                        break
+            if Fim_Primeiro_round == True:
+                rodada = 0
+                Marcus_vida = 6000
+                Lyra_vida = 5800
+                print(
+                    f"-->\033[2;49;94mMarcus\033[m vs. \033[1;49;37mLyra\033[m")
+                while True:
+                    print("====" * 15)
+                    time.sleep(1)
+                    print(f"Rodada \033[1;34m{rodada}\033[m")
+                    time.sleep(2)
+                    rodada += 1
+                    Marcus_jogada = randint(2, 9)
+                    Lyra_jogada = randint(0, 12)
+                    if Marcus_jogada > Lyra_jogada:
+                        print(f"Marcus avança com poderosos golpes de sua espada")
+                        print("Ela contra-ataca com uma série de golpes precisos")
+                        Lyra_vida -= 1050
+                        print("\033[1;49;91mDano recebido por\033[m \033[1;49;37m[Lyra]\033[m")
+                    if Lyra_jogada > Marcus_jogada:
+                        print(f"Enquanto Lyra se movimenta com agilidade, desviando habilmente.")
+                        time.sleep(1.5)
+                        print(
+                            f"Lyra usa a paisagem a seu favor, saltando entre as rochas para criar distrações enquanto planeja seu próximo movimento,até finalmente consegui acerta-lo")
+                        Marcus_vida -= 1050
+                        print("\033[2;49;91mDano recebido por\033[m \033[2;49;94m[Marcus]\033[m")
+                    if Lyra_jogada == Marcus_jogada:
+                        print(f"Marcus e Lyra se estudam por um momento antes de se lançarem um contra o outro. ")
+                    if Lyra_jogada > 11:
+                        print(
+                            f"Lyra cria uma armadilha astuciosa, fingindo uma fraqueza momentânea,Lyra cria uma armadilha astuciosa, fingindo uma fraqueza momentânea.")
+                        Marcus_vida -= 1075
+                        pausa_dramatica()
+                        for n in range(0, 3):
+                            Marcus_vida -= 450
+                            n = Marcus_vida
+                            time.sleep(1.5)
+                        print(f"Vida-Marcus:\033[1;49;92m{Marcus_vida}\033[m")
+                        print("\033[2;49;91mDano recebido por\033[m \033[2;49;94m[Marcus]\033[m")
+                    if Marcus_jogada > 7:
+                        print(
+                            f"Os golpes poderosos de Marcus,criam passagem para avançar com um ataque violento em Lyra")
+                        Lyra_vida -= 1075
+                        pausa_dramatica()
+                        for n in range(0, 3):
+                            Lyra_vida -= 450
+                            n = Lyra_vida
+                            time.sleep(1.5)
+                        print(f"Vida-Lyra:\033[1;49;92m{Lyra_vida}\033[m")
+                        print("\033[1;49;91mDano recebido por\033[m \033[1;49;37m[Lyra]\033[m")
+                    if Marcus_vida < 0:
+                        print("\033[1;49;37mLyra\033[m \033[5;49;91mfoi a vencedora\033[m")
+                        Segundo_round = "Lyra"
+                        print("-=-=-=-=-=-=Quadro de lutas=-=-=-=-=-=-")
+                        print(f"\033[1;49;93mElena\033[m vs. \033[1;49;34m Soren\033[m ->Vencedor")
+                        print(
+                            f"\033[2;49;94mMarcus\033[m vs. \033[1;49;37mLyra\033[m ->Vencedor \033[2;49;92m{Segundo_round}\033[m")
+                        Fim_Segundo_round = True
+                        break
+                    if Lyra_vida < 0:
+                        print("\033[2;49;94mMarucs\033[m \033[5;49;91mfoi o vencedor\033[m")
+                        Segundo_round = "Marcus"
+                        print("-=-=-=-=-=-=Quadro de lutas=-=-=-=-=-=-")
+                        print(f"\033[1;49;93mElena\033[m vs. \033[1;49;34m Soren\033[m")
+                        print(
+                            f"\033[2;49;94mMarcus\033[m vs. \033[1;49;37mLyra\033[m ->Vencedor \033[2;49;92m{Segundo_round}\033[m")
+                        Fim_Segundo_round = True
+                        break
+            if Fim_Segundo_round == True:
+                rodada = 0
+                Gareth_vida = 2000
+                Fiona_vida = 3800
+                print(f"-->\033[2;49;91mGareth\033[m vs. \033[2;49;92mFiona\033[m")
+                while True:
+                    print("====" * 15)
+                    time.sleep(1)
+                    print(f"Rodada \033[1;34m{rodada}\033[m")
+                    time.sleep(2)
+                    rodada += 1
+                    Gareth_jogada = randint(4, 10)
+                    Fiona_jogada = randint(2, 12)
+                    if Gareth_jogada > Fiona_jogada:
+                        print(f"Gareth, com uma expressão séria, começa a avançar enquanto Fiona mantém uma postura defensiva.")
+                        print("Ele contra-ataca com uma série de golpes precisos")
+                        Fiona_vida -= 1050
+                        print("\033[2;49;91mDano recebido por\033[m \033[2;49;92m[Fiona]\033[m")
+                    if Fiona_jogada > Gareth_jogada:
+                        print(f"Fiona, aproveitando um momento de distração de Gareth, revela sua habilidade de cura ao tratar rapidamente um ferimento.")
+                        time.sleep(1.5)
+                        Gareth_vida -= 800
+                        print("\033[1;49;91mDano recebido por\033[m \033[2;49;91m[Gareth]\033[m")
+                    if Fiona_jogada == Gareth_jogada:
+                        print(f"Em um momento de pausa, Gareth e Fiona param de lutar temporariamente.")
+                    if Fiona_jogada > 11:
+                        print(f"Fiona com suas habilidade de recuperação, usa a na hora de cansaso de seu adversario, para se recuperar é avançar com tudo em sua direção")
+                        Gareth_vida -= 500
+                        pausa_dramatica()
+                        for n in range(0, 3):
+                            Gareth_vida -= 150
+                            n = Gareth_vida
+                            time.sleep(1.5)
+                        print(f"Vida-Gareth:\033[1;49;92m{Gareth_vida}\033[m")
+                        print("\033[1;49;91mDano recebido por\033[m \033[2;49;91m[Gareth]\033[m")
+                    if Gareth_jogada > 9:
+                        print(
+                            f"Gareth utiliza o terreno a seu favor, movendo-se rapidamente entre as árvores e criando ilusões de emboscadas.")
+                        Fiona_vida -= 1075
+                        pausa_dramatica()
+                        for n in range(0, 3):
+                            Fiona_vida -= 450
+                            n = Fiona_vida
+                            time.sleep(1.5)
+                        print(f"Vida-Fiona:\033[1;49;92m{Fiona_vida}\033[m")
+                        print("\033[2;49;91mDano recebido por\033[m \033[2;49;92m[Fiona]\033[m")
+                    if Gareth_vida < 0:
+                        print("\033[2;49;92mFiona\033[m \033[5;49;91mfoi a vencedora\033[m")
+                        Terceiro_round = "Fiona"
+                        print("-=-=-=-=-=-=Quadro de lutas=-=-=-=-=-=-")
+                        print(f"\033[1;49;93mElena\033[m vs. \033[1;49;34m Soren\033[m")
+                        print(f"\033[2;49;94mMarcus\033[m vs. \033[1;49;37mLyra\033[m")
+                        print(
+                            f"\033[2;49;91mGareth\033[m vs. \033[2;49;92mFiona\033[m ->Vencedor \033[2;49;92m{Terceiro_round}\033[m")
+                        Fim_Terceiro_round = True
+                        break
+                    if Fiona_vida < 0:
+                        print("\033[2;49;92mGareth\033[m \033[5;49;91mfoi o vencedor\033[m")
+                        Terceiro_round = "Gareth"
+                        print("-=-=-=-=-=-=Quadro de lutas=-=-=-=-=-=-")
+                        print(f"\033[1;49;93mElena\033[m vs. \033[1;49;34m Soren\033[m")
+                        print(f"\033[2;49;94mMarcus\033[m vs. \033[1;49;37mLyra\033[m")
+                        print(
+                            f"\033[2;49;91mGareth\033[m vs. \033[2;49;92mFiona\033[m ->Vencedor \033[2;49;92m{Terceiro_round}\033[m")
+                        Fim_Terceiro_round = True
+                        break
+            if Fim_Terceiro_round == True:
+                rodada = 0
+                print(f"O juiz da o sinal para o começo da luta")
+                print(f"Isolde emerge das sombras enquanto {nome} se posiciona, espada em punho.")
+                print(f"-->\033[1;49;36m{nome}\033[m vs.\033[5;49;95mIsolde\033[m")
+                Isolde_vida = 4800
+                while True:
+                    print("====" * 15)
+                    time.sleep(1)
+                    print(f"Rodada \033[1;34m{rodada}\033[m")
+                    time.sleep(2)
+                    rodada += 1
+                    Jogada_ação = randint(4, 16)
+                    Isolde_jogada = randint(3, 13)
+                    if Jogada_ação > Isolde_jogada:
+                        print(f"{nome}, com uma série de movimentos calculados, revela uma estratégia luminosa")
+                        print("Ele usa a luz a seu favor, revelando a posição de Isolde nas sombras")
+                        Isolde_vida -= 1050
+                        print("\033[5;49;91mDano recebido por\033[m \033[5;49;95m[Isolde]\033[m")
+                    if Isolde_jogada > Jogada_ação:
+                        print(
+                            f"Isolde move-se entre as sombras, criando ilusões e confundindo {nome}.O surprenedendo com um golpe na escuridão")
+                        time.sleep(1.5)
+                        vida -= 800
+                        print(f"\033[1;49;31mDano recebido por\033[m \033[1;49;36m{nome}\033[m")
+                    if Isolde_jogada == Jogada_ação:
+                        print(f"Em um momento de pausa,ambos param de atacar e se analizam.")
+                    if Isolde_jogada > 12:
+                        print(
+                            f"Isolde, adaptando-se ao novo cenário, usa suas habilidades para criar cópias sombrias de si mesma, confundindo {nome}.")
+                        vida -= 1500
+                        pausa_dramatica()
+                        for n in range(0, 3):
+                            vida -= 550
+                            n = vida
+                            time.sleep(1.5)
+                        print(f"Vida-{nome}:\033[1;49;92m{vida}\033[m")
+                        print(f"\033[1;49;31mDano recebido por\033[m \033[1;49;36m{nome}\033[m")
+                    if Jogada_ação > 14:
+                        print(
+                            f"{nome}, demonstrando uma incrível destreza, desfaz as ilusões de Isolde e a atinge com um golpe decisivo.")
+                        Isolde_vida -= 1075
+                        pausa_dramatica()
+                        for n in range(0, 3):
+                            Isolde_vida -= 450
+                            n = Isolde_vida
+                            time.sleep(1.5)
+                        print(f"Vida-Isolde:\033[1;49;92m{Isolde_vida}\033[m")
+                        print("\033[5;49;91mDano recebido por\033[m \033[5;49;95m[Isolde]\033[m")
+                    if vida < 0:
+                        print("\033[5;49;95mIsolde\033[m \033[5;49;91mfoi o vencedor\033[m")
+                        Quarto_round = "Isolde"
+                        print("-=-=-=-=-=-=Quadro de lutas=-=-=-=-=-=-")
+                        print(
+                            f"\033[1;49;93mElena\033[m vs. \033[1;49;34m Soren\033[m ->Vencedor \033[2;49;92m{Primeiro_round}\033[m")
+                        print(
+                            f"\033[2;49;94mMarcus\033[m vs. \033[1;49;37mLyra\033[m ->Vencedor \033[2;49;92m{Segundo_round}\033[m")
+                        print(
+                            f"\033[2;49;91mGareth\033[m vs. \033[2;49;92mFiona\033[m ->Vencedor \033[2;49;92m{Terceiro_round}\033[m")
+                        print(
+                            f"\033[1;49;36m{nome}\033[m vs.\033[5;49;95mIsolde\033[m ->Vencedor \033[2;49;92m{Quarto_round}\033[m")
+                        Fim_Quarto_round = True
+                        break
+                    if Isolde_vida < 0:
+                        print(f"\033[1;49;36m{nome}\033[m \033[5;49;91mfoi o vencedor\033[m")
+                        Quarto_round = f"{nome}"
+                        print("-=-=-=-=-=-=Quadro de lutas=-=-=-=-=-=-")
+                        print(
+                            f"\033[1;49;93mElena\033[m vs. \033[1;49;34m Soren\033[m ->Vencedor \033[2;49;92m{Primeiro_round}\033[m")
+                        print(
+                            f"\033[2;49;94mMarcus\033[m vs. \033[1;49;37mLyra\033[m ->Vencedor \033[2;49;92m{Segundo_round}\033[m")
+                        print(
+                            f"\033[2;49;91mGareth\033[m vs. \033[2;49;92mFiona\033[m ->Vencedor \033[2;49;92m{Terceiro_round}\033[m")
+                        print(
+                            f"\033[1;49;36m{nome}\033[m vs.\033[5;49;95mIsolde\033[m ->Vencedor \033[2;49;92m{Quarto_round}\033[m")
+                        Fim_Quarto_round = True
+                        break
+            if Fim_Quarto_round == True:
+                print(f"Com isso foi dado o termino a primeira fase, é o inicio da segunda")
+                segunda_fase_inicio = True
+                if segunda_fase_inicio == True:
+                    print("###" * 20)
+                    while Exit is False:
+                        if Fim_Primeiro_round_seg == False:
+                            if Primeiro_round == "Elena":
+                                Elena_vida = 4800
+                                Marcus_vida = 6000
+                                Lyra_vida = 5800
+                                rodada = 0
+                                print(f"\033[1;49;93m{Primeiro_round}\033[m vs.{Segundo_round}")
+                                while True:
+                                    print("====" * 15)
+                                    time.sleep(1)
+                                    print(f"Rodada \033[1;34m{rodada}\033[m")
+                                    time.sleep(2)
+                                    rodada += 1
+                                    Elena_jogada = randint(2, 10)
+                                    if Segundo_round == "Marcus":
+                                        Marcus_jogada = randint(2, 9)
+                                        if Elena_jogada > Marcus_jogada:
+                                            print(
+                                                f"Ela aproveita a reflexão dos espelhos para criar ilusões de seus movimentos, confundindo Marcus temporariamente e atacando de ângulos inesperados.")
+                                            print("Ela contra-ataca com uma série de golpes precisos")
+                                            Marcus_vida -= 1050
+                                            print(
+                                                "\033[1;49;91mDano recebido por\033[m \033[2;49;94m[Marcus]\033[m")
+                                        if Marcus_jogada > Elena_jogada:
+                                            print(
+                                                f"Marcus avança com golpes poderosos, usando sua força bruta para pressionar Elena.")
+                                            time.sleep(1.5)
+                                            Elena_vida -= 1050
+                                            print("\033[1;49;91mDano recebido por\033[m \033[1;49;93m[Elena]\033[m")
+                                        if Marcus_jogada == Elena_jogada:
+                                            print(f"Ambos começam a se movimentar rapidamente")
+                                        if Marcus_jogada > 7:
+                                            print(
+                                                f"Marcus altera sua estratégia, tentando controlar mais a área e bloquear os movimentos de Elena. ")
+                                            Elena_vida -= 905
+                                            pausa_dramatica()
+                                            for n in range(0, 3):
+                                                Elena_vida -= 350
+                                                n = Elena_vida
+                                                time.sleep(1.5)
+                                            print(f"Vida-Elena:\033[1;49;92m{Elena_vida}\033[m")
+                                            print("\033[1;49;91mDano recebido por\033[m \033[1;49;93m[Elena]\033[m")
+                                        if Elena_jogada > 9:
+                                            print(
+                                                f"la aproveita a disposição dos espelhos para criar ilusões, confundindo a percepção de Marcus e atacando quando ele menos espera.")
+                                            Marcus_vida -= 900
+                                            pausa_dramatica()
+                                            for n in range(0, 3):
+                                                Marcus_vida -= 350
+                                                n = Marcus_vida
+                                                time.sleep(1.5)
+                                            print(f"Vida-Marcus:\033[1;49;92m{Marcus_vida}\033[m")
+                                            print("\033[1;49;34mDano recebido por [Marus]\033[m")
+                                        if Elena_vida < 0:
+                                            print("\033[2;49;94mMarucs\033[m \033[5;49;91mfoi o vencedor\033[m")
+                                            Primeiro_round_seg = "Marcus"
+                                            print("-=-=-=-=-=-=Quadro de lutas(2 Fase)=-=-=-=-=-=-")
+                                            print(
+                                                f"\033[1;49;93mElena\033[m vs. \033[1;49;34m Marcus\033[m ->Vencedor \033[2;49;92m{Primeiro_round_seg}\033[m")
+                                            Fim_Segundo_round_seg = True
+                                            break
+                                        if Marcus_vida < 0:
+                                            print("\033[1;49;93mElena\033[m \033[5;49;91mfoi a vencedora\033[m")
+                                            Primeiro_round_seg = "Elena"
+                                            print("-=-=-=-=-=-=Quadro de lutas(2 Fase)=-=-=-=-=-=-")
+                                            print(
+                                                f"\033[1;49;93mElena\033[m vs. \033[1;49;34mMarcus\033[m ->Vencedor \033[2;49;92m{Primeiro_round_seg}\033[m")
+                                            Fim_Segundo_round_seg = True
+                                            break
+                                    if Segundo_round == "Lyra":
+                                        Lyra_jogada = randint(0, 12)
+                                        if Elena_jogada > Lyra_jogada:
+                                            print(
+                                                f"Elena aumenta sua velocidade, usando os espelhos para criar múltiplos reflexos, tornando mais difícil para Lyra distinguir qual é o movimento real.")
+                                            print("Ela contra-ataca com uma série de golpes precisos")
+                                            Lyra_vida -= 950
+                                            print("\033[1;49;91mDano recebido por\033[m \033[1;49;37m[Lyra]\033[m")
+                                        if Lyra_jogada > Elena_jogada:
+                                            print(
+                                                f"Lyra demonstra sua habilidade de prever os movimentos de Elena, desviando habilmente dos ataques dela e contra-atacando com movimentos precisos")
+                                            time.sleep(1.5)
+                                            Elena_vida -= 950
+                                            print("\033[1;49;91mDano recebido por\033[m \033[1;49;93m[Elena]\033[m")
+                                        if Lyra_jogada == Elena_jogada:
+                                            print(
+                                                f"Ambas utilizam os reflexos dos espelhos para tentar antecipar os ataques")
+                                        if Lyra_jogada > 7:
+                                            print(
+                                                f"Lyra altera sua estratégia, tentando controlar mais a área e bloquear os movimentos de Elena. ")
+                                            Elena_vida -= 905
+                                            pausa_dramatica()
+                                            for n in range(0, 3):
+                                                Elena_vida -= 350
+                                                n = Elena_vida
+                                                time.sleep(1.5)
+                                            print(f"Vida-Elena:\033[1;49;92m{Elena_vida}\033[m")
+                                            print("\033[1;49;91mDano recebido por\033[m \033[1;49;93m[Elena]\033[m")
+                                        if Elena_jogada > 9:
+                                            print(f"Elena tenta uma abordagem mais ofensiva, variando seus ataques")
+                                            Lyra_vida -= 900
+                                            pausa_dramatica()
+                                            for n in range(0, 3):
+                                                Lyra_vida -= 350
+                                                n = Lyra_vida
+                                                time.sleep(1.5)
+                                            print(f"Vida-Lyra:\033[1;49;92m{Lyra_vida}\033[m")
+                                            print("\033[1;49;91mDano recebido por\033[m \033[1;49;37m[Lyra]\033[m")
+                                        if Elena_vida < 0:
+                                            print("\033[1;49;37mLyra\033[m \033[5;49;91mfoi a vencedora\033[m")
+                                            Primeiro_round_seg = "Lyra"
+                                            print("-=-=-=-=-=-=Quadro de lutas(2 Fase)=-=-=-=-=-=-")
+                                            print(
+                                                f"\033[1;49;93mElena\033[m vs. \033[1;49;34m Lyra\033[m ->Vencedor \033[2;49;92m{Primeiro_round_seg}\033[m")
+                                            Fim_Segundo_round_seg = True
+                                            break
+                                        if Lyra_vida < 0:
+                                            print("\033[1;49;93mElena\033[m \033[5;49;91mfoi a vencedora\033[m")
+                                            Primeiro_round_seg = "Elena"
+                                            print("-=-=-=-=-=-=Quadro de lutas(2 Fase)=-=-=-=-=-=-")
+                                            print(
+                                                f"\033[1;49;93mElena\033[m vs. \033[1;49;34mLyra\033[m ->Vencedor \033[2;49;92m{Primeiro_round_seg}\033[m")
+                                            Fim_Segundo_round_seg = True
+                                            break
+                            if Primeiro_round == "Soren":
+                                Soren_vida = 4800
+                                Marcus_vida = 6000
+                                Lyra_vida = 5800
+                                rodada = 0
+                                print(f"\033[1;49;34m{Primeiro_round}\033[m vs.{Segundo_round}")
+                                while True:
+                                    print("====" * 15)
+                                    time.sleep(1)
+                                    print(f"Rodada \033[1;34m{rodada}\033[m")
+                                    time.sleep(2)
+                                    rodada += 1
+                                    Soren_jogada = randint(3, 12)
+                                    if Segundo_round == "Marcus":
+                                        Marcus_jogada = randint(2, 9)
+                                        if Soren_jogada > Marcus_jogada:
+                                            print(
+                                                f"Ele utiliza movimentos rápidos e evasivos, tentando desgastar Marcus.")
+                                            print("Ela contra-ataca com uma série de golpes precisos")
+                                            Marcus_vida -= 1050
+                                            print(
+                                                "\033[1;49;91mDano recebido por\033[m \033[2;49;94m[Marcus]\033[m")
+                                        if Marcus_jogada > Soren_jogada:
+                                            print(
+                                                f"A força de Marcus o coloca em vantagem nesta rodada, desferindo golpes poderosos que forçam Soren")
+                                            time.sleep(1.5)
+                                            Soren_vida -= 1050
+                                            print(
+                                                "\033[1;49;91mDano recebido por\033[m \033[1;49;34m[Sore]\033[m")
+                                        if Marcus_jogada == Soren_jogada:
+                                            print(f"Ambos começam a se movimentar rapidamente")
+                                        if Marcus_jogada > 7:
+                                            print(
+                                                f"A luta se intensifica à medida que Marcus busca fechar a distância entre eles")
+                                            Soren_vida -= 905
+                                            pausa_dramatica()
+                                            for n in range(0, 3):
+                                                Soren_vida -= 350
+                                                n = Soren_vida
+                                                time.sleep(1.5)
+                                            print(f"Vida-Soren:\033[1;49;92m{Soren_vida}\033[m")
+                                            print(
+                                                "\033[1;49;91mDano recebido por\033[m \033[1;49;34m[Sore]\033[m")
+                                        if Soren_jogada > 9:
+                                            print(
+                                                f"Soren aproveita a fadiga de Marcus para lançar uma série de ataques rápidos")
+                                            Marcus_vida -= 900
+                                            pausa_dramatica()
+                                            for n in range(0, 3):
+                                                Marcus_vida -= 350
+                                                n = Marcus_vida
+                                                time.sleep(1.5)
+                                            print(f"Vida-Marcus:\033[1;49;92m{Marcus_vida}\033[m")
+                                            print("\033[1;49;34mDano recebido por [Marus]\033[m")
+                                        if Soren_vida < 0:
+                                            print(
+                                                "\033[2;49;94mMarucs\033[m \033[5;49;91mfoi o vencedor\033[m")
+                                            Primeiro_round_seg = "Marcus"
+                                            print("-=-=-=-=-=-=Quadro de lutas(2 Fase)=-=-=-=-=-=-")
+                                            print(
+                                                f"\033[1;49;93mSoren\033[m vs. \033[1;49;34m Marcus\033[m ->Vencedor \033[2;49;92m{Primeiro_round_seg}\033[m")
+                                            Fim_Segundo_round_seg = True
+                                            break
+                                        if Marcus_vida < 0:
+                                            print(
+                                                "\033[1;49;34mSoren\033[m \033[5;49;91mfoi o vencedor\033[m")
+                                            Primeiro_round_seg = "Soren"
+                                            print("-=-=-=-=-=-=Quadro de lutas(2 Fase)=-=-=-=-=-=-")
+                                            print(
+                                                f"\033[1;49;93mSoren\033[m vs. \033[1;49;34mMarcus\033[m ->Vencedor \033[2;49;92m{Primeiro_round_seg}\033[m")
+                                            Fim_Segundo_round_seg = True
+                                            break
+                                    if Segundo_round == "Lyra":
+                                        Lyra_jogada = randint(0, 12)
+                                        if Soren_jogada > Lyra_jogada:
+                                            print(
+                                                f"Soren, determinado a não ser superado novamente, encontra uma abertura na defesa de Lyra e a atinge com um golpe preciso")
+                                            print("Ela contra-ataca com uma série de golpes precisos")
+                                            Lyra_vida -= 950
+                                            print(
+                                                "\033[1;49;91mDano recebido por\033[m \033[1;49;37m[Lyra]\033[m")
+                                        if Lyra_jogada > Soren_jogada:
+                                            print(
+                                                f" Lyra usa seus reflexos afiados para desviar dos ataques rápidos de Soren, o atacando")
+                                            time.sleep(1.5)
+                                            Soren_vida -= 950
+                                            print(
+                                                "\033[1;49;91mDano recebido por\033[m \033[1;49;34m[Sore]\033[m")
+                                        if Lyra_jogada == Soren_jogada:
+                                            print(
+                                                f"Ambas utilizam os reflexos dos espelhos para tentar antecipar os ataques")
+                                        if Lyra_jogada > 7:
+                                            print(
+                                                f"Lyra altera sua estratégia, tentando controlar mais a área e bloquear os movimentos de Soren. ")
+                                            Soren_vida -= 905
+                                            pausa_dramatica()
+                                            for n in range(0, 3):
+                                                Soren_vida -= 350
+                                                n = Soren_vida
+                                                time.sleep(1.5)
+                                            print(f"Vida-Soren:\033[1;49;92m{Soren_vida}\033[m")
+                                            print(
+                                                "\033[1;49;91mDano recebido por\033[m \033[1;49;34m[Sore]\033[m")
+                                        if Soren_jogada > 9:
+                                            print(
+                                                f"Soren, ainda aproveitando a vantagem adquirida nas rodadas anteriores, lança ataques finais rápidos.")
+                                            Lyra_vida -= 900
+                                            pausa_dramatica()
+                                            for n in range(0, 3):
+                                                Lyra_vida -= 350
+                                                n = Lyra_vida
+                                                time.sleep(1.5)
+                                            print(f"Vida-Lyra:\033[1;49;92m{Lyra_vida}\033[m")
+                                            print(
+                                                "\033[1;49;91mDano recebido por\033[m \033[1;49;37m[Lyra]\033[m")
+                                        if Soren_vida < 0:
+                                            print(
+                                                "\033[1;49;37mLyra\033[m \033[5;49;91mfoi a vencedora\033[m")
+                                            Primeiro_round_seg = "Lyra"
+                                            print("-=-=-=-=-=-=Quadro de lutas(2 Fase)=-=-=-=-=-=-")
+                                            print(
+                                                f"\033[1;49;93mSoren\033[m vs. \033[1;49;34m Lyra\033[m ->Vencedor \033[2;49;92m{Primeiro_round_seg}\033[m")
+                                            Fim_Segundo_round_seg = True
+                                            break
+                                        if Lyra_vida < 0:
+                                            print(
+                                                "\033[1;49;34mSoren\033[m \033[5;49;91mfoi o vencedor\033[m")
+                                            Primeiro_round_seg = "Soren"
+                                            print("-=-=-=-=-=-=Quadro de lutas(2 Fase)=-=-=-=-=-=-")
+                                            print(
+                                                f"\033[1;49;93mSoren\033[m vs. \033[1;49;34m Lyra\033[m ->Vencedor \033[2;49;92m{Primeiro_round_seg}\033[m")
+                                            Fim_Segundo_round_seg = True
+                                            break
+                        if Fim_Segundo_round_seg == True:
+                            if Terceiro_round == "Gareth":
+                                Gareth_vida = 4800
+                                Isolde_vida = 6000
+                                vida += 1300
+                                rodada = 0
+                                print(f"\033[2;49;91m{Terceiro_round}\033[m vs. {Quarto_round}")
+                                while True:
+                                    print("====" * 15)
+                                    time.sleep(1)
+                                    print(f"Rodada \033[1;34m{rodada}\033[m")
+                                    time.sleep(2)
+                                    rodada += 1
+                                    Gareth_jogada = randint(3, 12)
+                                    if Quarto_round == "Isolde":
+                                        Isolde_jogada = randint(2, 9)
+                                        if Gareth_jogada > Isolde_jogada:
+                                            print(f"Gareth tentando antecipar os movimentos de Isolde. ")
+                                            print("Ela contra-ataca com uma série de golpes precisos")
+                                            Isolde_vida -= 1050
+                                            print(
+                                                "\033[5;49;91mDano recebido por\033[m \033[5;49;95m[Isolde]\033[m")
+                                        if Isolde_jogada > Gareth_jogada:
+                                            print(
+                                                f"Isolde, confiante em suas habilidades sombrias, tenta envolver Gareth em ilusões.")
+                                            time.sleep(1.5)
+                                            Gareth_vida -= 1050
+                                            print("\033[1;49;93mDano recebido por [Gereth]\033[m")
+                                        if Isolde_jogada == Gareth_jogada:
+                                            print(f"Ambos começam a se movimentar rapidamente")
+                                        if Isolde_jogada > 7:
+                                            print(
+                                                f"Ele usa suas habilidades estratégicas para criar uma abertura na defesa")
+                                            Gareth_vida -= 905
+                                            pausa_dramatica()
+                                            for n in range(0, 3):
+                                                Gareth_vida -= 350
+                                                n = Gareth_vida
+                                                time.sleep(1.5)
+                                            print(f"Vida-Gareth:\033[1;49;92m{Gareth_vida}\033[m")
+                                            print(
+                                                "\033[1;49;91mDano recebido por\033[m \033[2;49;91m[Gareth]\033[m")
+                                        if Gareth_jogada > 9:
+                                            print(
+                                                f"Gareth, determinado a não ser pego novamente, adota uma abordagem mais agressiva.")
+                                            Isolde_vida -= 900
+                                            pausa_dramatica()
+                                            for n in range(0, 3):
+                                                Isolde_vida -= 350
+                                                n = Isolde_vida
+                                                time.sleep(1.5)
+                                            print(f"Vida-Isolde:\033[1;49;92m{Isolde_vida}\033[m")
+                                            print(
+                                                "\033[5;49;91mDano recebido por\033[m \033[5;49;95m[Isolde]\033[m")
+                                        if Gareth_vida < 0:
+                                            print("\033[5;49;95mIsolde\033[m \033[5;49;91mfoi o vencedor\033[m")
+                                            Segundo_round_seg = "Isolde"
+                                            print("-=-=Quadro de lutas(2-Fase)-=-=-")
+                                            print(
+                                                f"\033[2;49;91mGareth\033[m vs. \033[5;49;95mIsolde\033[m ->Vencedor \033[2;49;92m{Segundo_round_seg}\033[m")
+                                            Finais_torneio = True
+                                            break
+                                        if Isolde_vida < 0:
+                                            print("\033[2;49;92mGareth\033[m \033[5;49;91mfoi o vencedor\033[m")
+                                            Segundo_round_seg = "Gareth"
+                                            print("-=-=Quadro de lutas(2-Fase)-=-=-")
+                                            print(
+                                                f"\033[2;49;91mGareth\033[m vs. \033[5;49;95mIsolde\033[m ->Vencedor \033[2;49;92m{Segundo_round_seg}\033[m")
+                                            Finais_torneio = True
+                                            break
+                                    if Quarto_round == f"{nome}":
+                                        Jogador_ação = randint(4, 16)
+                                        if Jogador_ação > Gareth_jogada:
+                                            print(
+                                                f"A luta torna-se uma batalha de resistência, com Art pressionando Gareth com uma série de ataques calculados.")
+                                            Gareth_vida -= 950
+                                            print(
+                                                "\033[1;49;91mDano recebido por\033[m \033[2;49;91m[Gareth]\033[m")
+                                        if Gareth_jogada > Jogador_ação:
+                                            print(
+                                                f" Gareth, mais defensiva, usa seus conhecimentos de cura para evitar danos. ")
+                                            time.sleep(1.5)
+                                            vida -= 950
+                                            print(
+                                                f"\033[1;49;31mDano recebido por\033[m \033[1;49;36m{nome}\033[m")
+                                        if Gareth_jogada == Jogador_ação:
+                                            print(
+                                                f"Ambas utilizam os reflexos dos espelhos para tentar antecipar os ataques")
+                                        if Gareth_jogada > 11:
+                                            print(
+                                                f" Gareth, reconhecendo a habilidade de Art com a espada, decide adotar uma abordagem mais estratégica..")
+                                            vida -= 905
+                                            pausa_dramatica()
+                                            for n in range(0, 3):
+                                                vida -= 350
+                                                n = vida
+                                                time.sleep(1.5)
+                                            print(f"Vida-{nome}:\033[1;49;92m{vida}\033[m")
+                                            print(
+                                                f"\033[1;49;31mDano recebido por\033[m \033[1;49;36m{nome}\033[m")
+                                        if Jogador_ação > 9:
+                                            print(
+                                                f"Art, percebendo a astúcia de Fiona, ajusta sua estratégia")
+                                            Gareth_vida -= 900
+                                            pausa_dramatica()
+                                            for n in range(0, 3):
+                                                Gareth_vida -= 350
+                                                n = Gareth_vida
+                                                time.sleep(1.5)
+                                            print(f"Vida-Gareth:\033[1;49;92m{Gareth_vida}\033[m")
+                                            print(
+                                                "\033[1;49;91mDano recebido por\033[m \033[2;49;91m[Gareth]\033[m")
+                                        if vida < 0:
+                                            print("\033[2;49;92mGareth\033[m \033[5;49;91mfoi o vencedor\033[m")
+                                            Segundo_round_seg = "Gareth"
+                                            print("-=-=Quadro de lutas(2-Fase)-=-=-")
+                                            print(
+                                                f"\033[1;49;36m{nome}\033[m vs. \033[2;49;91mGareth\033[m ->Vencedor \033[2;49;92m{Segundo_round_seg}\033[m")
+                                            Finais_torneio = True
+                                            break
+                                        if Gareth_vida < 0:
+                                            print(
+                                                f"\033[1;49;36m{nome}\033[m \033[5;49;91mfoi o vencedor\033[m")
+                                            Segundo_round_seg = f"{nome}"
+                                            print("-=-=Quadro de lutas(2-Fase)-=-=-")
+                                            print(
+                                                f"\033[1;49;36m{nome}\033[m vs. \033[2;49;91mGareth\033[m ->Vencedor \033[2;49;92m{Segundo_round_seg}\033[m")
+                                            Finais_torneio = True
+                                            break
+                            if Terceiro_round == "Fiona":
+                                Isolde_vida = 6000
+                                vida += 1300
+                                rodada = 0
+                                Fiona_vida = 3800
+                                print(f"\033[4;49;95m{Terceiro_round}\033[m vs. {Quarto_round}")
+                                while True:
+                                    print("====" * 15)
+                                    time.sleep(1)
+                                    print(f"Rodada \033[1;34m{rodada}\033[m")
+                                    time.sleep(2)
+                                    rodada += 1
+                                    Fiona_jogada = randint(2, 12)
+                                    if Quarto_round == "Isolde":
+                                        Isolde_jogada = randint(2, 9)
+                                        if Fiona_jogada > Isolde_jogada:
+                                            print(f"Gareth tentando antecipar os movimentos de Isolde. ")
+                                            print("Ela contra-ataca com uma série de golpes precisos")
+                                            Isolde_vida -= 1050
+                                            print(
+                                                "\033[5;49;91mDano recebido por\033[m \033[5;49;95m[Isolde]\033[m")
+                                        if Isolde_jogada > Fiona_jogada:
+                                            print(
+                                                f"Isolde, confiante em suas habilidades sombrias, tenta envolver Gareth em ilusões.")
+                                            time.sleep(1.5)
+                                            Fiona_vida -= 1050
+                                            print("\033[2;49;91mDano recebido por\033[m \033[2;49;92m[Fiona]\033[m")
+                                        if Isolde_jogada == Fiona_jogada:
+                                            print(f"Ambos começam a se movimentar rapidamente")
+                                        if Isolde_jogada > 7:
+                                            print(
+                                                f"Ele usa suas habilidades estratégicas para criar uma abertura na defesa")
+                                            Fiona_vida -= 905
+                                            pausa_dramatica()
+                                            for n in range(0, 3):
+                                                Fiona_vida -= 350
+                                                n = Fiona_vida
+                                                time.sleep(1.5)
+                                            print(f"Vida-Fiona:\033[1;49;92m{Fiona_vida}\033[m")
+                                            print("\033[2;49;91mDano recebido por\033[m \033[2;49;92m[Fiona]\033[m")
+                                        if Fiona_jogada > 11:
+                                            print(
+                                                f"Fiona, determinado a não ser pego novamente, adota uma abordagem mais agressiva.")
+                                            Isolde_vida -= 900
+                                            pausa_dramatica()
+                                            for n in range(0, 3):
+                                                Isolde_vida -= 350
+                                                n = Isolde_vida
+                                                time.sleep(1.5)
+                                            print(f"Vida-Isolde:\033[1;49;92m{Isolde_vida}\033[m")
+                                            print(
+                                                "\033[5;49;91mDano recebido por\033[m \033[5;49;95m[Isolde]\033[m")
+                                        if Fiona_vida < 0:
+                                            print("\033[5;49;95mIsolde\033[m \033[5;49;91mfoi o vencedor\033[m")
+                                            Segundo_round_seg = "Isolde"
+                                            print("-=-=Quadro de lutas(2-Fase)-=-=-")
+                                            print(
+                                                f"\033[2;49;92mFiona\033[m vs. \033[5;49;95mIsolde\033[m ->Vencedor \033[2;49;92m{Segundo_round_seg}\033[m")
+                                            Finais_torneio = True
+                                            break
+                                        if Isolde_vida < 0:
+                                            print("\033[2;49;92mFiona\033[m \033[5;49;91mfoi a vencedora\033[m")
+                                            Segundo_round_seg = "Fiona"
+                                            print("-=-=Quadro de lutas(2-Fase)-=-=-")
+                                            print(
+                                                f"\033[2;49;92mFiona\033[m vs. \033[5;49;95mIsolde\033[m ->Vencedor \033[2;49;92m{Segundo_round_seg}\033[m")
+                                            Finais_torneio = True
+                                            break
+                                    if Quarto_round == f"{nome}":
+                                            Jogador_ação = randint(4, 16)
+                                            if Terceiro_round == "Fiona":
+                                                if Jogador_ação > Fiona_jogada:
+                                                    print(
+                                                        f"A luta torna-se uma batalha de resistência, com Art pressionando Fiona com uma série de ataques calculados.")
+                                                    Fiona_vida -= 950
+                                                    print(
+                                                        "\033[2;49;91mDano recebido por\033[m \033[2;49;92m[Fiona]\033[m")
+                                                if Fiona_jogada > Jogador_ação:
+                                                    print(
+                                                        f" Fiona, mais defensiva, usa seus conhecimentos de cura para evitar danos. ")
+                                                    time.sleep(1.5)
+                                                    vida -= 950
+                                                    print(
+                                                        f"\033[1;49;31mDano recebido por\033[m \033[1;49;36m{nome}\033[m")
+                                                if Fiona_jogada == Jogador_ação:
+                                                    print(
+                                                        f"Ambas utilizam os reflexos dos espelhos para tentar antecipar os ataques")
+                                                if Fiona_jogada > 11:
+                                                    print(
+                                                        f"Fiona, reconhecendo a habilidade de Art com a espada, decide adotar uma abordagem mais estratégica..")
+                                                    vida -= 905
+                                                    pausa_dramatica()
+                                                    for n in range(0, 3):
+                                                        vida -= 350
+                                                        n = vida
+                                                        time.sleep(1.5)
+                                                    print(f"Vida-{nome}:\033[1;49;92m{vida}\033[m")
+                                                    print(
+                                                        f"\033[1;49;31mDano recebido por\033[m \033[1;49;36m{nome}\033[m")
+                                                if Jogador_ação > 9:
+                                                    print(
+                                                        f"Art, percebendo a astúcia de Fiona, ajusta sua estratégia")
+                                                    Fiona_vida -= 900
+                                                    pausa_dramatica()
+                                                    for n in range(0, 3):
+                                                        Fiona_vida -= 350
+                                                        n = Fiona_vida
+                                                        time.sleep(1.5)
+                                                    print(f"Vida-Fiona:\033[1;49;92m{Fiona_vida}\033[m")
+                                                    print(
+                                                        "\033[2;49;91mDano recebido por\033[m \033[2;49;92m[Fiona]\033[m")
+                                                if vida < 0:
+                                                    print(
+                                                        "\033[2;49;92mFiona\033[m \033[5;49;91mfoi a vencedora\033[m")
+                                                    Segundo_round_seg = "Fiona"
+                                                    print("-=-=Quadro de lutas(2-Fase)-=-=-")
+                                                    print(
+                                                        f"\033[1;49;36m{nome}\033[m vs. \033[2;49;92mFiona\033[m ->Vencedor \033[2;49;92m{Segundo_round_seg}\033[m")
+                                                    Finais_torneio = True
+                                                    break
+                                                if Fiona_vida < 0:
+                                                    print(
+                                                        f"\033[1;49;36m{nome}\033[m \033[5;49;91mfoi o vencedor\033[m")
+                                                    Segundo_round_seg = f"{nome}"
+                                                    print("-=-=Quadro de lutas(2-Fase)-=-=-")
+                                                    print(
+                                                        f"\033[1;49;36m{nome}\033[m vs. \033[2;49;92mFiona\033[m ->Vencedor \033[2;49;92m{Segundo_round_seg}\033[m")
+                                                    Finais_torneio = True
+                                                    break
+                        if Finais_torneio == True:
+                            print(f"Fim 2 fase torneio, agora foi anunciado os participanete das (Finais)")
+                            time.sleep(2.0)
+                            print("###" * 20)
+                            print(f"{Primeiro_round_seg} vs. {Segundo_round_seg}")
+                            if Primeiro_round_seg == "Elena" or "Marcus" or "Lyra" or "Soren":
+                                Elena_vida = 4800
+                                Gareth_vida = 4800
+                                rodada = 0
+                                while True:
+                                    print("====" * 15)
+                                    time.sleep(1)
+                                    print(f"Rodada \033[1;34m{rodada}\033[m")
+                                    time.sleep(2)
+                                    rodada += 1
+                                    Elena_jogada = randint(2, 10)
+                                    Gareth_jogada = randint(3, 12)
+                                    if Segundo_round_seg == "Gareth":
+                                        if Elena_jogada > Gareth_jogada:
+                                            print(
+                                                f"Com os reflexão arpimoradas na hora da ação, e capz de temporariamente e atacar um dos ângulos inesperados.")
+                                            Gareth_vida -= 1050
+                                            print(
+                                                "\033[1;49;91mDano recebido por\033[m \033[2;49;91m[Gareth]\033[m")
+                                        if Gareth_jogada > Elena_jogada:
+                                            print(
+                                                f"Com um avança com golpes poderosos,gareth atordado seu inimigo.")
+                                            time.sleep(1.5)
+                                            Elena_vida -= 1050
+                                            print("\033[1;49;91mDano infligido\033[m")
+                                        if Gareth_jogada == Elena_jogada:
+                                            print(f"Ambos começam a se movimentar rapidamente")
+                                        if Gareth_jogada > 11:
+                                            print(
+                                                f"Gareth no auge da sua confiaça ataca com sua velocidade maxima")
+                                            Elena_vida -= 905
+                                            pausa_dramatica()
+                                            for n in range(0, 3):
+                                                Elena_vida -= 350
+                                                n = Elena_vida
+                                                time.sleep(1.5)
+                                            print(f"\033[1;49;92m{Elena_vida}\033[m")
+                                            print("\033[1;49;91mDano infligido\033[m")
+                                        if Elena_jogada > 9:
+                                            print(
+                                                f"Aproveitando a confiaça de Gareth, espera o momento do seu avanço e contra-ataca")
+                                            Gareth_vida -= 1300
+                                            pausa_dramatica()
+                                            for n in range(0, 3):
+                                                Gareth_vida -= 350
+                                                n = Gareth_vida
+                                                time.sleep(1.5)
+                                            print(f"\033[1;49;92m{Gareth_vida}\033[m")
+                                            print(
+                                                "\033[1;49;91mDano recebido por\033[m \033[2;49;91m[Gareth]\033[m")
+                                        if Elena_vida < 0:
+                                            print("\033[4;49;33mGanhador do torneio\033[m \033[2;49;91mGareth\033[m")
+                                            Exit = True
+                                            break
+                                        if Gareth_vida < 0:
+                                            print(
+                                                "\033[4;49;33mGanhador do torneio\033[m \033[4;31;91m[Elena/Marcus/Lyra/Soren] \033[m")
+                                            Exit = True
+                                            break
+                                    if Segundo_round_seg == "Isolde":
+                                        Isolde_jogada = randint(0, 12)
+                                        Isolde_vida = 6000
+                                        if Elena_jogada > Isolde_jogada:
+                                            print(
+                                                f"Com os reflexão arpimoradas na hora da ação, e capaz de temporariamente e atacar um dos ângulos inesperados.")
+                                            Isolde_vida -= 950
+                                            print(
+                                                "\033[5;49;91mDano recebido por\033[m \033[5;49;95m[Isolde]\033[m")
+                                        if Isolde_jogada > Elena_jogada:
+                                            print(
+                                                f"Isolde demonstra sua habilidade de prever os movimentos , desviando habilmente dos ataques dela e contra-atacando com movimentos precisos")
+                                            time.sleep(1.5)
+                                            Elena_vida -= 950
+                                            print("\033[1;49;91mDano infligido\033[m")
+                                        if Isolde_jogada == Elena_jogada:
+                                            print(
+                                                f"Ambas utilizam os reflexos dos espelhos para tentar antecipar os ataques")
+                                        if Isolde_jogada > 11:
+                                            print(
+                                                f"Isolde altera sua estratégia, tentando controlar mais a área e bloquear os movimentos. ")
+                                            Elena_vida -= 905
+                                            pausa_dramatica()
+                                            for n in range(0, 3):
+                                                Elena_vida -= 350
+                                                n = Elena_vida
+                                                time.sleep(1.5)
+                                            print(f"\033[1;49;92m{Elena_vida}\033[m")
+                                            print("\033[1;49;91mDano infligido\033[m")
+                                        if Elena_jogada > 9:
+                                            print(f"Elena tenta uma abordagem mais ofensiva, variando seus ataques")
+                                            Isolde_vida -= 900
+                                            pausa_dramatica()
+                                            for n in range(0, 3):
+                                                Isolde_vida -= 350
+                                                n = Isolde_vida
+                                                time.sleep(1.5)
+                                            print(f"\033[1;49;92m{Isolde_vida}\033[m")
+                                            print(
+                                                "\033[5;49;91mDano recebido por\033[m \033[5;49;95m[Isolde]\033[m")
+                                        if Elena_vida < 0:
+                                            print("\033[4;49;33mGanhador do torneio\033[m \033[5;49;95mIsolde\033[m")
+                                            Exit = True
+                                            break
+                                        if Isolde_vida < 0:
+                                            print(
+                                                "\033[4;49;33mGanhador do torneio\033[m \033[4;31;91m[Elena/Marcus/Lyra/Soren]\033[m")
+                                            Exit = True
+                                            break
+                                    if Segundo_round_seg == "Fiona":
+                                        Fiona_jogada = randint(0, 12)
+                                        Fiona_vida = 4800
+                                        if Elena_jogada > Fiona_jogada:
+                                            print(
+                                                f"Com os reflexão arpimoradas na hora da ação, e capaz de temporariamente e atacar um dos ângulos inesperados.")
+                                            Fiona_vida -= 950
+                                            print("\033[2;49;91mDano recebido por\033[m \033[2;49;92m[Fiona]\033[m")
+                                        if Fiona_jogada > Elena_jogada:
+                                            print(
+                                                f"Fiona demonstra sua habilidade de se adptar e se curar durantea a batalha ")
+                                            Fiona_vida += 450
+                                            time.sleep(1.5)
+                                            Elena_vida -= 950
+                                            print("\033[1;49;91mDano infligido\033[m")
+                                        if Fiona_jogada == Elena_jogada:
+                                            print(
+                                                f"Ambas utilizam os reflexos dos espelhos para tentar antecipar os ataques")
+                                        if Fiona_jogada > 11:
+                                            print(
+                                                f"Fiona altera sua estratégia, tentando controlar mais a área e bloquear os movimentos. ")
+                                            Elena_vida -= 905
+                                            pausa_dramatica()
+                                            for n in range(0, 3):
+                                                Elena_vida -= 350
+                                                n = Elena_vida
+                                                time.sleep(1.5)
+                                            print(f"\033[1;49;92m{Elena_vida}\033[m")
+                                            print("\033[1;49;91mDano infligido\033[m")
+                                        if Elena_jogada > 9:
+                                            print(
+                                                f"Com isso tenta-se mais uma abordagem mais ofensiva, variando seus ataques")
+                                            Fiona_vida -= 900
+                                            pausa_dramatica()
+                                            for n in range(0, 3):
+                                                Fiona_vida -= 350
+                                                n = Fiona_vida
+                                                time.sleep(1.5)
+                                            print(f"\033[1;49;92m{Fiona_vida}\033[m")
+                                            print("\033[2;49;91mDano recebido por\033[m \033[2;49;92m[Fiona]\033[m")
+                                        if Elena_vida < 0:
+                                            print("\033[4;49;33mGanhador do torneio\033[m \033[2;49;92mFiona\033[m")
+                                            Exit = True
+                                            break
+                                        if Fiona_vida < 0:
+                                            print(
+                                                "\033[4;49;33mGanhador do torneio\033[m \033[4;31;91m[Elena/Marcus/Lyra/Soren] \033[m")
+                                            Exit = True
+                                            break
+                                    if Segundo_round_seg == f"{nome}":
+                                        Jogador_ação = randint(6, 16)
+                                        vida += 1500
+                                        if Elena_jogada > Jogador_ação:
+                                            print(
+                                                f"Aumentado sua velocidade, usando os espelhos para criar múltiplos reflexos, tornando mais difícil para distinguir qual é o movimento real.")
+                                            print("Ela contra-ataca com uma série de golpes precisos")
+                                            vida -= 950
+                                            print(f"\033[1;49;31mDano recebido por\033[m \033[1;49;36m{nome}\033[m")
+                                        if Jogador_ação > Elena_jogada:
+                                            print(
+                                                f"Demonstra sua habilidade de prever os movimentos, desviando habilmente dos ataques dela e contra-atacando com movimentos precisos")
+                                            time.sleep(1.5)
+                                            Elena_vida -= 950
+                                            print("\033[1;49;91mDano infligido\033[m")
+                                        if Jogador_ação == Elena_jogada:
+                                            print(
+                                                f"Ambas utilizam os reflexos dos espelhos para tentar antecipar os ataques")
+                                        if Jogador_ação > 15:
+                                            print(
+                                                f"Altera sua estratégia, tentando controlar mais a área e bloquear os movimentos. ")
+                                            Elena_vida -= 905
+                                            pausa_dramatica()
+                                            for n in range(0, 3):
+                                                Elena_vida -= 350
+                                                n = Elena_vida
+                                                time.sleep(1.5)
+                                            print(f"\033[1;49;92m{Elena_vida}\033[m")
+                                            print("\033[1;49;91mDano infligido\033[m")
+                                        if Elena_jogada > 9:
+                                            print(f"Tenta-se uma abordagem mais ofensiva, variando seus ataques")
+                                            vida -= 900
+                                            pausa_dramatica()
+                                            for n in range(0, 3):
+                                                vida -= 350
+                                                n = vida
+                                                time.sleep(1.5)
+                                            print(f"\033[1;49;92m{vida}\033[m")
+                                            print(f"\033[1;49;31mDano recebido por\033[m \033[1;49;36m{nome}\033[m")
+                                        if Elena_vida < 0:
+                                            print(f"\033[4;49;33mGanhador do torneio\033[m \033[1;49;36m{nome}\033[m")
+                                            Exit = True
+                                            break
+                                        if vida < 0:
+                                            print(
+                                                "\033[4;49;33mGanhador do torneio\033[m \033[4;31;91m[Elena/Marcus/Lyra/Soren] \033[m")
+                                            Exit = True
+                                            break
 
-
-lest_fight(vida_aliado1, vida_aliado2, rodada, vida, crítico, Goblin_iaBoss_vida, Goblin_Strong1, a1_aliado, a2_aliado)
-level += 8
-gold += 1000
-rotina(exp, vida, level, gold)
-print("------")
-time.sleep(1.5)
-print("Depois de uma difícil luta, conseguem derrotar o Goblin(Mais forte),assim sobrevivendo...")
-time.sleep(1.5)
-print("~~~~~~~~~~~~~~" * 6)
-print(
-    "\033[34mCriador:\033[mSe você chegou até aqui, parabéns, pois eu fiz esse projeto com objetivo de poucos conseguirem completar")
-time.sleep(2)
-print("\033[34mCriador:\033[mMais uma vez parabéns por ter conseguido completar!")
-time.sleep(1)
-print("Assim chegamos ao final do Projeto(History). . .")
-time.sleep(1)
-print("Status atual")
-time.sleep(1)
-print(f"{vida}, vida aliado_ 1 {vida_aliado1}, vida_aliado2 {vida_aliado2}")
-time.sleep(1)
-print(f"level {level}, gold- {gold}, inventario-{inventario}")
+Primeiro_round(rodada, vida, nome)
+print(f"Com a finalização desse torneio,finalizamos a parte(1) do Projeto-Historia")
 time.sleep(0.5)
 print(".", end="")
 time.sleep(0.5)
 print(".", end="")
 time.sleep(0.5)
 print(".", end="")
+tempo_final = time.time()
+print(f"Ultimos dados salvos:")
+print(f"->\033[5;49;94mNome:\033[m[{nome}]")
+print(f"->\033[5;49;94mNivel:\033[m[{level}]")
+print(f"->\033[5;49;94mGold:\033[m[{gold}]")
+print(f"->\033[5;49;94mAliado:\033[m[{aliado_nome1}]")
+print(f"->\033[5;49;94mTempo de jogo:\033[m[{int(tempo_inicial - tempo_final) / 60}] \033[5;49;94mminutos\033[m")
 print("\033[7;37mFIM\033[m")
